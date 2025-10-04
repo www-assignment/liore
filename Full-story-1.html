@@ -471,7 +471,7 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* Enhanced Story Owners Section */
+    /* ========== ENHANCED RESPONSIVE STORY OWNERS SECTION ========== */
     .story-owners-section {
       margin-top: 80px;
       padding: 60px 0;
@@ -522,22 +522,51 @@
       line-height: 1.6;
     }
 
-    .owners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin-bottom: 50px;
+    /* NEW: RESPONSIVE OWNERS CONTAINER */
+    /* Default for mobile: horizontal scrolling with arrows */
+    .owners-container {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 25px;
+      padding: 10px 5px 25px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-light) transparent;
+      scroll-padding: 0 20px;
     }
 
-    /* Single Owner Card */
+    .owners-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .owners-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+      margin: 0 20px;
+    }
+
+    .owners-container::-webkit-scrollbar-thumb {
+      background: var(--primary-light);
+      border-radius: 10px;
+    }
+
+    .owners-container::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* UPDATED: Owner Card - Optimized for horizontal scrolling on mobile */
     .owner-card {
       background: white;
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       transition: var(--transition);
-      position: relative;
       border: 1px solid rgba(0, 0, 0, 0.05);
+      flex: 0 0 320px;
+      min-width: 320px;
+      max-width: 320px;
     }
 
     .owner-card:hover {
@@ -546,7 +575,7 @@
     }
 
     .owner-image {
-      height: 280px;
+      height: 250px;
       overflow: hidden;
       position: relative;
     }
@@ -597,12 +626,12 @@
     }
 
     .owner-content {
-      padding: 30px;
+      padding: 25px;
     }
 
     .owner-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 12px;
       color: var(--primary);
       line-height: 1.2;
@@ -623,121 +652,40 @@
       gap: 6px;
     }
 
-    /* Multiple Owners Layout - FIXED SCROLLING */
-    .multiple-owners-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
+    /* Scroll Navigation Buttons - Default: visible for mobile */
+    .scroll-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    .owners-group {
-      background:  #fcebda;
-      border-radius: var(--radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .owners-group-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 30px;
+    .scroll-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-
-    .owners-group-title i {
-      color: var(--primary-light);
-    }
-
-    .owners-horizontal-scroll {
-      display: flex;
-      gap: 25px;
-      overflow-x: auto;
-      padding: 10px 5px 25px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-light) transparent;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-
-    .owners-horizontal-scroll::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .owners-horizontal-scroll::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-
-    .owners-horizontal-scroll::-webkit-scrollbar-thumb {
-      background: var(--primary-light);
-      border-radius: 10px;
-    }
-
-    /* Ensure horizontal scrolling works on all devices */
-    .owner-card-horizontal {
-      flex: 0 0 300px;
-      background: white;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
+      justify-content: center;
+      cursor: pointer;
       transition: var(--transition);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      min-width: 300px; /* Ensure minimum width for proper scrolling */
+      box-shadow: var(--shadow);
     }
 
-    .owner-card-horizontal:hover {
-      transform: translateY(-5px);
+    .scroll-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-lg);
     }
 
-    .owner-image-horizontal {
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .owner-image-horizontal img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-    }
-
-    .owner-card-horizontal:hover .owner-image-horizontal img {
-      transform: scale(1.08);
-    }
-
-    .owner-content-horizontal {
-      padding: 25px;
-    }
-
-    /* Enhanced Grid Layout for Multiple Owners - NEW */
-    .owners-grid-scrollable {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-      overflow-y: auto;
-      max-height: 600px;
-      padding: 10px 5px 25px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-light) transparent;
-    }
-
-    .owners-grid-scrollable::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .owners-grid-scrollable::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-
-    .owners-grid-scrollable::-webkit-scrollbar-thumb {
-      background: var(--primary-light);
-      border-radius: 10px;
+    .scroll-btn:disabled {
+      background: var(--gray-light);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
     /* No Owners State */
@@ -748,6 +696,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       border: 2px dashed #E5E7EB;
+      width: 100%;
     }
 
     .no-owners-icon {
@@ -859,38 +808,118 @@
       color: rgba(255, 255, 255, 0.7);
     }
 
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-      .stories-header h1 {
-        font-size: 3.2rem;
-      }
-      
-      .owners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      }
-      
-      .owner-card-horizontal {
-        flex: 0 0 280px;
-        min-width: 280px;
-      }
+    /* Social Media Links in Story Owner Cards */
+    .owner-social-media {
+      margin: 15px 0;
+      padding: 15px;
+      background: rgba(142, 45, 45, 0.05);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--primary-light);
     }
 
-    @media (max-width: 968px) {
-      .story-image-container {
-        min-height: 450px;
+    .owner-social-media h4 {
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .social-links-owner {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-link-owner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--dark);
+      transition: var(--transition);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .social-link-owner:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .social-link-owner i {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .social-link-owner i.fa-instagram {
+      color: #E4405F;
+    }
+
+    .social-link-owner i.fa-facebook {
+      color: #1877F2;
+    }
+
+    .social-link-owner i.fa-twitter {
+      color: #1DA1F2;
+    }
+
+    .social-link-owner i.fa-tiktok {
+      color: #000000;
+    }
+
+    /* ========== ENHANCED RESPONSIVE DESIGN ========== */
+    /* For larger screens (tablets, laptops, desktops) */
+    @media (min-width: 992px) {
+      .owners-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-light) transparent;
+        scroll-padding: 0 20px;
       }
-      
-      .story-content {
-        padding: 50px;
+
+      .owners-container::-webkit-scrollbar {
+        width: 8px;
       }
-      
-      .story-content h2 {
-        font-size: 2.4rem;
+
+      .owners-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+        margin: 0 20px;
       }
-      
-      .owners-grid-scrollable {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        max-height: 500px;
+
+      .owners-container::-webkit-scrollbar-thumb {
+        background: var(--primary-light);
+        border-radius: 10px;
+      }
+
+      .owners-container::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+      }
+
+      .owner-card {
+        flex: 1 1 auto;
+        min-width: auto;
+        max-width: none;
+        height: fit-content;
+      }
+
+      .scroll-nav {
+        display: none;
       }
     }
 
@@ -947,20 +976,14 @@
         font-size: 2rem;
       }
       
-      .owners-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto 40px;
+      .owner-card {
+        flex: 0 0 300px;
+        max-width: 300px;
+        min-width: 300px;
       }
       
-      .owner-card-horizontal {
-        flex: 0 0 260px;
-        min-width: 260px;
-      }
-      
-      .owners-grid-scrollable {
-        grid-template-columns: 1fr;
-        max-height: 400px;
+      .owners-container {
+        gap: 20px;
       }
       
       footer {
@@ -1013,13 +1036,10 @@
         height: 40px;
       }
       
-      .owners-group {
-        padding: 30px 25px;
-      }
-      
-      .owner-card-horizontal {
-        flex: 0 0 240px;
-        min-width: 240px;
+      .owner-card {
+        flex: 0 0 280px;
+        max-width: 280px;
+        min-width: 280px;
       }
       
       .footer-logo {
@@ -1029,6 +1049,10 @@
       
       .footer-quote {
         font-size: 1rem;
+      }
+      
+      .owners-container {
+        gap: 15px;
       }
     }
 
@@ -1061,105 +1085,47 @@
         font-size: 1.8rem;
       }
       
-      .owner-card-horizontal {
-        flex: 0 0 220px;
-        min-width: 220px;
+      .owner-card {
+        flex: 0 0 260px;
+        max-width: 260px;
+        min-width: 260px;
+      }
+      
+      .owner-name {
+        font-size: 1.3rem;
       }
     }
 
+    @media (max-width: 360px) {
+      .stories-header h1 {
+        font-size: 2rem;
+      }
+      
+      .story-content h2 {
+        font-size: 1.6rem;
+      }
+      
+      .owner-card {
+        flex: 0 0 240px;
+        max-width: 240px;
+        min-width: 240px;
+      }
+      
+      .owner-content {
+        padding: 20px;
+      }
+    }
 
-    /* Social Media Links in Story Owner Cards */
-.owner-social-media {
-  margin: 15px 0;
-  padding: 15px;
-  background: rgba(142, 45, 45, 0.05);
-  border-radius: var(--radius);
-  border-left: 3px solid var(--primary-light);
-}
-
-.owner-social-media h4 {
-  font-size: 0.9rem;
-  color: var(--primary);
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.social-links-owner {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.social-link-owner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  background: white;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--dark);
-  transition: var(--transition);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.social-link-owner:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-  border-color: var(--primary-light);
-  color: var(--primary);
-}
-
-.social-link-owner i {
-  font-size: 1rem;
-  width: 20px;
-  text-align: center;
-}
-
-.social-link-owner i.fa-instagram {
-  color: #E4405F;
-}
-
-.social-link-owner i.fa-facebook {
-  color: #1877F2;
-}
-
-.social-link-owner i.fa-twitter {
-  color: #1DA1F2;
-}
-
-.social-link-owner i.fa-tiktok {
-  color: #000000;
-}
-
-/* For horizontal cards */
-.owner-card-horizontal .owner-social-media {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-.owner-card-horizontal .social-links-owner {
-  gap: 6px;
-}
-
-.owner-card-horizontal .social-link-owner {
-  padding: 6px 10px;
-  font-size: 0.8rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .social-links-owner {
-    flex-direction: column;
-  }
-  
-  .social-link-owner {
-    justify-content: flex-start;
-  }
-}
+    /* Responsive adjustments for social links */
+    @media (max-width: 768px) {
+      .social-links-owner {
+        flex-direction: column;
+      }
+      
+      .social-link-owner {
+        justify-content: flex-start;
+      }
+    }
   </style>
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -1215,8 +1181,6 @@
           <h2>Ken Saro-Wiwa</h2>
           <p>Imagine standing before the world, your voice echoing what millions are too scared to say. Ken Saro-Wiwa did just that. He fought against giants who polluted his people's land, knowing full well that speaking up could cost him everything. And it did.</p>
           
-          
-          
           <p>They silenced him, but they couldn't bury his courage. Today, his story reminds us that your voice is your weapon. And if it shakes the world, then the risk was worth it.</p>
           
           <p><strong>No Risk, No Story.</strong></p>
@@ -1234,8 +1198,18 @@
       <h2 class="owners-section-title">The Story Owners</h2>
       <p class="owners-section-subtitle">Meet the courageous individuals who carry forward the legacy of this story and embody the "No Risk, No Story" philosophy</p>
       
-      <div class="owner-container" id="storyOwnerContainer">
+      <div class="owners-container" id="storyOwnerContainer">
         <!-- Dynamic content will be loaded here -->
+      </div>
+      
+      <!-- Scroll Navigation Buttons - Will be hidden on larger screens via CSS -->
+      <div class="scroll-nav">
+        <button class="scroll-btn" id="scrollLeftBtn" disabled>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="scroll-btn" id="scrollRightBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </section>
   </main>
@@ -1336,150 +1310,47 @@
           return;
         }
         
-        // If only one owner, display a centered card
-        if (assignedOwners.length === 1) {
-          const owner = assignedOwners[0];
+        // Generate owner cards
+        container.innerHTML = assignedOwners.map(owner => {
           const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-          
-          container.innerHTML = `
-            <div class="owners-grid">
-              <div class="owner-card">
-                <div class="owner-image">
-                  ${owner.image_url ? `
-                    <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="owner-image-placeholder" style="display:none;">
-                      <i class="fas fa-user"></i>
-                      <p>Portrait of ${owner.owner_name}</p>
-                    </div>
-                  ` : `
-                    <div class="owner-image-placeholder">
-                      <i class="fas fa-user"></i>
-                      <p>Portrait of ${owner.owner_name}</p>
-                    </div>
-                  `}
-                  <div class="owner-badge">Story Owner</div>
-                </div>
-                <div class="owner-content">
-                  <h3 class="owner-name">${owner.owner_name}</h3>
-                  ${socialMediaLinks ? `
-                    <div class="owner-social-media">
-                      <h4>Connect with ${owner.owner_name.split(' ')[0]}:</h4>
-                      <div class="social-links-owner">
-                        ${socialMediaLinks}
-                      </div>
-                    </div>
-                  ` : ''}
-                  <div class="owner-date">
-                    <i class="far fa-calendar"></i> 
-                    Owner since: ${owner.date_added}
+          return `
+            <div class="owner-card">
+              <div class="owner-image">
+                ${owner.image_url ? `
+                  <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <div class="owner-image-placeholder" style="display:none;">
+                    <i class="fas fa-user"></i>
+                    <p>Portrait of ${owner.owner_name}</p>
                   </div>
+                ` : `
+                  <div class="owner-image-placeholder">
+                    <i class="fas fa-user"></i>
+                    <p>Portrait of ${owner.owner_name}</p>
+                  </div>
+                `}
+                <div class="owner-badge">Story Owner</div>
+              </div>
+              <div class="owner-content">
+                <h3 class="owner-name">${owner.owner_name}</h3>
+                ${socialMediaLinks ? `
+                  <div class="owner-social-media">
+                    <h4>Connect with ${owner.owner_name.split(' ')[0]}:</h4>
+                    <div class="social-links-owner">
+                      ${socialMediaLinks}
+                    </div>
+                  </div>
+                ` : ''}
+                <div class="owner-date">
+                  <i class="far fa-calendar"></i> 
+                  Owner since: ${owner.date_added || 'Recently'}
                 </div>
               </div>
             </div>
           `;
-        } 
-        // If multiple owners (2-4), display in horizontal scroll
-        else if (assignedOwners.length <= 4) {
-          container.innerHTML = `
-            <div class="multiple-owners-layout">
-              <div class="owners-group">
-                <h3 class="owners-group-title">
-                  <i class="fas fa-users"></i>
-                  ${assignedOwners.length} People Carry This Story
-                </h3>
-                <div class="owners-horizontal-scroll">
-                  ${assignedOwners.map(owner => {
-                    const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-                    return `
-                      <div class="owner-card-horizontal">
-                        <div class="owner-image-horizontal">
-                          ${owner.image_url ? `
-                            <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="owner-image-placeholder" style="display:none;">
-                              <i class="fas fa-user"></i>
-                              <p>Portrait of ${owner.owner_name}</p>
-                            </div>
-                          ` : `
-                            <div class="owner-image-placeholder">
-                              <i class="fas fa-user"></i>
-                              <p>Portrait of ${owner.owner_name}</p>
-                            </div>
-                          `}
-                          <div class="owner-badge">Owner</div>
-                        </div>
-                        <div class="owner-content-horizontal">
-                          <h4 class="owner-name">${owner.owner_name}</h4>
-                          ${socialMediaLinks ? `
-                            <div class="owner-social-media">
-                              <div class="social-links-owner">
-                                ${socialMediaLinks}
-                              </div>
-                            </div>
-                          ` : ''}
-                          <div class="owner-date">
-                            <i class="far fa-calendar"></i> 
-                            ${owner.date_added}
-                          </div>
-                        </div>
-                      </div>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
-            </div>
-          `;
-        }
-        // If many owners (5+), display in scrollable grid
-        else {
-          container.innerHTML = `
-            <div class="multiple-owners-layout">
-              <div class="owners-group">
-                <h3 class="owners-group-title">
-                  <i class="fas fa-users"></i>
-                  ${assignedOwners.length} People Carry This Story
-                </h3>
-                <div class="owners-grid-scrollable">
-                  ${assignedOwners.map(owner => {
-                    const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-                    return `
-                      <div class="owner-card">
-                        <div class="owner-image">
-                          ${owner.image_url ? `
-                            <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="owner-image-placeholder" style="display:none;">
-                              <i class="fas fa-user"></i>
-                              <p>Portrait of ${owner.owner_name}</p>
-                            </div>
-                          ` : `
-                            <div class="owner-image-placeholder">
-                              <i class="fas fa-user"></i>
-                              <p>Portrait of ${owner.owner_name}</p>
-                            </div>
-                          `}
-                          <div class="owner-badge">Owner</div>
-                        </div>
-                        <div class="owner-content">
-                          <h4 class="owner-name">${owner.owner_name}</h4>
-                          ${socialMediaLinks ? `
-                            <div class="owner-social-media">
-                              <div class="social-links-owner">
-                                ${socialMediaLinks}
-                              </div>
-                            </div>
-                          ` : ''}
-                          <div class="owner-date">
-                            <i class="far fa-calendar"></i> 
-                            ${owner.date_added}
-                          </div>
-                        </div>
-                      </div>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
-            </div>
-          `;
-        }
+        }).join('');
+        
+        // Initialize scroll functionality for mobile
+        initializeScrollFunctionality();
         
       } catch (error) {
         console.error('Error loading story owners:', error);
@@ -1490,6 +1361,66 @@
           </div>
         `;
       }
+    }
+
+    // ==================== SCROLL FUNCTIONALITY ====================
+    function initializeScrollFunctionality() {
+      const scrollContainer = document.getElementById('storyOwnerContainer');
+      const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+      const scrollRightBtn = document.getElementById('scrollRightBtn');
+      
+      if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
+      
+      // Only initialize if we're on a mobile device (horizontal scrolling)
+      if (window.innerWidth >= 992) {
+        return; // Exit if on desktop (vertical scrolling)
+      }
+      
+      // Update button states based on scroll position
+      function updateScrollButtons() {
+        const scrollLeft = scrollContainer.scrollLeft;
+        const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        
+        scrollLeftBtn.disabled = scrollLeft <= 0;
+        scrollRightBtn.disabled = scrollLeft >= maxScrollLeft - 10; // Small buffer for rounding errors
+      }
+      
+      // Scroll left
+      scrollLeftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({
+          left: -320,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Scroll right
+      scrollRightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({
+          left: 320,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Update buttons on scroll
+      scrollContainer.addEventListener('scroll', updateScrollButtons);
+      
+      // Initial button state
+      updateScrollButtons();
+      
+      // Hide buttons if there's no overflow
+      function checkOverflow() {
+        const hasOverflow = scrollContainer.scrollWidth > scrollContainer.clientWidth;
+        const scrollNav = document.querySelector('.scroll-nav');
+        
+        if (scrollNav) {
+          scrollNav.style.display = hasOverflow ? 'flex' : 'none';
+        }
+      }
+      
+      // Check overflow on load and resize
+      window.addEventListener('load', checkOverflow);
+      window.addEventListener('resize', checkOverflow);
+      setTimeout(checkOverflow, 100); // Initial check after a short delay
     }
 
     // ==================== FUNCTION TO GENERATE SOCIAL MEDIA LINKS ====================
