@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story - Liore Verse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+  <style>
+    /* Entrance Screen Styles */
+#entrance-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4F0C0C 0%, #8e2d2d 100%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out, transform 1s ease-in-out;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Content wrapper for better organization */
+.entrance-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.entrance-logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 40px rgba(255, 242, 226, 0.3);
+  flex-shrink: 0;
+}
+
+.entrance-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  color: #FFF2E2;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.entrance-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  color: #f3d8d8;
+  margin-bottom: 40px;
+  text-align: center;
+  max-width: 600px;
+  padding: 0 20px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.loading-bar-container {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 242, 226, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: #FFF2E2;
+  border-radius: 4px;
+  transition: width 2.5s ease-in-out;
+}
+
+.skip-btn {
+  background: rgba(255, 242, 226, 0.1);
+  border: 2px solid #FFF2E2;
+  color: #FFF2E2;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.skip-btn:hover {
+  background: #FFF2E2;
+  color: #4F0C0C;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 242, 226, 0.3);
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 1024px) {
+  #entrance-screen {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .entrance-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+  
+  .entrance-title {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+  
+  .entrance-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+  
+  .loading-bar-container {
+    width: 250px;
+    margin-bottom: 25px;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  #entrance-screen {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .entrance-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+  
+  .entrance-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .entrance-subtitle {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+    max-width: 90%;
+  }
+  
+  .loading-bar-container {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .skip-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile Styles */
+@media screen and (max-width: 480px) {
+  #entrance-screen {
+    padding: 0.5rem;
+    gap: 0.8rem;
+  }
+  
+  .entrance-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .entrance-title {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  
+  .entrance-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    line-height: 1.4;
+  }
+  
+  .loading-bar-container {
+    width: 150px;
+    height: 3px;
+    margin-bottom: 15px;
+  }
+  
+  .skip-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Very Small Screens */
+@media screen and (max-width: 360px) {
+  .entrance-title {
+    font-size: 1.5rem;
+  }
+  
+  .entrance-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .loading-bar-container {
+    width: 120px;
+  }
+}
+
+/* Landscape Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  #entrance-screen {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .entrance-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0;
+  }
+  
+  .entrance-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+  }
+  
+  .entrance-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    max-width: 300px;
+  }
+  
+  .loading-bar-container {
+    width: 150px;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/* Pulse animation for logo */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 242, 226, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(255, 242, 226, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 242, 226, 0.3);
+  }
+}
+    
+    
+    .skip-btn {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      color: rgba(255, 242, 226, 0.7);
+      background: transparent;
+      border: 1px solid rgba(255, 242, 226, 0.3);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .skip-btn:hover {
+      background: rgba(255, 242, 226, 0.1);
+      color: #FFF2E2;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 242, 226, 0.4);
+      }
+      70% {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 20px rgba(255, 242, 226, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 242, 226, 0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    /* Hide the main content initially */
+    .main-content {
+      opacity: 0;
+      transition: opacity 0.8s ease-in;
+    }
+    
+    /* Rest of your existing styles... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FFF2E2;
+      font-family: 'Montserrat', sans-serif;
+      color: #4F0C0C;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Navigation styling - FIXED FOR RESPONSIVENESS */
+    .navbar-custom {
+      background: #4f0c0cec;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FFF2E2;
+      font-family: 'Montserrat', sans-serif;
+      color: #4F0C0C;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Navigation styling - FIXED FOR RESPONSIVENESS */
+    .navbar-custom {
+      background: #4f0c0cec;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2 !important;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2;
+    }
+
+    .nav-links-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem !important;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #f3d8d8;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-link:hover:before {
+      width: 70%;
+    }
+
+    .nav-link.active {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-link.active:before {
+      width: 70%;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #FFF2E2;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Enhanced Hero Section */
+    .story-hero {
+      background: linear-gradient(135deg, rgba(79, 12, 12, 0.9) 0%, rgba(142, 45, 45, 0.85) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234F0C0C"/><path d="M0 0L100 100" stroke="%238e2d2d" stroke-width="2"/><path d="M100 0L0 100" stroke="%238e2d2d" stroke-width="2"/></svg>');
+      color: #FFF2E2;
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .story-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f3d8d8' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    
+    .story-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .story-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-weight: 300;
+    }
+    
+    .hero-cta {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      color: #FFF2E2;
+      border: 2px solid #FFF2E2;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+    
+    .hero-cta:hover {
+      background: #FFF2E2;
+      color: #4F0C0C;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Story Number Navigation */
+    .story-numbers {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .story-number {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF2E2;
+      color: #4F0C0C;
+      border-radius: 50%;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .story-number:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 2px solid #FFF2E2;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .story-number:hover {
+      transform: translateY(-5px) scale(1.1);
+      background: #4F0C0C;
+      color: #FFF2E2;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .story-number:hover:before {
+      opacity: 1;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+    }
+    
+    .story-number.active {
+      background: #4F0C0C;
+      color: #FFF2E2;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .story-number.active:before {
+      opacity: 1;
+    }
+    
+    /* Enhanced Story Grid */
+    .stories-section {
+      padding: 60px 0;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #4F0C0C;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #8e2d2d;
+    }
+    
+    .section-title p {
+      color: #6d1f1f;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .story-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .story-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .story-image {
+      height: 350px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .story-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .story-card:hover .story-image::after {
+      opacity: 1;
+    }
+    
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top; /* Changed to show top of images */
+      transition: transform 0.7s ease;
+    }
+    
+    .story-card:hover .story-image img {
+      transform: scale(1.05);
+    }
+    
+    .story-tag {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #8e2d2d;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+    
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: #8e2d2d;
+      line-height: 1;
+      opacity: 0.2;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      z-index: 1;
+    }
+    
+    .story-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .story-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      color: #4F0C0C;
+    }
+    
+    .story-content p {
+      margin-bottom: 25px;
+      color: #555;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+    
+    .story-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    
+    .read-more-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #8e2d2d;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .read-more-btn:hover {
+      background-color: #6d1f1f;
+      transform: translateX(5px);
+    }
+    
+    .read-more-btn i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .read-more-btn:hover i {
+      transform: translateX(4px);
+    }
+    
+    /* Timeline Connector (Visual Enhancement) */
+    .timeline-connector {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #8e2d2d, #f3d8d8, #8e2d2d);
+      transform: translateX(-50%);
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    /* Enhanced Footer */
+    .stories-footer {
+      text-align: center;
+      padding: 60px 0;
+      background-color: #4F0C0C;
+      color: #f3d8d8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stories-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f3d8d8' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    
+    .stories-footer .container {
+      position: relative;
+    }
+    
+    .stories-footer p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 1.1rem;
+    }
+    
+    .footer-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 242, 226, 0.1);
+      color: #f3d8d8;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: #FFF2E2;
+      color: #4F0C0C;
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+      .timeline-connector {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .story-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .story-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .stories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+      
+      .story-image {
+        height: 320px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .story-hero {
+        padding: 60px 20px;
+      }
+      
+      .story-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .stories-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 60px;
+      }
+      
+      .story-image {
+        height: 300px;
+      }
+      
+      .quote-mark {
+        font-size: 5rem;
+      }
+      
+      .story-numbers {
+        gap: 10px;
+      }
+      
+      .story-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .navbar-custom {
+        padding: 0.8rem 1rem;
+      }
+      
+      .story-hero {
+        padding: 60px 20px;
+      }
+      
+      .story-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .story-hero p {
+        font-size: 1rem;
+      }
+      
+      .story-content {
+        padding: 20px;
+      }
+      
+      .story-content h2 {
+        font-size: 1.6rem;
+      }
+      
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .story-image {
+        height: 250px;
+      }
+      
+      .quote-mark {
+        font-size: 4rem;
+        top: 10px;
+        left: 15px;
+      }
+      
+      .story-tag {
+        top: 15px;
+        right: 15px;
+        font-size: 0.7rem;
+        padding: 4px 12px;
+      }
+      
+      .story-numbers {
+        gap: 8px;
+      }
+      
+      .story-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    /* ... (all your existing styles remain exactly the same) ... */
+    
+  </style>
+</head>
+<body>
+  <!-- Entrance Screen -->
+  <div id="entrance-screen">
+    <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo" class="entrance-logo">
+    <h1 class="entrance-title" style="  font-family: 'Montserrat'">LIORE VERSE</h1>
+  
+    
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loading-bar"></div>
+    </div>
+    
+    
+    
+    <button class="skip-btn" id="skip-btn">Skip Intro</button>
+  </div>
+
+  <!-- Main Content (initially hidden) -->
+  <div class="main-content">
+    <!-- Your existing content starts here -->
+    <!-- Navigation - FIXED -->
+    <nav class="navbar-custom">
+      <a class="navbar-brand" href="index.html">
+        <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="60" height="60" style="border-radius:50%; margin-right:10px;">
+        <span class="logo-text">LIORE VERSE</span>
+      </a>
+      
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <div class="nav-links-container">
+        <a href="Home.html" class="nav-link"><i class="fas fa-home me-1"></i> Home</a>
+        <a href="Story.html" class="nav-link active"><i class="fas fa-file-contract me-1"></i> Story</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="story-hero">
+      <div class="container">
+        <h1>Legends of Courage</h1>
+        <p>Discover the extraordinary stories of those who defied the odds and changed history forever</p>
+        <a href="#stories" class="hero-cta">Explore Stories</a>
+        
+        <!-- Story Number Navigation -->
+        <div class="story-numbers">
+          <a href="Full-story-1.html" target="_blank" style="text-decoration:none;">
+          <div class="story-number" data-target="story-1">  1</div></a>
+
+          <a href="full-story-2-MKOAbiola.html" target="_blank" style="text-decoration:none;">  
+          <div class="story-number" data-target="story-2">2</div></a>
+
+          <a href="full-story-3-jaja.html" target="_blank" style="text-decoration:none;">
+          <div class="story-number" data-target="story-3">3</div></a>
+
+          <a href="full-story-4-felaKuti.html" target="_blank" style="text-decoration:none;">
+          <div class="story-number" data-target="story-4">4</div></a>
+
+            <a href="full-story-5-AnthonyEnahoro.html" target="_blank" style="text-decoration:none;">
+          <div class="story-number" data-target="story-5">5</div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section class="stories-section" id="stories">
+      <div class="container">
+        <div class="section-title">
+          <h2>Courageous Legacies</h2>
+          <p>Discover the inspiring stories of those who defied the odds and changed history</p>
+        </div>
+        
+        <div class="timeline-connector"></div>
+        
+        <div class="stories-grid">
+          <!-- Story 1: Ken Saro-Wiwa -->
+          <div class="story-card fade-in" id="story-1">
+            <div class="story-image">
+              <div class="story-tag">Activist</div>
+              <div class="quote-mark">"</div>
+              <img src="Ken Saro-Wiwa.jpg" alt="Ken Saro-Wiwa">
+            </div>
+            <div class="story-content">
+              <h2>Ken Saro-Wiwa</h2>
+              <p>Imagine standing before the world, your voice echoing what millions are too scared to say. Ken Saro-Wiwa did just that. He fought against giants who polluted his people's land...</p>
+              <div class="story-meta">
+                <a href="Full-story-1.html" target="_blank" class="read-more-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story 2: MKO Abiola -->
+          <div class="story-card fade-in" id="story-2">
+            <div class="story-image">
+              <div class="story-tag">Democrat</div>
+              <div class="quote-mark">"</div>
+              <img src="MKO Abiola.jpg" alt="MKO Abiola">
+            </div>
+            <div class="story-content">
+              <h2>MKO Abiola</h2>
+              <p>They begged him to step down. They threatened him, imprisoned him, broken his body. But MKO Abiola refused to bow. He believed so fiercely in Nigeria's democracy...</p>
+              <div class="story-meta">
+                <a href="full-story-2-MKOAbiola.html" target="_blank" class="read-more-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story 3: Jaja of Opobo -->
+          <div class="story-card fade-in" id="story-3">
+            <div class="story-image">
+              <div class="story-tag">Monarch</div>
+              <div class="quote-mark">"</div>
+              <img src="Jaja of Opobo.jpg" alt="Jaja of Opobo">
+            </div>
+            <div class="story-content">
+              <h2>Jaja of Opobo</h2>
+              <p>From a boy sold into slavery to a king who ruled with power and pride. Jaja of Opobo wasn't just a leader, he was a force. The British tried to bend him, bribe him, break him...</p>
+              <div class="story-meta">
+                <a href="full-story-3-jaja.html" target="_blank" class="read-more-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story 4: Fela Kuti -->
+          <div class="story-card fade-in" id="story-4">
+            <div class="story-image">
+              <div class="story-tag">Musician</div>
+              <div class="quote-mark">"</div>
+              <img src="Fela Kuti.jpg" alt="Fela Anikulapo-Kuti">
+            </div>
+            <div class="story-content">
+              <h2>Fela Anikulapo-Kuti</h2>
+              <p>Now picture this: the stage lights flare, the saxophone cries, and a man with fire in his chest spits truth at a regime that fears no one. That was Fela...</p>
+              <div class="story-meta">
+                <a href="full-story-4-felaKuti.html" target="_blank" class="read-more-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story 5: Anthony Enahoro -->
+          <div class="story-card fade-in" id="story-5">
+            <div class="story-image">
+              <div class="story-tag">Statesman</div>
+              <div class="quote-mark">"</div>
+              <img src="Anthony Enahoro.jpg" alt="Anthony Enahoro">
+            </div>
+            <div class="story-content">
+              <h2>Anthony Enahoro</h2>
+              <p>Picture a young man, barely 30, rising in a chamber full of colonial masters and seasoned politicians. His voice didn't shake, his words didn't stutter...</p>
+              <div class="story-meta">
+                <a href="full-story-5-AnthonyEnahoro.html" target="_blank" class="read-more-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="stories-footer">
+      <div class="container">
+        <p class="footer-quote">"Courage is not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear." - Nelson Mandela</p>
+        <p>© 2025 No Risk, No Story. All rights reserved.</p>
+        
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/19KJCxbZBk/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/liore_verse" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@liore_verse?_t=ZM-8xI0x9RgOFs&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://pin.it/6EUbs3Msv" target="_blank"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Your existing JavaScript code remains the same
+      // Enhanced animation for story cards
+      document.addEventListener('DOMContentLoaded', function() {
+        const storyCards = document.querySelectorAll('.story-card');
+        
+        storyCards.forEach((card, index) => {
+          // Add delay for staggered animation
+          card.style.animationDelay = `${index * 0.2}s`;
+        });
+        
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('fade-in');
+            }
+          });
+        }, observerOptions);
+        
+        storyCards.forEach(card => {
+          observer.observe(card);
+        });
+        
+        // Story number navigation functionality
+        const storyNumbers = document.querySelectorAll('.story-number');
+        
+        storyNumbers.forEach(number => {
+          number.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              // Remove active class from all numbers
+              storyNumbers.forEach(num => num.classList.remove('active'));
+              
+              // Add active class to clicked number
+              this.classList.add('active');
+              
+              // Scroll to the target story
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              
+              // Add a highlight effect to the target story
+              targetElement.style.boxShadow = '0 0 0 3px rgba(142, 45, 45, 0.5)';
+              setTimeout(() => {
+                targetElement.style.boxShadow = '';
+              }, 2000);
+            }
+          });
+        });
+      });
+    </script>
+  </div>
+
+  <script>
+    // Entrance animation script
+    document.addEventListener('DOMContentLoaded', function() {
+      const entranceScreen = document.getElementById('entrance-screen');
+      const loadingBar = document.getElementById('loading-bar');
+      const skipBtn = document.getElementById('skip-btn');
+      const mainContent = document.querySelector('.main-content');
+      
+      // Start loading animation
+      setTimeout(() => {
+        loadingBar.style.width = '100%';
+      }, 100);
+      
+      // Function to hide entrance and show main content
+      function showMainContent() {
+        entranceScreen.style.opacity = '0';
+        setTimeout(() => {
+          entranceScreen.style.display = 'none';
+          mainContent.style.opacity = '1';
+        }, 800);
+      }
+      
+      // Automatically transition after 4 seconds
+      const transitionTimer = setTimeout(showMainContent, 4000);
+      
+      // Skip button functionality
+      skipBtn.addEventListener('click', function() {
+        clearTimeout(transitionTimer);
+        showMainContent();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Policies - Liore Verse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FFF2E2;
+      font-family: 'Montserrat', sans-serif;
+      color: #4F0C0C;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Navigation styling - FIXED FOR RESPONSIVENESS */
+    .navbar-custom {
+      background: #4f0c0cec;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2 !important;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2;
+    }
+
+    .nav-links-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem !important;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #f3d8d8;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-link:hover:before {
+      width: 70%;
+    }
+
+    .nav-link.active {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-link.active:before {
+      width: 70%;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #FFF2E2;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Policies Hero Section */
+        .policies-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(79, 12, 12, 0.03), rgba(79, 12, 12, 0.03)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFF2E2"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%234F0C0C" stroke-opacity="0.1" stroke-width="1"/></svg>');
+            text-align: center;
+        }
+
+        .policies-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .policies-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .policies-tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #4F0C0C;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Policies Section Styling */
+        .policies-section {
+            padding: 5rem 2rem;
+        }
+
+        .policy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .policy-card {
+            background: #FFF2E2;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(79, 12, 12, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #4F0C0C;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 12, 12, 0.15);
+        }
+
+        .policy-icon {
+            font-size: 2.5rem;
+            color: #4F0C0C;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #4F0C0C;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .policy-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #4F0C0C;
+        }
+
+        .policy-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4F0C0C;
+            flex-grow: 1;
+        }
+
+        .policy-list {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+
+        .policy-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .policy-list li:before {
+            content: '•';
+            color: #4F0C0C;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .policy-sublist {
+            list-style-type: none;
+            margin-top: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .policy-sublist li:before {
+            content: '–';
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Commitment to Quality specific styling */
+        .commitment-card .policy-description p {
+            margin-bottom: 1rem;
+        }
+        
+        .commitment-list {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+        
+        .commitment-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .commitment-list li:before {
+            content: '•';
+            color: #4F0C0C;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+    /* Commitment Section */
+    .commitment-section {
+      padding: 5rem 2rem;
+      background: rgba(79, 12, 12, 0.05);
+      text-align: center;
+    }
+
+    .commitment-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .commitment-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #4F0C0C;
+      text-transform: uppercase;
+    }
+
+    .commitment-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #2a0808;
+      color: #FFF2E2;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-link {
+      color: #FFF2E2;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #f3d8d8;
+      text-decoration: underline;
+    }
+
+    /* Animation */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp 1s ease-out forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* Responsive Design - IMPROVED NAVBAR */
+    @media (max-width: 992px) {
+      .policy-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 868px) {
+      .nav-links-container {
+        gap: 0.3rem;
+      }
+      
+      .nav-link {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .policies-content h1 {
+        font-size: 2.8rem;
+      }
+      
+      .policies-tagline {
+        font-size: 1.3rem;
+      }
+      
+      .policy-card {
+        padding: 2rem;
+      }
+      
+      .navbar-custom {
+        padding: 0.8rem 1.5rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .navbar-custom {
+        flex-wrap: nowrap;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .nav-links-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 0.5rem;
+      }
+      
+      .nav-links-container.active {
+        display: flex;
+      }
+      
+      .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem !important;
+        margin: 0.2rem 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .policies-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .policies-tagline {
+        font-size: 1.1rem;
+      }
+      
+      .policy-card {
+        padding: 1.5rem;
+      }
+      
+      .policy-title {
+        font-size: 1.3rem;
+      }
+      
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      
+      .logo-text {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .navbar-custom {
+        padding: 0.8rem 1rem;
+      }
+      
+      .navbar-brand img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation - FIXED -->
+  <nav class="navbar-custom">
+    <a class="navbar-brand" href="index.html">
+      <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="60" height="60" style="border-radius:50%; margin-right:10px;">
+      <span class="logo-text">LIORE VERSE</span>
+    </a>
+    
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="nav-links-container">
+      <a href="Home.html" class="nav-link"><i class="fas fa-home me-1"></i> Home</a>
+      <a href="Our-Policies.html" class="nav-link active"><i class="fas fa-file-contract me-1"></i> Policies</a>
+    </div>
+  </nav>
+
+    <!-- Policies Hero Section -->
+    <section class="policies-hero">
+        <div class="policies-container">
+            <div class="policies-content fade-in">
+                <h1>OUR POLICIES</h1>
+                <p class="policies-tagline">At Liore Verse, we believe every piece tells a story. To maintain the quality, exclusivity, and trust of our movement, we operate under the following policies:</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section class="policies-section">
+        <div class="policy-container">
+            <div class="policy-grid">
+                <!-- Limited Editions -->
+                <div class="policy-card fade-in">
+                    <div class="policy-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="policy-title">Limited Editions</h3>
+                    <div class="policy-description">
+                        <p>We maintain exclusivity through strictly controlled production:</p>
+                        <ul class="policy-list">
+                            <li>Every drop is produced in strictly limited quantities</li>
+                            <li>No restocks. No repeats. Once sold out, it's gone forever</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Authenticity Guarantee -->
+                <div class="policy-card fade-in delay-1">
+                    <div class="policy-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="policy-title">Authenticity Guarantee</h3>
+                    <div class="policy-description">
+                        <p>We protect the integrity of our products:</p>
+                        <ul class="policy-list">
+                            <li>Each product comes with a unique authenticity code</li>
+                            <li>We do not support or condone counterfeit versions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sales & Returns -->
+                <div class="policy-card fade-in delay-2">
+                    <div class="policy-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="policy-title">Sales & Returns</h3>
+                    <div class="policy-description">
+                        <p>Due to the exclusive nature of our products:</p>
+                        <ul class="policy-list">
+                            <li>All sales are final</li>
+                            <li>Exchanges are only accepted for:
+                                <ul class="policy-sublist">
+                                    <li>Wrong item delivered</li>
+                                    <li>Manufacturing defects</li>
+                                    <li>Sizing issues (if available)</li>
+                                </ul>
+                            </li>
+                            <li>Requests must be made within 48 hours of delivery with proof of purchase</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pre-Orders & Reservations -->
+                <div class="policy-card fade-in delay-3">
+                    <div class="policy-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="policy-title">Pre-Orders & Reservations</h3>
+                    <div class="policy-description">
+                        <p>Our reservation system ensures fairness:</p>
+                        <ul class="policy-list">
+                            <li>Pre-order payments secure your spot for upcoming drops</li>
+                            <li>Cancellations are not accepted after payment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Delivery -->
+                <div class="policy-card fade-in">
+                    <div class="policy-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="policy-title">Delivery</h3>
+                    <div class="policy-description">
+                        <p>We ensure your items arrive safely and promptly:</p>
+                        <ul class="policy-list">
+                            <li>We partner with trusted couriers for safe delivery</li>
+                            <li>Delivery timelines vary by location</li>
+                            <li>Estimates are provided at checkout</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Community First -->
+                <div class="policy-card fade-in delay-1">
+                    <div class="policy-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="policy-title">Community First</h3>
+                    <div class="policy-description">
+                        <p>We value our early supporters:</p>
+                        <ul class="policy-list">
+                            <li>Early supporters receive priority access to exclusive drops</li>
+                            <li>Special access to events and collaborations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Commitment to Quality - FIXED -->
+                <div class="policy-card commitment-card fade-in delay-2">
+                    <div class="policy-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="policy-title">Commitment to Quality</h3>
+                    <div class="policy-description">
+                        <p>We source and produce ethically, with fair practices and premium craftsmanship:</p>
+                                           </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <!-- Commitment Section -->
+  <section class="commitment-section">
+    <div class="commitment-container">
+      
+      
+      <p class="commitment-text fade-in delay-2">At Liore Verse, we believe in moves over talk. Our policies reflect our dedication to excellence, authenticity, and our community.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="Home.html" class="footer-link">Home</a>
+        <a href="About-Us.html" class="footer-link">About Us</a>
+        <a href="Our-Policies.html" class="footer-link">Our Policies</a>
+        <a href="https://wa.me/2349022365117" class="footer-link" target="_blank">Contact Us</a>
+       <a href="mailto:thelioreverse@gmail.com" style="color:#FFF2E2; text-decoration:none;">
+  Email Us
+</a>
+
+
+      </div>
+     
+      <p>© 2025 LIORE VERSE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple intersection observer for fade-in animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(element => {
+        element.style.animationPlayState = 'paused';
+        observer.observe(element);
+      });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinksContainer = document.querySelector('.nav-links-container');
+      
+      if (mobileMenuBtn && navLinksContainer) {
+        mobileMenuBtn.addEventListener('click', function() {
+          navLinksContainer.classList.toggle('active');
+          
+          // Change icon based on menu state
+          const icon = mobileMenuBtn.querySelector('i');
+          if (navLinksContainer.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

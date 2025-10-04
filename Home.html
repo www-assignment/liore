@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liore Verse</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+     <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #000000;
+      --secondary: #4F0C0C;
+      --accent: #fff2e2;
+      --light: #FFF2E2;
+      --dark: #1A1A1A;
+      --gray: #8A8A8A;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      background-color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+.hero {
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('IMG_7989.JPG') no-repeat center center/cover;
+  color: white;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.hero-title {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 16px 45px;
+  background-color: var(--accent);
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: var(--transition);
+  border: 2px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-bottom: 40px;
+}
+
+.hero-cta:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.hero-cta:hover {
+  color: white;
+}
+
+.hero-cta:hover:before {
+  left: 0;
+}
+
+/* Hero Writeup Styling */
+.hero-writeup {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-left: 4px solid var(--accent);
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  backdrop-filter: blur(5px);
+  border-radius: 4px;
+}
+
+.hero-writeup p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.hero-writeup .closing-line {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0;
+}
+
+/* Founder's Era Section */
+.founders-era {
+  padding: 100px 0;
+  background: #fff2e2;
+  position: relative;
+  overflow: hidden;
+}
+
+.founders-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.founders-text-block {
+  padding: 20px;
+}
+
+.founders-text {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  color: var(--dark);
+}
+
+ /* Fixed Image Section */
+        .founders-image {
+            border-radius: 20px;
+            overflow: hidden;
+          
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff2e2;
+            padding: 10px;
+            height: 450px; /* Adjusted height */
+        }
+      
+       
+        
+        .founders-image img {
+            width: 100%;
+            height: 150%;
+            object-fit: cover; /* Changed to cover but with proper alignment */
+            object-position: center top; /* This ensures the top is not cut off */
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+        }
+        
+        
+        
+        
+        
+        .image-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #8e2d2d;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 968px) {
+            .founders-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+            
+            .founders-image {
+                height: 400px;
+                order: -1;
+            }
+            
+            .founders-text-block {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .founders-era {
+                padding: 50px 0;
+            }
+            
+            .founders-image {
+                height: 350px;
+            }
+            
+            .founders-text {
+                font-size: 16px;
+            }
+            
+            .founders-quote {
+                font-size: 18px;
+            }
+        }
+
+
+        @media (max-width: 576px) {
+    .founders-image img {
+        height: auto; /* Allows natural height */
+        max-height: 500px; /* Limits maximum height */
+        object-fit: contain; /* Shows entire image without cropping */
+        object-position: center center; /* Centers the image */
+       
+    }
+}
+
+
+        
+.founders-quote {
+  background: var(--accent);
+  color: var(--dark);
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 30px;
+  position: relative;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.founders-quote:before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 60px;
+  font-family: 'Playfair Display', serif;
+  opacity: 0.2;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 42px;
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary);
+}
+
+/* Decorative elements */
+.decorative-element {
+  position: absolute;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .founders-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .founders-image {
+    height: 400px;
+    order: -1;
+  }
+  
+  .hero-title {
+    font-size: 60px;
+  }
+  
+  .hero-writeup {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 40px;
+  }
+  
+  .hero-writeup p {
+    font-size: 16px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+  }
+  
+  .founders-text {
+    font-size: 16px;
+  }
+  
+  .founders-image {
+    height: 350px;
+  }
+  
+  .deco-1, .deco-2 {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-writeup {
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+  }
+  
+  .founders-quote {
+    padding: 20px;
+    font-size: 16px;
+  }
+}    
+
+
+/* Products Section */
+.products {
+  padding: 100px 0;
+  background-color: var(--dark);
+  color: white;
+  position: relative;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 60px;
+  margin-top: 60px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-card {
+  background: linear-gradient(145deg, #1e1e1e, #252525);
+  border-radius: 12px;
+  transition: var(--transition);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.product-image {
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.08);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.quick-view-btn {
+  padding: 12px 25px;
+  background: var(--accent);
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: var(--transition);
+}
+
+.quick-view-btn:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+.product-details {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+}
+
+.product-description {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.product-price {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* Description Dropdown Styles */
+.description-dropdown {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-btn i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 0 15px;
+}
+
+.dropdown-content.show {
+  max-height: 200px;
+  padding: 15px;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.dropdown-content li {
+  padding: 5px 0;
+  color: #ddd;
+  font-size: 14px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.dropdown-content li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+
+.wishlist-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 50%;
+  transition: var(--transition);
+  text-decoration: none;
+  margin-top: 15px;
+}
+
+.wishlist-btn:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    padding: 80px 0;
+  }
+  
+  .product-image {
+    height: 280px;
+  }
+  
+  .product-details {
+    padding: 20px;
+  }
+  
+  .product-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    gap: 40px;
+  }
+  
+  .product-image {
+    height: 250px;
+  }
+  
+  .product-title {
+    font-size: 18px;
+  }
+  
+  .product-price {
+    font-size: 20px;
+  }
+}
+      
+        /* Storytelling Section */
+        .storytelling {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .storytelling-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .storytelling-text h2 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+        
+        .storytelling-text p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        /* Image styling - only width, height and responsiveness */
+        .storytelling-image {
+            width: 100%;
+            height: 570px; /* Default height for larger screens */
+        }
+        
+        .storytelling-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .storytelling-content {
+                gap: 50px;
+            }
+            
+            .storytelling-image {
+                height: 550px; /* Slightly smaller for medium laptops */
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .storytelling {
+                padding: 70px 0;
+            }
+            
+            .storytelling-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .storytelling-image {
+                height: 650px; /* Good height for tablets */
+                order: -1;
+            }
+            
+            .storytelling-text h2 {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .storytelling {
+                padding: 60px 0;
+            }
+            
+            .storytelling-content {
+                gap: 35px;
+            }
+            
+            .storytelling-image {
+                height: 550px; /* Height for larger phones */
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .storytelling {
+                padding: 50px 0;
+            }
+            
+            .storytelling-image {
+                height: 450px; /* Your preferred phone height */
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .storytelling-image {
+                height: 250px; /* Even smaller phones */
+            }
+        }
+
+
+
+/* Story Elements Section (Replaces Advantages) */
+        .story-elements {
+            padding: 100px 0;
+            background: linear-gradient(to bottom,#4f0c0c11, #fff2e2);
+            position: relative;
+        }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .element-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .element-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .element-icon {
+            font-size: 50px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        .element-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .element-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+      background-color: var(--light);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .author-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-details h4 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .author-details p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* Instagram Feed */
+    .instagram-feed {
+      padding: 80px 0;
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+    }
+
+   
+   
+
+    /* CTA Section */
+    .cta-section {
+      padding: 120px 0;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('IMG_8173.JPG') no-repeat center center/cover;
+      color: white;
+      position: relative;
+    }
+
+    .cta-title {
+      font-size: 48px;
+      margin-bottom: 25px;
+    }
+
+    .cta-text {
+      max-width: 600px;
+      margin: 0 auto 50px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      padding: 80px 0 30px;
+      background-color: var(--dark);
+      color: white;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-column h3 {
+      font-size: 18px;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column a {
+      color: #ccc;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 18px;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+
+    .newsletter-form {
+      position: relative;
+      margin-top: 15px;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 7px 15px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #444;
+      font-size: 14px;
+      color: #999;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .whatsapp-float:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 70px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 60px;
+      }
+      
+      .story-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .story-image {
+        order: -1;
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 40px;
+      }
+      
+      .section-title {
+        font-size: 32px;
+      }
+      
+      .hero-subtitle {
+        font-size: 14px;
+      }
+      
+      .story-image {
+        height: 300px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 30px;
+        right: 30px;
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .products-grid, .advantages-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+
+
+
+
+
+      /* Collection Intro - New Styles */
+        .collection-intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 50px 0;
+        }
+
+        .collection-image {
+            border-radius: 10px;
+            overflow: hidden;
+            
+        }
+
+        .collection-image img {
+            width: 80%;
+            height: auto;
+            display: block;
+        }
+
+        .collection-text-block {
+            padding: 20px 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .collection-intro-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .collection-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .collection-intro-content {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <!-- Logo Section -->
+            <a class="navbar-brand" href="index.html">
+                <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="50" height="50" style="border-radius:50%; margin-right:10px;">
+                <span class="logo-text">LIORE VERSE</span>
+            </a>
+            
+            <!-- Toggler Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse nav-items-container" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Home.html"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="Story.html"><i class="fas fa-book-open me-1"></i>Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Our-Policies.html"><i class="fas fa-file-contract me-1"></i> Our Policies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About-Us.html"><i class="fas fa-users me-1"></i> About Us</a>
+                    </li>
+                   
+                </ul>
+               
+                <ul>
+                  <li class="nav-item">
+                    <a class="nav-link" href="admin.html">
+                      <i class="fas fa-user-cog me-1"></i> Admin
+                    </a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+<!-- Hero Section -->
+<section class="hero" data-aos="fade-in" data-aos-duration="1500">
+  <div class="hero-content" data-aos="fade-up" data-aos-delay="300">
+    <p class="hero-subtitle">Drop 001</p>
+    <h1 class="hero-title">NO RISK NO STORY</h1>
+    <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" target="_blank" class="hero-cta">Explore Collection</a>
+    
+    <!-- Added No Risk No Story Writeup -->
+    <div class="hero-writeup" data-aos="fade-up" data-aos-delay="500">
+      <p>Behind every name remembered is a risk that was taken. No legend, no movement, no breakthrough ever began safely. That is the foundation of Liore Verse.</p>
+      <p>Each cap in Drop 001 carries more than fabric, it carries a statement. A mark for those who choose courage over comfort, action over talk.</p>
+      <p>This is your tale in motion.</p>
+      <p class="closing-line">Because, in the end, No Risk, No Story.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Founder's Era Section -->
+<section class="founders-era">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">THE FOUNDER'S ERA</h2>
+    
+    
+    <!-- Founders Era Content -->
+    <div class="founders-content">
+      <div class="founders-text-block" data-aos="fade-right" data-aos-delay="200">
+        <p class="founders-text">Before the brand. Before the recognition. There was the vision. The Founder's Era is a tribute to the early days, the long nights, and the quiet confidence that it would all work out.</p>
+        <p class="founders-text">It's built with vintage soul, for those who remember why they started.</p>
+        
+        <div class="founders-quote" data-aos="zoom-in" data-aos-delay="400">
+          "Every noble work is at first impossible." - Thomas Carlyle
+        </div>
+      </div>
+      <div class="founders-image" data-aos="fade-left" data-aos-delay="300">
+        <img src="IMG_7984.JPG"  alt="The Founder's Era">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+ <!-- Products Section -->
+<section class="products" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">DROP 001 COLLECTION</h2>
+    
+    <div class="products-grid">
+      <div class="product-card" data-aos="flip-up" data-aos-delay="100">
+        <div class="product-image">
+          <img src="caps.jpg" alt="Denim Blue Baseball Cap">
+          <div class="product-overlay">
+            <a href="#" class="quick-view-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Denim Baseball Cap</h3>
+          
+          <p class="product-price">$30</p>
+          
+          <!-- Description Dropdown -->
+          <div class="description-dropdown">
+            <button class="dropdown-btn">
+              Description <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <ul>
+                <li>STRUCTURED FRONT PANEL</li>
+                <li>ADJUSTABLE</li>
+                
+              </ul>
+            </div>
+          </div>
+          
+          
+            
+          </a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-aos="flip-up" data-aos-delay="200">
+        <div class="product-image">
+          <img src="CAPS1.jpg" alt="Black Premium Cap">
+          <div class="product-overlay">
+            <a href="#" class="quick-view-btn">Quick View</a>
+          </div>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Washed Baseball Cap</h3>
+        
+          <p class="product-price">$30</p>
+          
+          <!-- Description Dropdown -->
+          <div class="description-dropdown">
+            <button class="dropdown-btn">
+              Description <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <ul>
+                <li>UNSTRUCTURED FRONT PANEL</li>
+                <li>ADJUSTABLE</li>
+                
+              </ul>
+            </div>
+          </div>
+          
+          
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Storytelling Section (Replaces Brand Story) -->
+    <section class="storytelling">
+        <div class="container">
+            <div class="storytelling-content">
+                <div class="storytelling-text">
+                    <h2>EVERY CAP TELLS A STORY</h2>
+                    <p>At Liore Verse, we believe that behind every great achievement lies a story of risk, perseverance, and vision. Our caps are more than just accessories; they are symbols of the journeys that define us.</p>
+                    <p>Each design is inspired by real stories of entrepreneurs, innovators, and creators who dared to take the first step into the unknown. We weave these narratives into the very fabric of our products.</p>
+                    <p>When you wear a Liore Verse cap, you're not just making a fashion statement—you're embracing a mindset. You're declaring that you understand that without risk, there can be no reward, and without challenge, there can be no growth.</p>
+                </div>
+                
+                <div class="storytelling-image">
+                    <img src="IMG_7983.JPG">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   <!-- Story Elements Section (Replaces Advantages) -->
+    <section class="story-elements" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">THE ELEMENTS OF OUR STORY</h2>
+            
+            <div class="elements-grid">
+                <div class="element-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="element-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="element-title">VISION</h3>
+                    <p>Every great story begins with a vision. We design with purpose, creating pieces that inspire you to see beyond the horizon.</p>
+                </div>
+                
+                <div class="element-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="element-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3 class="element-title">COURAGE</h3>
+                    <p>The courage to begin is what separates dreamers from doers. Our designs celebrate the boldness to start.</p>
+                </div>
+                
+                <div class="element-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="element-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="element-title">HERITAGE</h3>
+                    <p>We honor the stories of those who came before us, drawing inspiration from pioneers across generations.</p>
+                </div>
+                
+                <div class="element-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="element-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3 class="element-title">LEGACY</h3>
+                    <p>What story will you create? Our pieces are designed to become part of your journey and legacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">WHAT OUR CUSTOMERS SAY</h2>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <p class="testimonial-text">"The quality of these caps is exceptional. I've received countless compliments since I started wearing Liore Verse."</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+            </div>
+            <div class="author-details">
+              <h4>Michael Chen</h4>
+              <p>Fashion Influencer</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <p class="testimonial-text">"The attention to detail is remarkable. You can really feel the story behind each design."</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer">
+            </div>
+            <div class="author-details">
+              <h4>Sarah Johnson</h4>
+              <p>Creative Director</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+          <p class="testimonial-text">"I appreciate brands with a message. Liore Verse combines style with substance in a way that's rare these days."</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+                           <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer">
+            </div>
+            <div class="author-details">
+              <h4>James Wilson</h4>
+              <p>Entrepreneur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Feed -->
+  <section class="instagram-feed" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">FOLLOW US ON INSTAGRAM</h2>
+      <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" target="_blank" class="instagram-handle" data-aos="fade-up" data-aos-delay="100" style="color:#fff2e2;">@lioreverse</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" data-aos="fade-in">
+    <div class="container">
+      <h2 class="cta-title" data-aos="fade-up" data-aos-delay="200">JOIN THE MOVEMENT</h2>
+      <p class="cta-text" data-aos="fade-up" data-aos-delay="300">Be part of the story. Embrace the risk. Create your legend with Liore Verse's first collection.</p>
+      <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" target="_blank" class="hero-cta" data-aos="fade-up" data-aos-delay="400">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+          <h3>LIORE VERSE</h3>
+          <p>Creating stories through design and innovation.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" target="_blank" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/liore_verse" target="_blank" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/share/19KJCxbZBk/?mibextid=wwXIfr" target="_blank" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@liore_verse?_t=ZM-8xI0x9RgOFs&_r=1" target="_blank" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-tiktok"></i></a>
+            <a href="https://pin.it/6EUbs3Msv" target="_blank" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+          <h3>SHOP</h3>
+          <ul>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
+          <h3>HELP</h3>
+          <ul>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Product Care</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="https://wa.me/+2349022365117" target="_blank">Contact Us</a></li>
+          </ul>
+        </div>
+        
+       
+      
+      <div class="copyright">
+        <p>© 2025 LIORE VERSE. All rights reserved. No Risk No Story.</p>
+      </div>
+    </div>
+  </footer>
+
+  
+
+
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/+2349022365117" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS with custom settings
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic',
+        delay: 100,
+        mirror: false
+      });
+      
+      // Refresh AOS when images are loaded to fix potential offset issues
+      window.addEventListener('load', function() {
+        AOS.refresh();
+      });
+      
+      // Description dropdown functionality
+      const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+      
+      dropdownBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Toggle active class on button
+          this.classList.toggle('active');
+          
+          // Get the dropdown content
+          const dropdownContent = this.nextElementSibling;
+          
+          // Toggle the dropdown content
+          dropdownContent.classList.toggle('show');
+        });
+      });
+    });
+  </script>
+
+
+
+
+
+  <!-- Bootstrap & Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

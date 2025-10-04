@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liore Verse - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+    
+    <style>
+        :root {
+            --primary: #4F0C0C;
+            --primary-light: #8e2d2d;
+            --secondary: #FFF2E2;
+            --accent: #FFF2E2;
+            --dark: #1A1A1A;
+            --dark-light: #2D2D2D;
+            --gray: #6B7280;
+            --light-gray: #FFF2E2;
+
+            --gray-light: #FFF2E2;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        /* Enhanced Login Screen */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #a83232 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .login-box {
+            background: #FFF2E2;
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            max-width: 440px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .login-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid white;
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .login-subtitle {
+            color: var(--gray);
+            margin-bottom: 35px;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: var(--transition);
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 12, 12, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            width: 100%;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+            font-weight: 500;
+        }
+
+        /* Enhanced Admin Panel */
+        .admin-container {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 18px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-user span {
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-content {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .admin-sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 25px 0;
+            transition: var(--transition);
+            z-index: 90;
+            border-right: 1px solid #F3F4F6;
+        }
+
+        .admin-menu {
+            list-style: none;
+        }
+
+        .admin-menu li {
+            margin-bottom: 4px;
+        }
+
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            padding: 14px 25px;
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+        }
+
+        .admin-menu a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .admin-menu a:hover {
+            background: var(--light-gray);
+            color: var(--primary);
+        }
+
+        .admin-menu a.active {
+            background: linear-gradient(90deg, rgba(79, 12, 12, 0.08) 0%, transparent 100%);
+            color: var(--primary);
+            border-left-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .admin-main {
+            flex: 1;
+            padding: 35px;
+            background: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .page-title button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #F3F4F6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 35px;
+            border: 1px solid #F3F4F6;
+        }
+
+        .content-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-card h3 i {
+            color: var(--primary-light);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid #E5E7EB;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        th {
+            background: #F9FAFB;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #E5E7EB;
+        }
+
+        tr {
+            transition: var(--transition);
+        }
+
+        tr:hover {
+            background: #F9FAFB;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-edit {
+            background: var(--info);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-edit:hover, .btn-delete:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Social Media Handles Styles */
+        .social-handles-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-handle-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-handle-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-handle-input i {
+            color: var(--primary-light);
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-handle-preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .social-handle-preview h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .social-links-preview {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-link-preview {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link-preview:hover {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+
+        .social-link-preview i {
+            font-size: 14px;
+        }
+
+        /* Enhanced Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #FFF2E2;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 700px;
+            padding: 35px;
+            box-shadow: var(--shadow-xl);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+            border: 1px solid #F3F4F6;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #F3F4F6;
+            
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: var(--danger);
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+            background: #FEF2F2;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #F3F4F6;
+        }
+
+        .btn-cancel {
+            background: var(--primary-light) !important;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-cancel:hover, .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--danger);
+        }
+
+        /* Enhanced Story Assignment */
+        .story-assignment {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #F3F4F6;
+            
+        }
+
+        .story-assignment label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .story-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #F9FAFB;
+            border-radius: 10px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .story-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .story-checkbox:hover {
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .story-checkbox input {
+            margin: 0;
+            transform: scale(1.1);
+        }
+
+        .story-checkbox label {
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--dark);
+        }
+
+        .assigned-stories {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .story-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            gap: 5px;
+        }
+
+        .story-badge i {
+            font-size: 10px;
+        }
+
+        /* Mobile Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 80;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .admin-sidebar {
+                width: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .admin-sidebar {
+                position: fixed;
+                top: 70px;
+                left: -280px;
+                height: calc(100vh - 70px);
+                width: 280px;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow-xl);
+            }
+            
+            .admin-sidebar.active {
+                left: 0;
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .admin-main {
+                padding: 25px 20px;
+                width: 100%;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-handles-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .page-title button {
+                align-self: stretch;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-header {
+                padding: 15px 20px;
+            }
+            
+            .admin-main {
+                padding: 20px 15px;
+            }
+            
+            .content-card {
+                padding: 25px 20px;
+            }
+            
+            .stat-card {
+                padding: 24px 20px;
+            }
+            
+            .modal-content {
+                padding: 25px 20px;
+            }
+            
+            th, td {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .btn-edit, .btn-delete {
+                padding: 8px 12px;
+                font-size: 11px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-title {
+                font-size: 18px;
+            }
+            
+            .admin-user span {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 26px;
+            }
+            
+            .stats-cards {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 32px;
+            }
+        }
+    </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-storage.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginScreen">
+        <div class="login-box">
+            <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo" class="login-logo">
+            <h2 class="login-title">Admin Access</h2>
+            <p class="login-subtitle">Manage your stories and their owners</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user me-2"></i>Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock me-2"></i>Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Access Dashboard
+                </button>
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Invalid username or password
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-container" id="adminPanel">
+        <header class="admin-header">
+            <div class="admin-brand">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo">
+                <span class="admin-title">Liore Verse Admin</span>
+            </div>
+            <div class="admin-user">
+                <span>Welcome, Administrator</span>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </header>
+        
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        
+        <div class="admin-content">
+            <aside class="admin-sidebar" id="adminSidebar">
+                <ul class="admin-menu">
+                    <li><a href="#" class="active" data-page="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="#" data-page="storyOwners"><i class="fas fa-users"></i> Story Owners</a></li>
+                    <li><a href="#" data-page="products"><i class="fas fa-box-open"></i> Products</a></li>
+                    <li><a href="#" data-page="settings"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </aside>
+            
+            <main class="admin-main" id="adminMain">
+                <!-- Dashboard Page -->
+                <div class="page-content" id="dashboardPage">
+                    <h2 class="page-title">Dashboard Overview</h2>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-number" id="totalOwners">0</div>
+                            <div class="stat-label">Total Story Owners</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="stat-number" id="storiesWithOwners">0</div>
+                            <div class="stat-label">Stories with Owners</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Active Stories</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Products</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3><i class="fas fa-clock"></i> Recent Story Owners</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Owner Name</th>
+                                        <th>Assigned Stories</th>
+                                        <th>Social Media</th>
+                                        <th>Date Added</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOwnersTable">
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story Owners Page -->
+                <div class="page-content" id="storyOwnersPage" style="display: none;">
+                    <h2 class="page-title">
+                        Manage Story Owners
+                        <button id="addOwnerBtn">
+                            <i class="fas fa-plus-circle"></i>
+                            Add New Owner
+                        </button>
+                    </h2>
+                    
+                    <div class="content-card">
+                        <h3><i class="fas fa-list"></i> All Story Owners</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Owner Name</th>
+                                        <th>Assigned Stories</th>
+                                        <th>Social Media</th>
+                                        <th>Image</th>
+                                        <th>Date Added</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="storyOwnersTable">
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Page -->
+                <div class="page-content" id="productsPage" style="display: none;">
+                    <h2 class="page-title">Product Management</h2>
+                    
+                    <div class="content-card">
+                        <h3><i class="fas fa-boxes"></i> Current Products</h3>
+                        <p>Product management features coming soon. Currently displaying your existing products.</p>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Inventory</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Denim Baseball Cap</td>
+                                        <td>$30.00</td>
+                                        <td><span class="story-badge">Available</span></td>
+                                        <td>45 units</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Washed Baseball Cap</td>
+                                        <td>$30.00</td>
+                                        <td><span class="story-badge">Available</span></td>
+                                        <td>32 units</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Page -->
+                <div class="page-content" id="settingsPage" style="display: none;">
+                    <h2 class="page-title">System Settings</h2>
+                    
+                    <div class="content-card">
+                        <h3><i class="fas fa-user-cog"></i> Admin Account</h3>
+                        <form id="adminSettingsForm">
+                            <div class="form-group">
+                                <label for="adminUsername">Username</label>
+                                <input type="text" id="adminUsername" class="form-control" value="admin" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adminPassword">New Password</label>
+                                <input type="password" id="adminPassword" class="form-control" placeholder="Leave blank to keep current password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="adminPasswordConfirm">Confirm New Password</label>
+                                <input type="password" id="adminPasswordConfirm" class="form-control">
+                            </div>
+                            
+                            <button type="submit" class="btn">
+                                <i class="fas fa-save"></i>
+                                Update Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add/Edit Story Owner Modal -->
+    <div class="modal" id="ownerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Add Story Owner</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="ownerForm">
+                <input type="hidden" id="ownerId">
+                
+                <div class="form-group">
+                    <label for="ownerName"><i class="fas fa-user me-2"></i>Owner Name *</label>
+                    <input type="text" id="ownerName" class="form-control" placeholder="Enter the owner's full name" required>
+                </div>
+                
+                <!-- Social Media Handles Section -->
+                <div class="form-group">
+                    <label><i class="fas fa-share-alt me-2"></i>Social Media Handles</label>
+                    <div class="social-handles-container">
+                        <div class="social-handle-group">
+                            <label for="instagramHandle" style="font-size: 12px; text-transform: none; margin-bottom: 5px;">Instagram</label>
+                            <div class="social-handle-input">
+                                <i class="fab fa-instagram"></i>
+                                <input type="text" id="instagramHandle" class="form-control" placeholder="@username">
+                            </div>
+                        </div>
+                        <div class="social-handle-group">
+                            <label for="facebookHandle" style="font-size: 12px; text-transform: none; margin-bottom: 5px;">Facebook</label>
+                            <div class="social-handle-input">
+                                <i class="fab fa-facebook"></i>
+                                <input type="text" id="facebookHandle" class="form-control" placeholder="username or profile URL">
+                            </div>
+                        </div>
+                        <div class="social-handle-group">
+                            <label for="twitterHandle" style="font-size: 12px; text-transform: none; margin-bottom: 5px;">Twitter/X</label>
+                            <div class="social-handle-input">
+                                <i class="fab fa-twitter"></i>
+                                <input type="text" id="twitterHandle" class="form-control" placeholder="@username">
+                            </div>
+                        </div>
+                        <div class="social-handle-group">
+                            <label for="tiktokHandle" style="font-size: 12px; text-transform: none; margin-bottom: 5px;">TikTok</label>
+                            <div class="social-handle-input">
+                                <i class="fab fa-tiktok"></i>
+                                <input type="text" id="tiktokHandle" class="form-control" placeholder="@username">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Preview -->
+                    <div class="social-handle-preview">
+                        <h4>Preview:</h4>
+                        <div class="social-links-preview" id="socialLinksPreview">
+                            <span style="color: var(--gray); font-style: italic;">Social links will appear here</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="imageUrl"><i class="fas fa-image me-2"></i>Profile Image URL</label>
+                    <input type="text" id="imageUrl" class="form-control" placeholder="Paste profile image URL here">
+                    <small style="color: var(--gray); font-size: 12px; margin-top: 5px; display: block;">
+                        Recommended: Square image, minimum 400x400 pixels
+                    </small>
+                </div>
+                
+                <!-- Enhanced Story Assignment Section -->
+                <div class="story-assignment">
+                    <label><i class="fas fa-link me-2"></i>Assign to Stories</label>
+                    <p style="color: var(--gray); font-size: 14px; margin-bottom: 15px;">
+                        Select which stories this owner is connected to. You can assign multiple stories to one owner.
+                    </p>
+                    <div class="story-checkboxes" id="storyCheckboxes">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="assigned-stories" id="assignedStories">
+                        <!-- Will show assigned stories -->
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelBtn">
+                        <i class="fas fa-times me-2"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-save">
+                        <i class="fas fa-save me-2"></i>
+                        Save Owner
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Admin credentials
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "lioreverse2025"
+        };
+
+        // Available stories with enhanced data
+        const AVAILABLE_STORIES = [
+            { 
+                id: 'ken-saro-wiwa', 
+                title: 'Ken Saro-Wiwa',
+                description: 'The story of courage and sacrifice'
+            },
+            { 
+                id: 'MKO-Abiola', 
+                title: 'MKO-Abiola',
+                description: 'The story of democracy and resilience'
+            },
+            { 
+                id: 'Jaja-Opobo', 
+                title: 'Jaja of Opobo',
+                description: 'The story of resilience and dignity'
+            },
+            { 
+                id: 'Fela-Kuti', 
+                title: 'Fela Anikulapo-Kuti',
+                description: 'The story of art and defiance'
+            },
+            { 
+                id: 'Anthony-Enahoro', 
+                title: 'Anthony Enahoro',
+                description: 'The story of boldness and conviction'
+            }
+        ];
+
+        // Enhanced story owners data structure with social media
+        let storyOwners = [];
+
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const menuToggle = document.getElementById('menuToggle');
+        const adminSidebar = document.getElementById('adminSidebar');
+        const adminMain = document.getElementById('adminMain');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const adminMenuLinks = document.querySelectorAll('.admin-menu a');
+        const pageContents = document.querySelectorAll('.page-content');
+        
+        // Dashboard elements
+        const totalOwners = document.getElementById('totalOwners');
+        const storiesWithOwners = document.getElementById('storiesWithOwners');
+        const recentOwnersTable = document.getElementById('recentOwnersTable');
+        
+        // Story owners elements
+        const storyOwnersTable = document.getElementById('storyOwnersTable');
+        const addOwnerBtn = document.getElementById('addOwnerBtn');
+        const ownerModal = document.getElementById('ownerModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModal = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const ownerForm = document.getElementById('ownerForm');
+        const ownerId = document.getElementById('ownerId');
+        const ownerName = document.getElementById('ownerName');
+        const imageUrl = document.getElementById('imageUrl');
+        const storyCheckboxes = document.getElementById('storyCheckboxes');
+        const assignedStories = document.getElementById('assignedStories');
+        
+        // Social media elements
+        const instagramHandle = document.getElementById('instagramHandle');
+        const facebookHandle = document.getElementById('facebookHandle');
+        const twitterHandle = document.getElementById('twitterHandle');
+        const tiktokHandle = document.getElementById('tiktokHandle');
+        const socialLinksPreview = document.getElementById('socialLinksPreview');
+
+        // Enhanced initialization
+        document.addEventListener('DOMContentLoaded', async function() {
+            if (localStorage.getItem('lioreAdminLoggedIn') === 'true') {
+                // Load data from cloud storage
+                storyOwners = await cloudStorage.loadData();
+                showAdminPanel();
+            }
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Add event listeners for social media preview
+            [instagramHandle, facebookHandle, twitterHandle, tiktokHandle].forEach(input => {
+                input.addEventListener('input', updateSocialMediaPreview);
+            });
+        });
+
+        // Enhanced login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('lioreAdminLoggedIn', 'true');
+                showAdminPanel();
+            } else {
+                errorMessage.style.display = 'block';
+                // Add shake animation
+                loginForm.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    loginForm.style.animation = '';
+                }, 500);
+            }
+        });
+
+        // Enhanced logout functionality
+        logoutBtn.addEventListener('click', function() {
+            // Add fade out animation
+            adminPanel.style.opacity = '0';
+            adminPanel.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                localStorage.removeItem('lioreAdminLoggedIn');
+                showLoginScreen();
+                adminPanel.style.opacity = '1';
+            }, 300);
+        });
+
+        // Enhanced mobile menu toggle
+        menuToggle.addEventListener('click', function() {
+            adminSidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            adminMain.classList.toggle('sidebar-open');
+        });
+
+        // Enhanced sidebar overlay
+        sidebarOverlay.addEventListener('click', function() {
+            adminSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            adminMain.classList.remove('sidebar-open');
+        });
+
+        // Enhanced navigation menu
+        adminMenuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                adminMenuLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the page to show
+                const page = this.getAttribute('data-page');
+                
+                // Hide all pages with fade out
+                pageContents.forEach(content => {
+                    content.style.opacity = '0';
+                    setTimeout(() => {
+                        content.style.display = 'none';
+                    }, 200);
+                });
+                
+                // Show the selected page with fade in
+                setTimeout(() => {
+                    const targetPage = document.getElementById(`${page}Page`);
+                    targetPage.style.display = 'block';
+                    setTimeout(() => {
+                        targetPage.style.opacity = '1';
+                        targetPage.style.transition = 'opacity 0.3s ease';
+                    }, 50);
+                }, 200);
+                
+                // Update content based on page
+                if (page === 'dashboard') {
+                    updateDashboard();
+                } else if (page === 'storyOwners') {
+                    updateStoryOwnersTable();
+                }
+                
+                // Close sidebar on mobile after navigation
+                if (window.innerWidth <= 768) {
+                    adminSidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    adminMain.classList.remove('sidebar-open');
+                }
+            });
+        });
+
+        // Enhanced add owner button
+        addOwnerBtn.addEventListener('click', function() {
+            openOwnerModal();
+        });
+
+        // Enhanced modal controls
+        closeModal.addEventListener('click', closeOwnerModal);
+        cancelBtn.addEventListener('click', closeOwnerModal);
+
+        // Enhanced modal backdrop click
+        ownerModal.addEventListener('click', function(e) {
+            if (e.target === ownerModal) {
+                closeOwnerModal();
+            }
+        });
+
+        // Enhanced owner form submission
+        ownerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const id = ownerId.value;
+            const ownerNameValue = ownerName.value.trim();
+            const imageUrlValue = imageUrl.value.trim();
+            
+            // Get social media handles
+            const socialMedia = {
+                instagram: instagramHandle.value.trim(),
+                facebook: facebookHandle.value.trim(),
+                twitter: twitterHandle.value.trim(),
+                tiktok: tiktokHandle.value.trim()
+            };
+            
+            // Get selected stories
+            const selectedStories = [];
+            const checkboxes = storyCheckboxes.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                selectedStories.push(checkbox.value);
+            });
+            
+            // Enhanced validation
+            if (!ownerNameValue) {
+                showNotification('Please enter an owner name', 'error');
+                ownerName.focus();
+                return;
+            }
+            
+            if (id) {
+                // Edit existing owner
+                const index = storyOwners.findIndex(owner => owner.id === id);
+                if (index !== -1) {
+                    storyOwners[index] = {
+                        id: id,
+                        owner_name: ownerNameValue,
+                        image_url: imageUrlValue,
+                        social_media: socialMedia,
+                        assigned_stories: selectedStories,
+                        date_added: storyOwners[index].date_added,
+                        last_updated: new Date().toISOString().split('T')[0]
+                    };
+                    showNotification('Owner updated successfully', 'success');
+                }
+            } else {
+                // Add new owner
+                const newOwner = {
+                    id: generateId(),
+                    owner_name: ownerNameValue,
+                    image_url: imageUrlValue,
+                    social_media: socialMedia,
+                    assigned_stories: selectedStories,
+                    date_added: new Date().toISOString().split('T')[0],
+                    last_updated: new Date().toISOString().split('T')[0]
+                };
+                
+                storyOwners.unshift(newOwner);
+                showNotification('Owner added successfully', 'success');
+            }
+            
+            // Automatically save to Firebase (no manual copying needed)
+            cloudStorage.saveData(storyOwners).then(() => {
+                // Update tables
+                updateStoryOwnersTable();
+                updateDashboard();
+                
+                // Close modal
+                closeOwnerModal();
+            }).catch(error => {
+                showNotification('Error saving owner: ' + error.message, 'error');
+            });
+        });
+
+        // Enhanced Functions
+        function showLoginScreen() {
+            loginScreen.style.display = 'flex';
+            adminPanel.style.display = 'none';
+            loginForm.reset();
+            errorMessage.style.display = 'none';
+        }
+
+        function showAdminPanel() {
+            loginScreen.style.display = 'none';
+            adminPanel.style.display = 'block';
+            updateDashboard();
+            updateStoryOwnersTable();
+        }
+
+        function updateDashboard() {
+            // Update total owners count
+            totalOwners.textContent = storyOwners.length;
+            
+            // Update stories with owners count
+            const storiesWithOwnersSet = new Set();
+            storyOwners.forEach(owner => {
+                owner.assigned_stories.forEach(storyId => {
+                    storiesWithOwnersSet.add(storyId);
+                });
+            });
+            storiesWithOwners.textContent = storiesWithOwnersSet.size;
+            
+            // Update recent owners table
+            recentOwnersTable.innerHTML = '';
+            
+            const recentOwners = storyOwners.slice(0, 5);
+            
+            if (recentOwners.length === 0) {
+                recentOwnersTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 40px; color: var(--gray);">
+                            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px; display: block; opacity: 0.5;"></i>
+                            No story owners added yet
+                        </td>
+                    </tr>
+                `;
+            } else {
+                recentOwners.forEach(owner => {
+                    const assignedStoriesText = owner.assigned_stories.length > 0 
+                        ? owner.assigned_stories.map(storyId => {
+                            const story = AVAILABLE_STORIES.find(s => s.id === storyId);
+                            return story ? story.title : storyId;
+                        }).join(', ')
+                        : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
+                    
+                    const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td style="font-weight: 600;">${owner.owner_name}</td>
+                        <td>${assignedStoriesText}</td>
+                        <td>${socialMediaLinks}</td>
+                        <td style="color: var(--gray);">${owner.date_added}</td>
+                        <td>
+                            <button class="btn-edit" onclick="editOwner('${owner.id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-delete" onclick="deleteOwner('${owner.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    `;
+                    recentOwnersTable.appendChild(row);
+                });
+            }
+        }
+
+        function updateStoryOwnersTable() {
+            storyOwnersTable.innerHTML = '';
+            
+            if (storyOwners.length === 0) {
+                storyOwnersTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 50px; color: var(--gray);">
+                            <i class="fas fa-user-plus" style="font-size: 3rem; margin-bottom: 15px; display: block; opacity: 0.5;"></i>
+                            <h4 style="margin-bottom: 10px; color: var(--dark);">No Story Owners Yet</h4>
+                            <p style="margin-bottom: 20px;">Start by adding your first story owner to connect people with stories.</p>
+                            <button class="btn" onclick="document.getElementById('addOwnerBtn').click()" style="width: auto; padding: 10px 20px;">
+                                <i class="fas fa-plus-circle"></i> Add First Owner
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                storyOwners.forEach(owner => {
+                    const assignedStoriesText = owner.assigned_stories.length > 0 
+                        ? owner.assigned_stories.map(storyId => {
+                            const story = AVAILABLE_STORIES.find(s => s.id === storyId);
+                            return story ? `<span class="story-badge">${story.title}</span>` : storyId;
+                        }).join('')
+                        : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
+                    
+                    const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td style="font-weight: 600;">${owner.owner_name}</td>
+                        <td>${assignedStoriesText}</td>
+                        <td>${socialMediaLinks}</td>
+                        <td>${owner.image_url ? '<i class="fas fa-image" style="color: var(--success);"></i>' : '<i class="fas fa-times" style="color: var(--gray-light);"></i>'}</td>
+                        <td style="color: var(--gray); font-size: 13px;">${owner.date_added}</td>
+                        <td class="action-buttons">
+                            <button class="btn-edit" onclick="editOwner('${owner.id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-delete" onclick="deleteOwner('${owner.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    `;
+                    storyOwnersTable.appendChild(row);
+                });
+            }
+        }
+
+        function generateSocialMediaLinks(socialMedia) {
+            const links = [];
+            
+            if (socialMedia.instagram) {
+                const handle = socialMedia.instagram.startsWith('@') ? socialMedia.instagram : `@${socialMedia.instagram}`;
+                links.push(`<a href="https://instagram.com/${socialMedia.instagram.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-instagram"></i> ${handle}</a>`);
+            }
+            
+            if (socialMedia.facebook) {
+                const handle = socialMedia.facebook.includes('facebook.com') ? 'Facebook' : socialMedia.facebook;
+                const url = socialMedia.facebook.includes('facebook.com') ? socialMedia.facebook : `https://facebook.com/${socialMedia.facebook}`;
+                links.push(`<a href="${url}" target="_blank" class="social-link-preview"><i class="fab fa-facebook"></i> ${handle}</a>`);
+            }
+            
+            if (socialMedia.twitter) {
+                const handle = socialMedia.twitter.startsWith('@') ? socialMedia.twitter : `@${socialMedia.twitter}`;
+                links.push(`<a href="https://twitter.com/${socialMedia.twitter.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-twitter"></i> ${handle}</a>`);
+            }
+            
+            if (socialMedia.tiktok) {
+                const handle = socialMedia.tiktok.startsWith('@') ? socialMedia.tiktok : `@${socialMedia.tiktok}`;
+                links.push(`<a href="https://tiktok.com/@${socialMedia.tiktok.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-tiktok"></i> ${handle}</a>`);
+            }
+            
+            return links.length > 0 ? links.join('') : '<span style="color: var(--gray-light); font-style: italic;">No social media</span>';
+        }
+
+        function updateSocialMediaPreview() {
+            const socialMedia = {
+                instagram: instagramHandle.value.trim(),
+                facebook: facebookHandle.value.trim(),
+                twitter: twitterHandle.value.trim(),
+                tiktok: tiktokHandle.value.trim()
+            };
+            
+            socialLinksPreview.innerHTML = generateSocialMediaLinks(socialMedia) || '<span style="color: var(--gray); font-style: italic;">Social links will appear here</span>';
+        }
+
+        function openOwnerModal(owner = null) {
+            // Enhanced story checkboxes with descriptions
+            storyCheckboxes.innerHTML = '';
+            AVAILABLE_STORIES.forEach(story => {
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'story-checkbox';
+                checkboxDiv.innerHTML = `
+                    <input type="checkbox" id="story-${story.id}" value="${story.id}">
+                    <label for="story-${story.id}">
+                        <strong>${story.title}</strong>
+                        <br>
+                        <small style="color: var(--gray);">${story.description}</small>
+                    </label>
+                `;
+                storyCheckboxes.appendChild(checkboxDiv);
+            });
+            
+            if (owner) {
+                // Edit mode
+                modalTitle.textContent = 'Edit Story Owner';
+                ownerId.value = owner.id;
+                ownerName.value = owner.owner_name;
+                imageUrl.value = owner.image_url || '';
+                
+                // Set social media handles
+                instagramHandle.value = owner.social_media?.instagram || '';
+                facebookHandle.value = owner.social_media?.facebook || '';
+                twitterHandle.value = owner.social_media?.twitter || '';
+                tiktokHandle.value = owner.social_media?.tiktok || '';
+                
+                // Check assigned stories
+                owner.assigned_stories.forEach(storyId => {
+                    const checkbox = document.getElementById(`story-${storyId}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+                
+                // Show assigned stories
+                updateAssignedStoriesDisplay(owner.assigned_stories);
+            } else {
+                // Add mode
+                modalTitle.textContent = 'Add Story Owner';
+                ownerForm.reset();
+                ownerId.value = '';
+                assignedStories.innerHTML = '<em style="color: var(--gray-light);">No stories selected yet</em>';
+            }
+            
+            // Update social media preview
+            updateSocialMediaPreview();
+            
+            // Enhanced checkbox event listeners
+            const checkboxes = storyCheckboxes.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const selectedStories = [];
+                    storyCheckboxes.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                        selectedStories.push(cb.value);
+                    });
+                    updateAssignedStoriesDisplay(selectedStories);
+                });
+            });
+            
+            ownerModal.style.display = 'flex';
+            // Focus on first input
+            setTimeout(() => ownerName.focus(), 300);
+        }
+
+        function updateAssignedStoriesDisplay(assignedStoriesList) {
+            assignedStories.innerHTML = '';
+            
+            if (assignedStoriesList.length === 0) {
+                assignedStories.innerHTML = '<em style="color: var(--gray-light);">No stories selected yet</em>';
+            } else {
+                assignedStoriesList.forEach(storyId => {
+                    const story = AVAILABLE_STORIES.find(s => s.id === storyId);
+                    if (story) {
+                        const badge = document.createElement('span');
+                        badge.className = 'story-badge';
+                        badge.innerHTML = `
+                            ${story.title}
+                            <i class="fas fa-check"></i>
+                        `;
+                        assignedStories.appendChild(badge);
+                    }
+                });
+            }
+        }
+
+        function closeOwnerModal() {
+            ownerModal.style.display = 'none';
+            ownerForm.reset();
+        }
+
+        function editOwner(id) {
+            const owner = storyOwners.find(owner => owner.id === id);
+            if (owner) {
+                openOwnerModal(owner);
+            }
+        }
+
+        function deleteOwner(id) {
+            if (confirm('Are you sure you want to delete this story owner? This action cannot be undone.')) {
+                storyOwners = storyOwners.filter(owner => owner.id !== id);
+                
+                // Automatically save to Firebase (no manual copying needed)
+                cloudStorage.saveData(storyOwners).then(() => {
+                    updateStoryOwnersTable();
+                    updateDashboard();
+                    showNotification('Owner deleted successfully', 'success');
+                }).catch(error => {
+                    showNotification('Error deleting owner: ' + error.message, 'error');
+                });
+            }
+        }
+
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            // Add styles for notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add shake animation for errors
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Make functions available globally
+        window.editOwner = editOwner;
+        window.deleteOwner = deleteOwner;
+    </script>
+</body>
+</html>

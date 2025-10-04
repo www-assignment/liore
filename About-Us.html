@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Liore Verse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FFF2E2;
+      font-family: 'Montserrat', sans-serif;
+      color: #4F0C0C;
+      overflow-x: hidden;
+    }
+
+    /* Navigation styling - matching your existing design */
+    .navbar-custom {
+      background: #4f0c0cec;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 0.6rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2 !important;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #FFF2E2;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin: 0 0.5rem;
+      padding: 0.4rem 0.8rem !important;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #f3d8d8;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-link:hover:before {
+      width: 70%;
+    }
+
+    .nav-link.active {
+      color: #FFF2E2 !important;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-link.active:before {
+      width: 70%;
+    }
+
+    /* About Us Section Styling */
+    .about-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .about-tagline {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #4F0C0C;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .values-section {
+      background: rgba(79, 12, 12, 0.05);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .values-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .values-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #4F0C0C;
+      text-transform: uppercase;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .value-card {
+      background: #FFF2E2;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(79, 12, 12, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      color: #4F0C0C;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .value-description {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .story-section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .story-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #4F0C0C;
+      text-transform: uppercase;
+    }
+
+    .story-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: #4F0C0C;
+      font-style: italic;
+    }
+
+    .cta-section {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #4F0C0C;
+      color: #FFF2E2;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #4F0C0C;
+      background: #FFF2E2;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      background: #2a0808;
+      color: #FFF2E2;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* Animation */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp 1s ease-out forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-content h1 {
+        font-size: 2.8rem;
+      }
+      
+      .about-tagline {
+        font-size: 1.5rem;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .values-title, .story-title, .cta-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .about-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .about-tagline {
+        font-size: 1.3rem;
+      }
+      
+      .navbar-custom {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar-custom">
+    <a class="navbar-brand" href="index.html">
+      <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="60" height="60" style="border-radius:50%; margin-right:10px;">
+      <span class="logo-text">LIORE VERSE</span>
+    </a>
+    
+    <div>
+      <a href="Home.html" class="nav-link"><i class="fas fa-home me-1"></i> Home</a>
+      <a href="About-Us.html" class="nav-link active"><i class="fas fa-users me-1"></i> About</a>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="about-container">
+      <div class="about-content fade-in">
+        <h1>ABOUT US</h1>
+        <p class="about-text">Liore Verse is a movement crafted through fashion. We create limited-edition statement hats that carry real stories.</p>
+        <p class="about-text">Each drop is crafted in small quantities, designed for those who dare to stand out, and built to last far beyond trends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="values-container">
+      <h2 class="values-title fade-in">Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card fade-in delay-1">
+          <div class="value-icon">
+            <i class="fas fa-feather-alt"></i>
+          </div>
+          <h3 class="value-title">Craftsmanship</h3>
+          <p class="value-description">Each hat is meticulously crafted with attention to detail and quality materials that stand the test of time.</p>
+        </div>
+        <div class="value-card fade-in delay-2">
+          <div class="value-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3 class="value-title">Storytelling</h3>
+          <p class="value-description">Every piece carries a narrative, connecting you to a chapter in the Liore Verse that's uniquely meaningful.</p>
+        </div>
+        <div class="value-card fade-in delay-3">
+          <div class="value-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3 class="value-title">Exclusivity</h3>
+          <p class="value-description">Limited editions ensure your piece remains unique. Once it's gone, it's gone forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title fade-in">Join the Movement</h2>
+      <p class="cta-text fade-in delay-1">Be part of our story. Explore our current collection before it becomes part of history.</p>
+      <a href="https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==" class="cta-button fade-in delay-2" target="_blank">SHOP NOW</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 LIORE VERSE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simple intersection observer for fade-in animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(element => {
+        element.style.animationPlayState = 'paused';
+        observer.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>

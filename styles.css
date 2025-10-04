@@ -1,0 +1,217 @@
+:root {
+    --primary-color: #4F0C0C;   
+    --secondary-color: #FFF2E2; 
+    --accent-color: #f3d8d8;    
+    --text-light: #ffffff;
+    --text-dark: #333333;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF2E2;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navbar styling */
+.navbar-custom {
+    background:  #4f0c0cec;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.6rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--text-light) !important;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #FFF2E2;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin: 0 0.5rem;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: var(--text-light) !important;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover:before {
+    width: 70%;
+}
+
+.nav-link.active {
+    color: var(--text-light) !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active:before {
+    width: 70%;
+}
+
+.btn-login {
+    background: rgb(224, 218, 218);
+    color: var(--text-light);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 0.4rem 1.2rem;
+    color: black;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+.btn-get-started {
+    background: rgb(224, 218, 218);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 0.4rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-get-started:hover {
+    background: rgb(224, 218, 218);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 78, 80, 0.4);
+}
+
+.navbar-toggler {
+    border: none;
+    color: var(--text-light) !important;
+    font-size: 1.2rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Content styling */
+.content {
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+.content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.feature-box {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+.feature-box i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--primary-color);
+        border-radius: 15px;
+        padding: 1rem;
+        margin-top: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .nav-item {
+        margin: 0.3rem 0;
+    }
+    
+}
+
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .navbar-custom {
+        padding: 0.5rem 1rem;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem !important;
+    }
+    
+    .btn-login, .btn-get-started {
+        font-size: 0.85rem;
+        padding: 0.35rem 1rem;
+    }
+}
+
+
+
