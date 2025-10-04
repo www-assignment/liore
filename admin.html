@@ -12,25 +12,29 @@
         :root {
             --primary: #4F0C0C;
             --primary-light: #8e2d2d;
+            --primary-dark: #3a0909;
             --secondary: #FFF2E2;
-            --accent: #FFF2E2;
+            --secondary-light: #fff9f0;
+            --secondary-dark: #f5e7d7;
+            --accent: #f3d8d8;
             --dark: #1A1A1A;
             --dark-light: #2D2D2D;
             --gray: #6B7280;
-            --light-gray: #FFF2E2;
-
-            --gray-light: #FFF2E2;
+            --gray-light: #E5E7EB;
+            --gray-lighter: #F9FAFB;
             --success: #10B981;
-            --danger: #EF4444;
             --warning: #F59E0B;
             --info: #3B82F6;
+            --danger: #d4554d;
+            --danger-light: #e6b8b8;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --radius: 12px;
-            --radius-lg: 16px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         * {
@@ -46,6 +50,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             font-weight: 400;
+            min-height: 100vh;
         }
 
         /* Enhanced Login Screen */
@@ -72,9 +77,9 @@
         }
 
         .login-box {
-            background: #FFF2E2;
+            background: var(--secondary);
             backdrop-filter: blur(20px);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             box-shadow: var(--shadow-xl);
             width: 100%;
             max-width: 440px;
@@ -129,11 +134,11 @@
         .form-control {
             width: 100%;
             padding: 14px 18px;
-            border: 2px solid #E5E7EB;
-            border-radius: 10px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius);
             font-size: 15px;
             transition: var(--transition);
-            background: white;
+            background: #fff9f0;
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -150,9 +155,9 @@
             justify-content: center;
             padding: 14px 30px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
+            color: #fff9f0;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -236,7 +241,7 @@
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 10px 18px;
-            border-radius: 8px;
+            border-radius: var(--radius);
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
@@ -259,7 +264,7 @@
             font-size: 1.4rem;
             cursor: pointer;
             padding: 8px;
-            border-radius: 6px;
+            border-radius: var(--radius);
             transition: var(--transition);
         }
 
@@ -272,14 +277,15 @@
             min-height: calc(100vh - 70px);
         }
 
+        /* Enhanced Sidebar with #FFF2E2 */
         .admin-sidebar {
             width: 280px;
-            background: white;
+            background: var(--secondary);
             box-shadow: var(--shadow);
             padding: 25px 0;
             transition: var(--transition);
             z-index: 90;
-            border-right: 1px solid #F3F4F6;
+            border-right: 1px solid var(--secondary-dark);
         }
 
         .admin-menu {
@@ -310,7 +316,7 @@
         }
 
         .admin-menu a:hover {
-            background: var(--light-gray);
+            background: var(--secondary-dark);
             color: var(--primary);
         }
 
@@ -324,8 +330,9 @@
         .admin-main {
             flex: 1;
             padding: 35px;
-            background: var(--light-gray);
+            background: var(--secondary-light);
             transition: var(--transition);
+            overflow-x: auto;
         }
 
         .page-title {
@@ -345,7 +352,7 @@
             color: white;
             border: none;
             padding: 12px 20px;
-            border-radius: 10px;
+            border-radius: var(--radius);
             cursor: pointer;
             font-size: 14px;
             display: flex;
@@ -368,13 +375,13 @@
         }
 
         .stat-card {
-            background: white;
-            border-radius: var(--radius);
+            background: #f8eee0ab;
+            border-radius: var(--radius-lg);
             padding: 28px;
             box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
-            border: 1px solid #F3F4F6;
+            border: 1px solid var(--gray-light);
             position: relative;
             overflow: hidden;
         }
@@ -424,12 +431,12 @@
         }
 
         .content-card {
-            background: white;
-            border-radius: var(--radius);
+            background: #f8eee0ab;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
             padding: 30px;
             margin-bottom: 35px;
-            border: 1px solid #F3F4F6;
+            border: 1px solid var(--gray-light);
         }
 
         .content-card h3 {
@@ -449,8 +456,8 @@
 
         .table-container {
             overflow-x: auto;
-            border-radius: 10px;
-            border: 1px solid #E5E7EB;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
         }
 
         table {
@@ -462,17 +469,17 @@
         th, td {
             padding: 16px 20px;
             text-align: left;
-            border-bottom: 1px solid #F3F4F6;
+            border-bottom: 1px solid var(--gray-lighter);
         }
 
         th {
-            background: #F9FAFB;
+            background: var(--gray-lighter);
             font-weight: 600;
             color: var(--dark);
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 2px solid #E5E7EB;
+            border-bottom: 2px solid var(--gray-light);
         }
 
         tr {
@@ -480,7 +487,7 @@
         }
 
         tr:hover {
-            background: #F9FAFB;
+            background: var(--gray-lighter);
         }
 
         .action-buttons {
@@ -488,10 +495,11 @@
             gap: 8px;
         }
 
+        /* Enhanced Action Buttons with Consistent Colors */
         .btn-edit, .btn-delete {
             padding: 8px 14px;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius);
             cursor: pointer;
             font-size: 12px;
             transition: var(--transition);
@@ -502,8 +510,14 @@
         }
 
         .btn-edit {
-            background: var(--info);
+            background: var(--primary-light);
             color: white;
+        }
+
+        .btn-edit:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
         }
 
         .btn-delete {
@@ -511,7 +525,8 @@
             color: white;
         }
 
-        .btn-edit:hover, .btn-delete:hover {
+        .btn-delete:hover {
+            background: var(--primary-dark);
             transform: translateY(-1px);
             box-shadow: var(--shadow);
         }
@@ -545,9 +560,9 @@
         .social-handle-preview {
             margin-top: 15px;
             padding: 15px;
-            background: #F9FAFB;
-            border-radius: 8px;
-            border: 1px solid #E5E7EB;
+            background: var(--gray-lighter);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
         }
 
         .social-handle-preview h4 {
@@ -569,8 +584,8 @@
             gap: 6px;
             padding: 6px 12px;
             background: white;
-            border: 1px solid #E5E7EB;
-            border-radius: 6px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
             font-size: 12px;
             color: var(--dark);
             text-decoration: none;
@@ -610,8 +625,8 @@
         }
 
         .modal-content {
-            background: #FFF2E2;
-            border-radius: var(--radius-lg);
+            background: var(--secondary);
+            border-radius: var(--radius-xl);
             width: 100%;
             max-width: 700px;
             padding: 35px;
@@ -619,7 +634,7 @@
             max-height: 90vh;
             overflow-y: auto;
             animation: slideUp 0.3s ease;
-            border: 1px solid #F3F4F6;
+            border: 1px solid var(--gray-light);
         }
 
         @keyframes slideUp {
@@ -639,8 +654,7 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 2px solid #F3F4F6;
-            
+            border-bottom: 2px solid var(--gray-light);
         }
 
         .modal-title {
@@ -658,12 +672,12 @@
             color: var(--danger);
             transition: var(--transition);
             padding: 5px;
-            border-radius: 6px;
+            border-radius: var(--radius);
         }
 
         .close-modal:hover {
-            color: var(--danger);
-            background: #FEF2F2;
+            color: var(--primary-dark);
+            background: var(--danger-light);
         }
 
         .form-row {
@@ -679,15 +693,15 @@
             gap: 12px;
             margin-top: 30px;
             padding-top: 25px;
-            border-top: 2px solid #F3F4F6;
+            border-top: 2px solid var(--gray-light);
         }
 
         .btn-cancel {
-            background: var(--primary-light) !important;
+            background: var(--gray) !important;
             color: white;
             padding: 12px 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius);
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
@@ -698,7 +712,7 @@
             color: white;
             padding: 12px 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius);
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
@@ -706,15 +720,14 @@
 
         .btn-cancel:hover, .btn-save:hover {
             transform: translateY(-2px);
-            box-shadow: var(--danger);
+            box-shadow: var(--shadow);
         }
 
         /* Enhanced Story Assignment */
         .story-assignment {
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 2px solid #F3F4F6;
-            
+            border-top: 2px solid var(--gray-light);
         }
 
         .story-assignment label {
@@ -735,9 +748,9 @@
             max-height: 200px;
             overflow-y: auto;
             padding: 20px;
-            background: #F9FAFB;
-            border-radius: 10px;
-            border: 1px solid #E5E7EB;
+            background: var(--gray-lighter);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
         }
 
         .story-checkbox {
@@ -745,7 +758,7 @@
             align-items: center;
             gap: 10px;
             padding: 8px;
-            border-radius: 8px;
+            border-radius: var(--radius);
             transition: var(--transition);
         }
 
@@ -806,10 +819,51 @@
             z-index: 80;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* Enhanced Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 60px 30px;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .empty-state p {
+            max-width: 400px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
             .admin-sidebar {
                 width: 260px;
+            }
+            
+            .admin-main {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .page-title {
+                font-size: 28px;
             }
         }
 
@@ -857,11 +911,16 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 20px;
+                font-size: 26px;
             }
             
             .page-title button {
                 align-self: stretch;
                 justify-content: center;
+            }
+            
+            .content-card {
+                padding: 25px 20px;
             }
         }
 
@@ -875,7 +934,7 @@
             }
             
             .content-card {
-                padding: 25px 20px;
+                padding: 20px 15px;
             }
             
             .stat-card {
@@ -901,6 +960,10 @@
                 font-size: 11px;
                 justify-content: center;
             }
+            
+            .login-box {
+                padding: 40px 30px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -913,7 +976,7 @@
             }
             
             .page-title {
-                font-size: 26px;
+                font-size: 24px;
             }
             
             .stats-cards {
@@ -923,6 +986,89 @@
             .stat-number {
                 font-size: 32px;
             }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .btn-cancel, .btn-save {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .admin-header {
+                padding: 12px 15px;
+            }
+            
+            .admin-main {
+                padding: 15px 10px;
+            }
+            
+            .content-card {
+                padding: 15px 10px;
+            }
+            
+            .page-title {
+                font-size: 22px;
+            }
+            
+            .login-box {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Enhanced Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+
+        .notification-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .notification-error {
+            background: var(--danger);
+            color: white;
+        }
+
+        .notification-info {
+            background: var(--info);
+            color: white;
+        }
+
+        .notification-warning {
+            background: var(--warning);
+            color: white;
         }
     </style>
     <!-- Firebase SDK -->
@@ -1542,9 +1688,10 @@
             if (recentOwners.length === 0) {
                 recentOwnersTable.innerHTML = `
                     <tr>
-                        <td colspan="5" style="text-align: center; padding: 40px; color: var(--gray);">
-                            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px; display: block; opacity: 0.5;"></i>
-                            No story owners added yet
+                        <td colspan="5" class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <h3>No Story Owners Yet</h3>
+                            <p>Start by adding your first story owner to connect people with stories.</p>
                         </td>
                     </tr>
                 `;
@@ -1563,10 +1710,10 @@
             if (storyOwners.length === 0) {
                 storyOwnersTable.innerHTML = `
                     <tr>
-                        <td colspan="6" style="text-align: center; padding: 50px; color: var(--gray);">
-                            <i class="fas fa-user-plus" style="font-size: 3rem; margin-bottom: 15px; display: block; opacity: 0.5;"></i>
-                            <h4 style="margin-bottom: 10px; color: var(--dark);">No Story Owners Yet</h4>
-                            <p style="margin-bottom: 20px;">Start by adding your first story owner to connect people with stories.</p>
+                        <td colspan="6" class="empty-state">
+                            <i class="fas fa-user-plus"></i>
+                            <h3>No Story Owners Yet</h3>
+                            <p>Start by adding your first story owner to connect people with stories.</p>
                             <button class="btn" onclick="document.getElementById('addOwnerBtn').click()" style="width: auto; padding: 10px 20px;">
                                 <i class="fas fa-plus-circle"></i> Add First Owner
                             </button>
@@ -1588,12 +1735,12 @@
                     const story = AVAILABLE_STORIES.find(s => s.id === storyId);
                     return story ? story.title : storyId;
                 }).join(', ')
-                : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
+                : '<span style="color: var(--gray); font-style: italic;">No stories assigned</span>';
 
             const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
             
             const imageColumn = showImageColumn 
-                ? `<td>${owner.image_url ? '<i class="fas fa-image" style="color: var(--success);"></i>' : '<i class="fas fa-times" style="color: var(--gray-light);"></i>'}</td>`
+                ? `<td>${owner.image_url ? '<i class="fas fa-image" style="color: var(--success);"></i>' : '<i class="fas fa-times" style="color: var(--gray);"></i>'}</td>`
                 : '';
 
             return `
@@ -1638,7 +1785,7 @@
                 links.push(`<a href="https://tiktok.com/@${socialMedia.tiktok.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-tiktok"></i> ${handle}</a>`);
             }
             
-            return links.length > 0 ? links.join('') : '<span style="color: var(--gray-light); font-style: italic;">No social media</span>';
+            return links.length > 0 ? links.join('') : '<span style="color: var(--gray); font-style: italic;">No social media</span>';
         }
 
         function showNotification(message, type = 'info') {
@@ -1647,26 +1794,6 @@
             notification.innerHTML = `
                 <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
                 ${message}
-            `;
-            
-            // Add styles for notification
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: var(--shadow-lg);
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-weight: 500;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                max-width: 300px;
             `;
             
             document.body.appendChild(notification);
@@ -1745,7 +1872,7 @@
                 modalTitle.textContent = 'Add Story Owner';
                 ownerForm.reset();
                 ownerId.value = '';
-                assignedStories.innerHTML = '<em style="color: var(--gray-light);">No stories selected yet</em>';
+                assignedStories.innerHTML = '<em style="color: var(--gray);">No stories selected yet</em>';
             }
             
             // Update social media preview
@@ -1772,7 +1899,7 @@
             assignedStories.innerHTML = '';
             
             if (assignedStoriesList.length === 0) {
-                assignedStories.innerHTML = '<em style="color: var(--gray-light);">No stories selected yet</em>';
+                assignedStories.innerHTML = '<em style="color: var(--gray);">No stories selected yet</em>';
             } else {
                 assignedStoriesList.forEach(storyId => {
                     const story = AVAILABLE_STORIES.find(s => s.id === storyId);
