@@ -1,17 +1,21 @@
-// firebase-storage.js - COMPLETE FIREBASE SOLUTION
+// firebase-storage.js - COMPLETE CLOUD STORAGE SOLUTION FOR LIORE VERSE
+// This file handles all Firebase operations for storing and syncing story owners globally
+
 class FirebaseStorage {
     constructor() {
         this.initialized = false;
         this.data = null;
         this.db = null;
+        this.collectionName = 'storyOwners';
+        this.unsubscribe = null; // For real-time listener cleanup
     }
 
-    // Initialize Firebase
+    // Initialize Firebase connection
     async initialize() {
         if (this.initialized) return;
         
         try {
-            // Your Firebase configuration - REPLACE WITH YOUR ACTUAL CONFIG
+            // Your Firebase configuration
             const firebaseConfig = {
                 apiKey: "AIzaSyCxS1M__BSyRwXn2LaOJF_DH5zy2OuaZjs",
                 authDomain: "liore-verse.firebaseapp.com",
@@ -37,92 +41,196 @@ class FirebaseStorage {
         }
     }
 
-    // Load data from Firestore
-    async loadData() {
+    // Load data from Firestore with optional real-time updates
+    async loadData(callback = null) {
         try {
             await this.initialize();
             
             console.log('🔄 Loading data from Firebase...');
-            const snapshot = await this.db.collection('storyOwners').get();
+            
+            // If callback provided, set up real-time listener for automatic updates
+            if (callback) {
+                // Clean up any existing listener
+                if (this.unsubscribe) {
+                    this.unsubscribe();
+                }
+                
+                // Set up new real-time listener
+                this.unsubscribe = this.db.collection(this.collectionName).onSnapshot(
+                    (snapshot) => {
+                        this.data = snapshot.docs.map(doc => ({
+                            id: doc.id,
+                            ...doc.data()
+                        }));
+                        console.log('🔔 Real-time update received:', this.data.length, 'owners');
+                        
+                        // Update localStorage as backup
+                        localStorage.setItem('lioreStoryOwners', JSON.stringify(this.data));
+                        
+                        // Call the callback with updated data
+                        callback(this.data);
+                    },
+                    (error) => {
+                        console.error('❌ Real-time listener error:', error);
+                        this.showError('Connection issue. Some updates may be delayed.');
+                    }
+                );
+                
+                console.log('👂 Real-time listener activated');
+            }
+            
+            // Initial load from Firestore
+            const snapshot = await this.db.collection(this.collectionName).get();
             
             if (snapshot.empty) {
-                console.log('📝 No data in Firebase, checking localStorage...');
-                await this.loadFromLocalStorage();
+                console.log('📝 No data in Firebase yet');
+                this.data = [];
+                
+                // Check localStorage for backup data
+                const localData = localStorage.getItem('lioreStoryOwners');
+                if (localData) {
+                    this.data = JSON.parse(localData);
+                    console.log('📂 Loaded backup from localStorage:', this.data.length, 'owners');
+                }
             } else {
                 this.data = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
                 console.log('✅ Loaded from Firebase:', this.data.length, 'owners');
-                
-                // Update localStorage as backup
-                localStorage.setItem('lioreStoryOwners', JSON.stringify(this.data));
             }
+            
+            // Always update localStorage as backup
+            localStorage.setItem('lioreStoryOwners', JSON.stringify(this.data));
             
             return this.data;
             
         } catch (error) {
-            console.warn('⚠️ Firebase load failed, using localStorage:', error);
-            await this.loadFromLocalStorage();
+            console.error('⚠️ Firebase load failed:', error);
+            
+            // Fallback to localStorage
+            const localData = localStorage.getItem('lioreStoryOwners');
+            this.data = localData ? JSON.parse(localData) : [];
+            console.log('📂 Using localStorage fallback:', this.data.length, 'owners');
+            
             return this.data;
         }
     }
 
-    // Save data to Firestore
+    // Save data to Firestore (batch operation for efficiency)
     async saveData(data) {
         try {
             await this.initialize();
             this.data = data;
             
-            console.log('💾 Saving data to Firebase...');
+            console.log('💾 Saving to Firebase...', data.length, 'owners');
             
-            // Save to localStorage immediately (as backup)
+            // Save to localStorage immediately (instant backup)
             localStorage.setItem('lioreStoryOwners', JSON.stringify(data));
+            console.log('✅ Saved to localStorage backup');
             
-            // Save to Firestore
+            // Create batch write for Firestore (more efficient than individual writes)
             const batch = this.db.batch();
             
-            // Clear existing documents
-            const snapshot = await this.db.collection('storyOwners').get();
+            // Get all existing documents to identify what needs to be deleted
+            const snapshot = await this.db.collection(this.collectionName).get();
+            const existingIds = new Set(snapshot.docs.map(doc => doc.id));
+            const newIds = new Set(data.map(owner => owner.id));
+            
+            // Delete owners that were removed
             snapshot.docs.forEach(doc => {
-                batch.delete(doc.ref);
+                if (!newIds.has(doc.id)) {
+                    console.log('🗑️ Deleting removed owner:', doc.id);
+                    batch.delete(doc.ref);
+                }
             });
             
-            // Add all new documents
+            // Add or update all owners
             data.forEach(owner => {
-                const docRef = this.db.collection('storyOwners').doc(owner.id);
-                // Remove the id from the data since it's the document ID
-                const { id, ...ownerData } = owner;
-                batch.set(docRef, ownerData);
+                const docRef = this.db.collection(this.collectionName).doc(owner.id);
+                const { id, ...ownerData } = owner; // Remove id from data (it's the document ID)
+                batch.set(docRef, ownerData, { merge: true });
             });
             
+            // Commit the batch
             await batch.commit();
-            console.log('✅ Data saved to Firebase successfully');
-            this.showSuccess('Data saved successfully! All users will see updates immediately.');
+            console.log('✅ Successfully saved to Firebase!');
+            
+            this.showSuccess('✓ Changes saved! Everyone worldwide can now see updates.');
             
             return true;
             
         } catch (error) {
             console.error('❌ Firebase save failed:', error);
-            this.showError('Saved locally, but sync failed: ' + error.message);
+            this.showError('⚠ Saved locally only. Please check your internet connection.');
             return false;
         }
     }
 
-    // Load from localStorage fallback
-    async loadFromLocalStorage() {
+    // Add a single owner (alternative to batch save)
+    async addOwner(owner) {
         try {
-            const localData = localStorage.getItem('lioreStoryOwners');
-            if (localData) {
-                this.data = JSON.parse(localData);
-                console.log('✅ Loaded from localStorage backup:', this.data.length, 'owners');
-            } else {
-                this.data = [];
-                console.log('📝 Starting with empty data');
-            }
+            await this.initialize();
+            
+            console.log('➕ Adding owner to Firebase:', owner.owner_name);
+            
+            const docRef = this.db.collection(this.collectionName).doc(owner.id);
+            const { id, ...ownerData } = owner;
+            await docRef.set(ownerData);
+            
+            console.log('✅ Owner added to Firebase');
+            return true;
+            
         } catch (error) {
-            console.error('❌ Local storage error:', error);
-            this.data = [];
+            console.error('❌ Add owner failed:', error);
+            return false;
+        }
+    }
+
+    // Delete a single owner (alternative to batch save)
+    async deleteOwner(ownerId) {
+        try {
+            await this.initialize();
+            
+            console.log('🗑️ Deleting owner from Firebase:', ownerId);
+            
+            await this.db.collection(this.collectionName).doc(ownerId).delete();
+            
+            console.log('✅ Owner deleted from Firebase');
+            return true;
+            
+        } catch (error) {
+            console.error('❌ Delete owner failed:', error);
+            return false;
+        }
+    }
+
+    // Update a single owner (alternative to batch save)
+    async updateOwner(owner) {
+        try {
+            await this.initialize();
+            
+            console.log('📝 Updating owner in Firebase:', owner.owner_name);
+            
+            const docRef = this.db.collection(this.collectionName).doc(owner.id);
+            const { id, ...ownerData } = owner;
+            await docRef.set(ownerData, { merge: true });
+            
+            console.log('✅ Owner updated in Firebase');
+            return true;
+            
+        } catch (error) {
+            console.error('❌ Update owner failed:', error);
+            return false;
+        }
+    }
+
+    // Clean up real-time listener when no longer needed
+    cleanup() {
+        if (this.unsubscribe) {
+            this.unsubscribe();
+            this.unsubscribe = null;
+            console.log('🔌 Real-time listener disconnected');
         }
     }
 
@@ -136,28 +244,61 @@ class FirebaseStorage {
         this.showNotification(message, 'error');
     }
 
-    // Notification system
+    // Show info notification
+    showInfo(message) {
+        this.showNotification(message, 'info');
+    }
+
+    // Universal notification system
     showNotification(message, type = 'info') {
+        // Remove any existing notifications first
+        const existingNotifications = document.querySelectorAll('.firebase-notification');
+        existingNotifications.forEach(notif => {
+            if (document.body.contains(notif)) {
+                document.body.removeChild(notif);
+            }
+        });
+
         const notification = document.createElement('div');
+        notification.className = 'firebase-notification';
+        
+        // Icon based on type
+        const icons = {
+            success: 'check-circle',
+            error: 'exclamation-circle',
+            info: 'info-circle',
+            warning: 'exclamation-triangle'
+        };
+        
+        // Color based on type
+        const colors = {
+            success: '#10B981',
+            error: '#EF4444',
+            info: '#3B82F6',
+            warning: '#F59E0B'
+        };
+        
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+            background: ${colors[type] || colors.info};
             color: white;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             z-index: 10000;
-            font-weight: 500;
-            max-width: 400px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+            font-weight: 600;
+            max-width: 350px;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
         `;
         
         notification.innerHTML = `
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <i class="fas fa-${icons[type] || icons.info}" style="font-size: 1.2rem;"></i>
                 <span>${message}</span>
             </div>
         `;
@@ -165,21 +306,94 @@ class FirebaseStorage {
         document.body.appendChild(notification);
         
         // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
+        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
         
         // Animate out and remove
         setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
+            notification.style.transform = 'translateX(120%)';
             setTimeout(() => {
                 if (document.body.contains(notification)) {
                     document.body.removeChild(notification);
                 }
-            }, 300);
-        }, 5000);
+            }, 400);
+        }, 4000);
+    }
+
+    // Get connection status
+    async getConnectionStatus() {
+        try {
+            await this.initialize();
+            
+            // Try to read a document to check connection
+            await this.db.collection(this.collectionName).limit(1).get();
+            
+            return {
+                connected: true,
+                message: 'Connected to Firebase'
+            };
+        } catch (error) {
+            return {
+                connected: false,
+                message: 'No internet connection',
+                error: error.message
+            };
+        }
+    }
+
+    // Export data as JSON (for backup)
+    exportData() {
+        if (!this.data) {
+            console.warn('No data to export');
+            return null;
+        }
+        
+        const jsonString = JSON.stringify(this.data, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `liore-verse-backup-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        console.log('📥 Data exported successfully');
+        this.showSuccess('Data exported successfully!');
+    }
+
+    // Import data from JSON (for restore)
+    async importData(jsonString) {
+        try {
+            const data = JSON.parse(jsonString);
+            
+            if (!Array.isArray(data)) {
+                throw new Error('Invalid data format');
+            }
+            
+            await this.saveData(data);
+            console.log('📤 Data imported successfully');
+            this.showSuccess('Data imported and synced to cloud!');
+            
+            return true;
+        } catch (error) {
+            console.error('❌ Import failed:', error);
+            this.showError('Import failed: ' + error.message);
+            return false;
+        }
     }
 }
 
-// Create global instance
+// Create and export global instance
 window.cloudStorage = new FirebaseStorage();
+
+// Log initialization
+console.log('🚀 Firebase Storage initialized and ready');
+
+// Optional: Clean up on page unload
+window.addEventListener('beforeunload', () => {
+    if (window.cloudStorage) {
+        window.cloudStorage.cleanup();
+    }
+});

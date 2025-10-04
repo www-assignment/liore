@@ -926,7 +926,7 @@
         }
     </style>
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="firebase-storage.js"></script>
 </head>
@@ -1461,7 +1461,7 @@
             }
         });
 
-        // Enhanced owner form submission
+        // ============= UPDATED OWNER FORM SUBMISSION =============
         ownerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1491,48 +1491,62 @@
                 return;
             }
             
-            if (id) {
-                // Edit existing owner
-                const index = storyOwners.findIndex(owner => owner.id === id);
-                if (index !== -1) {
-                    storyOwners[index] = {
-                        id: id,
+            // Show saving indicator
+            const submitBtn = ownerForm.querySelector('.btn-save');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            submitBtn.disabled = true;
+            
+            try {
+                if (id) {
+                    // Edit existing owner
+                    const index = storyOwners.findIndex(owner => owner.id === id);
+                    if (index !== -1) {
+                        storyOwners[index] = {
+                            id: id,
+                            owner_name: ownerNameValue,
+                            image_url: imageUrlValue,
+                            social_media: socialMedia,
+                            assigned_stories: selectedStories,
+                            date_added: storyOwners[index].date_added,
+                            last_updated: new Date().toISOString().split('T')[0]
+                        };
+                    }
+                } else {
+                    // Add new owner
+                    const newOwner = {
+                        id: generateId(),
                         owner_name: ownerNameValue,
                         image_url: imageUrlValue,
                         social_media: socialMedia,
                         assigned_stories: selectedStories,
-                        date_added: storyOwners[index].date_added,
+                        date_added: new Date().toISOString().split('T')[0],
                         last_updated: new Date().toISOString().split('T')[0]
                     };
-                    showNotification('Owner updated successfully', 'success');
+                    
+                    storyOwners.unshift(newOwner);
                 }
-            } else {
-                // Add new owner
-                const newOwner = {
-                    id: generateId(),
-                    owner_name: ownerNameValue,
-                    image_url: imageUrlValue,
-                    social_media: socialMedia,
-                    assigned_stories: selectedStories,
-                    date_added: new Date().toISOString().split('T')[0],
-                    last_updated: new Date().toISOString().split('T')[0]
-                };
                 
-                storyOwners.unshift(newOwner);
-                showNotification('Owner added successfully', 'success');
+                // Save to Firebase
+                const success = await cloudStorage.saveData(storyOwners);
+                
+                if (success) {
+                    // Update tables
+                    updateStoryOwnersTable();
+                    updateDashboard();
+                    closeOwnerModal();
+                    showNotification(id ? 'Owner updated successfully!' : 'Owner added successfully!', 'success');
+                } else {
+                    throw new Error('Save failed');
+                }
+                
+            } catch (error) {
+                console.error('Save error:', error);
+                showNotification('Error: ' + error.message, 'error');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
-            
-            // Automatically save to Firebase (no manual copying needed)
-            cloudStorage.saveData(storyOwners).then(() => {
-                // Update tables
-                updateStoryOwnersTable();
-                updateDashboard();
-                
-                // Close modal
-                closeOwnerModal();
-            }).catch(error => {
-                showNotification('Error saving owner: ' + error.message, 'error');
-            });
         });
 
         // Enhanced Functions
@@ -1795,18 +1809,32 @@
             }
         }
 
-        function deleteOwner(id) {
-            if (confirm('Are you sure you want to delete this story owner? This action cannot be undone.')) {
-                storyOwners = storyOwners.filter(owner => owner.id !== id);
+        // ============= UPDATED DELETE OWNER FUNCTION =============
+        async function deleteOwner(id) {
+            if (confirm('Are you sure you want to delete this story owner? Everyone worldwide will see this change immediately.')) {
+                const deleteBtn = event.target.closest('.btn-delete');
+                const originalHTML = deleteBtn.innerHTML;
+                deleteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                deleteBtn.disabled = true;
                 
-                // Automatically save to Firebase (no manual copying needed)
-                cloudStorage.saveData(storyOwners).then(() => {
-                    updateStoryOwnersTable();
-                    updateDashboard();
-                    showNotification('Owner deleted successfully', 'success');
-                }).catch(error => {
-                    showNotification('Error deleting owner: ' + error.message, 'error');
-                });
+                try {
+                    storyOwners = storyOwners.filter(owner => owner.id !== id);
+                    
+                    const success = await cloudStorage.saveData(storyOwners);
+                    
+                    if (success) {
+                        updateStoryOwnersTable();
+                        updateDashboard();
+                        showNotification('Owner deleted successfully!', 'success');
+                    } else {
+                        throw new Error('Delete failed');
+                    }
+                    
+                } catch (error) {
+                    showNotification('Error: ' + error.message, 'error');
+                    deleteBtn.innerHTML = originalHTML;
+                    deleteBtn.disabled = false;
+                }
             }
         }
 
