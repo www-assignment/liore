@@ -659,7 +659,7 @@
       padding: 10px 5px 25px;
       scrollbar-width: thin;
       scrollbar-color: var(--primary-light) transparent;
-      -webkit-overflow-scrolling: touch;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
     .owners-horizontal-scroll::-webkit-scrollbar {
@@ -676,6 +676,7 @@
       border-radius: 10px;
     }
 
+    /* Ensure horizontal scrolling works on all devices */
     .owner-card-horizontal {
       flex: 0 0 300px;
       background: white;
@@ -684,7 +685,7 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      min-width: 300px;
+      min-width: 300px; /* Ensure minimum width for proper scrolling */
     }
 
     .owner-card-horizontal:hover {
@@ -713,7 +714,7 @@
       padding: 25px;
     }
 
-    /* Enhanced Grid Layout for Multiple Owners */
+    /* Enhanced Grid Layout for Multiple Owners - NEW */
     .owners-grid-scrollable {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -789,7 +790,7 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* ENHANCED FOOTER */
+    /* ENHANCED FOOTER - Smaller and Better Colors */
     footer {
       background: linear-gradient(135deg, #2a0808 0%, #4F0C0C 100%);
       color: var(--secondary);
@@ -856,87 +857,6 @@
       border-top: 1px solid rgba(255, 255, 255, 0.15);
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* Social Media Links in Story Owner Cards */
-    .owner-social-media {
-      margin: 15px 0;
-      padding: 15px;
-      background: rgba(142, 45, 45, 0.05);
-      border-radius: var(--radius);
-      border-left: 3px solid var(--primary-light);
-    }
-
-    .owner-social-media h4 {
-      font-size: 0.9rem;
-      color: var(--primary);
-      margin-bottom: 10px;
-      font-weight: 600;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .social-links-owner {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .social-link-owner {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      background: white;
-      border: 1px solid #E5E7EB;
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--dark);
-      transition: var(--transition);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .social-link-owner:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-      border-color: var(--primary-light);
-      color: var(--primary);
-    }
-
-    .social-link-owner i {
-      font-size: 1rem;
-      width: 20px;
-      text-align: center;
-    }
-
-    .social-link-owner i.fa-instagram {
-      color: #E4405F;
-    }
-
-    .social-link-owner i.fa-facebook {
-      color: #1877F2;
-    }
-
-    .social-link-owner i.fa-twitter {
-      color: #1DA1F2;
-    }
-
-    .social-link-owner i.fa-tiktok {
-      color: #000000;
-    }
-
-    .owner-card-horizontal .owner-social-media {
-      margin: 10px 0;
-      padding: 10px;
-    }
-
-    .owner-card-horizontal .social-links-owner {
-      gap: 6px;
-    }
-
-    .owner-card-horizontal .social-link-owner {
-      padding: 6px 10px;
-      font-size: 0.8rem;
     }
 
     /* Responsive Design */
@@ -1047,14 +967,6 @@
         padding: 40px 20px 20px;
         margin-top: 60px;
       }
-
-      .social-links-owner {
-        flex-direction: column;
-      }
-      
-      .social-link-owner {
-        justify-content: flex-start;
-      }
     }
 
     @media (max-width: 576px) {
@@ -1154,12 +1066,104 @@
         min-width: 220px;
       }
     }
-  </style>
+
+
+    /* Social Media Links in Story Owner Cards */
+.owner-social-media {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(142, 45, 45, 0.05);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--primary-light);
+}
+
+.owner-social-media h4 {
+  font-size: 0.9rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.social-links-owner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-link-owner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: var(--transition);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.social-link-owner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.social-link-owner i {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.social-link-owner i.fa-instagram {
+  color: #E4405F;
+}
+
+.social-link-owner i.fa-facebook {
+  color: #1877F2;
+}
+
+.social-link-owner i.fa-twitter {
+  color: #1DA1F2;
+}
+
+.social-link-owner i.fa-tiktok {
+  color: #000000;
+}
+
+/* For horizontal cards */
+.owner-card-horizontal .owner-social-media {
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.owner-card-horizontal .social-links-owner {
+  gap: 6px;
+}
+
+.owner-card-horizontal .social-link-owner {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .social-links-owner {
+    flex-direction: column;
+  }
   
+  .social-link-owner {
+    justify-content: flex-start;
+  }
+}
+  </style>
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="firebase-storage.js"></script>
 </head>
 <body>
   <!-- Logo Header -->
@@ -1176,6 +1180,7 @@
         </h1>
         <div class="tagline-wrapper">
           <div class="tagline-decoration"></div>
+          
         </div>
       </div>
     </div>
@@ -1209,7 +1214,9 @@
           </span>
           <h2>Ken Saro-Wiwa</h2>
           <p>Imagine standing before the world, your voice echoing what millions are too scared to say. Ken Saro-Wiwa did just that. He fought against giants who polluted his people's land, knowing full well that speaking up could cost him everything. And it did.</p>
-
+          
+          
+          
           <p>They silenced him, but they couldn't bury his courage. Today, his story reminds us that your voice is your weapon. And if it shakes the world, then the risk was worth it.</p>
           
           <p><strong>No Risk, No Story.</strong></p>
@@ -1254,7 +1261,43 @@
   </footer>
 
   <script>
-    // ============= UPDATED STORY OWNERS LOADING WITH REAL-TIME UPDATES =============
+    // ==================== FIREBASE CONFIGURATION ====================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxS1M__BSyRwXn2LaOJF_DH5zy2OuaZjs",
+      authDomain: "liore-verse.firebaseapp.com",
+      projectId: "liore-verse",
+      storageBucket: "liore-verse.firebasestorage.app",
+      messagingSenderId: "24831740169",
+      appId: "1:24831740169:web:7ca285905b1c10cdddebd8",
+      measurementId: "G-PWE2Y233K1"
+    };
+
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    // ==================== SIMPLIFIED FIREBASE MANAGER ====================
+    const firebaseManager = {
+      // Load all story owners
+      async loadStoryOwners() {
+        try {
+          const snapshot = await db.collection('storyOwners').get();
+          return snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+        } catch (error) {
+          console.error('Error loading story owners:', error);
+          // Fallback to localStorage
+          const localData = localStorage.getItem('lioreStoryOwners');
+          return localData ? JSON.parse(localData) : [];
+        }
+      }
+    };
+
+    // ==================== ENHANCED FUNCTION TO LOAD AND DISPLAY STORY OWNERS ====================
     async function loadStoryOwners() {
       const storyId = 'ken-saro-wiwa';
       const container = document.getElementById('storyOwnerContainer');
@@ -1268,199 +1311,188 @@
       `;
       
       try {
-        // Load data with real-time listener
-        await cloudStorage.loadData(async (owners) => {
-          // This function runs every time data changes in Firebase
-          console.log('🔔 Story owners updated!', owners.length);
-          displayOwners(owners, storyId, container);
-        });
+        // Get story owners from Firebase
+        const storyOwners = await firebaseManager.loadStoryOwners();
         
-        // Initial display
-        const owners = await cloudStorage.loadData();
-        displayOwners(owners, storyId, container);
+        // Find owners assigned to this story
+        const assignedOwners = storyOwners.filter(owner => 
+          owner.assigned_stories && owner.assigned_stories.includes(storyId)
+        );
+        
+        if (assignedOwners.length === 0) {
+          container.innerHTML = `
+            <div class="no-owners-state">
+              <div class="no-owners-icon">
+                <i class="fas fa-user-friends"></i>
+              </div>
+              <h3>This Story Awaits Its Owners</h3>
+              <p>Be among the first to own this powerful story and share your connection to its legacy of courage and vision.</p>
+              <a href="Home.html" class="cta-button">
+                <i class="fas fa-compass"></i>
+                Explore Our Collection
+              </a>
+            </div>
+          `;
+          return;
+        }
+        
+        // If only one owner, display a centered card
+        if (assignedOwners.length === 1) {
+          const owner = assignedOwners[0];
+          const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
+          
+          container.innerHTML = `
+            <div class="owners-grid">
+              <div class="owner-card">
+                <div class="owner-image">
+                  ${owner.image_url ? `
+                    <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="owner-image-placeholder" style="display:none;">
+                      <i class="fas fa-user"></i>
+                      <p>Portrait of ${owner.owner_name}</p>
+                    </div>
+                  ` : `
+                    <div class="owner-image-placeholder">
+                      <i class="fas fa-user"></i>
+                      <p>Portrait of ${owner.owner_name}</p>
+                    </div>
+                  `}
+                  <div class="owner-badge">Story Owner</div>
+                </div>
+                <div class="owner-content">
+                  <h3 class="owner-name">${owner.owner_name}</h3>
+                  ${socialMediaLinks ? `
+                    <div class="owner-social-media">
+                      <h4>Connect with ${owner.owner_name.split(' ')[0]}:</h4>
+                      <div class="social-links-owner">
+                        ${socialMediaLinks}
+                      </div>
+                    </div>
+                  ` : ''}
+                  <div class="owner-date">
+                    <i class="far fa-calendar"></i> 
+                    Owner since: ${owner.date_added}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } 
+        // If multiple owners (2-4), display in horizontal scroll
+        else if (assignedOwners.length <= 4) {
+          container.innerHTML = `
+            <div class="multiple-owners-layout">
+              <div class="owners-group">
+                <h3 class="owners-group-title">
+                  <i class="fas fa-users"></i>
+                  ${assignedOwners.length} People Carry This Story
+                </h3>
+                <div class="owners-horizontal-scroll">
+                  ${assignedOwners.map(owner => {
+                    const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
+                    return `
+                      <div class="owner-card-horizontal">
+                        <div class="owner-image-horizontal">
+                          ${owner.image_url ? `
+                            <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="owner-image-placeholder" style="display:none;">
+                              <i class="fas fa-user"></i>
+                              <p>Portrait of ${owner.owner_name}</p>
+                            </div>
+                          ` : `
+                            <div class="owner-image-placeholder">
+                              <i class="fas fa-user"></i>
+                              <p>Portrait of ${owner.owner_name}</p>
+                            </div>
+                          `}
+                          <div class="owner-badge">Owner</div>
+                        </div>
+                        <div class="owner-content-horizontal">
+                          <h4 class="owner-name">${owner.owner_name}</h4>
+                          ${socialMediaLinks ? `
+                            <div class="owner-social-media">
+                              <div class="social-links-owner">
+                                ${socialMediaLinks}
+                              </div>
+                            </div>
+                          ` : ''}
+                          <div class="owner-date">
+                            <i class="far fa-calendar"></i> 
+                            ${owner.date_added}
+                          </div>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+        // If many owners (5+), display in scrollable grid
+        else {
+          container.innerHTML = `
+            <div class="multiple-owners-layout">
+              <div class="owners-group">
+                <h3 class="owners-group-title">
+                  <i class="fas fa-users"></i>
+                  ${assignedOwners.length} People Carry This Story
+                </h3>
+                <div class="owners-grid-scrollable">
+                  ${assignedOwners.map(owner => {
+                    const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
+                    return `
+                      <div class="owner-card">
+                        <div class="owner-image">
+                          ${owner.image_url ? `
+                            <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="owner-image-placeholder" style="display:none;">
+                              <i class="fas fa-user"></i>
+                              <p>Portrait of ${owner.owner_name}</p>
+                            </div>
+                          ` : `
+                            <div class="owner-image-placeholder">
+                              <i class="fas fa-user"></i>
+                              <p>Portrait of ${owner.owner_name}</p>
+                            </div>
+                          `}
+                          <div class="owner-badge">Owner</div>
+                        </div>
+                        <div class="owner-content">
+                          <h4 class="owner-name">${owner.owner_name}</h4>
+                          ${socialMediaLinks ? `
+                            <div class="owner-social-media">
+                              <div class="social-links-owner">
+                                ${socialMediaLinks}
+                              </div>
+                            </div>
+                          ` : ''}
+                          <div class="owner-date">
+                            <i class="far fa-calendar"></i> 
+                            ${owner.date_added}
+                          </div>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+        }
         
       } catch (error) {
         console.error('Error loading story owners:', error);
         container.innerHTML = `
           <div style="text-align: center; padding: 40px; color: var(--danger);">
             <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 15px;"></i>
-            <p>Unable to load story owners. Please refresh the page.</p>
+            <p>Unable to load story owners. Please check your connection.</p>
           </div>
         `;
       }
     }
 
-    // Function to display owners (separated for reuse)
-    function displayOwners(storyOwners, storyId, container) {
-      // Find owners assigned to this story
-      const assignedOwners = storyOwners.filter(owner => 
-        owner.assigned_stories && owner.assigned_stories.includes(storyId)
-      );
-      
-      if (assignedOwners.length === 0) {
-        container.innerHTML = `
-          <div class="no-owners-state">
-            <div class="no-owners-icon">
-              <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>This Story Awaits Its Owners</h3>
-            <p>Be among the first to own this powerful story and share your connection to its legacy of courage and vision.</p>
-            <a href="Home.html" class="cta-button">
-              <i class="fas fa-compass"></i>
-              Explore Our Collection
-            </a>
-          </div>
-        `;
-        return;
-      }
-      
-      // If only one owner
-      if (assignedOwners.length === 1) {
-        const owner = assignedOwners[0];
-        const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-        
-        container.innerHTML = `
-          <div class="owners-grid">
-            <div class="owner-card">
-              <div class="owner-image">
-                ${owner.image_url ? `
-                  <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <div class="owner-image-placeholder" style="display:none;">
-                    <i class="fas fa-user"></i>
-                    <p>Portrait of ${owner.owner_name}</p>
-                  </div>
-                ` : `
-                  <div class="owner-image-placeholder">
-                    <i class="fas fa-user"></i>
-                    <p>Portrait of ${owner.owner_name}</p>
-                  </div>
-                `}
-                <div class="owner-badge">Story Owner</div>
-              </div>
-              <div class="owner-content">
-                <h3 class="owner-name">${owner.owner_name}</h3>
-                ${socialMediaLinks ? `
-                  <div class="owner-social-media">
-                    <h4>Connect with ${owner.owner_name.split(' ')[0]}:</h4>
-                    <div class="social-links-owner">
-                      ${socialMediaLinks}
-                    </div>
-                  </div>
-                ` : ''}
-                <div class="owner-date">
-                  <i class="far fa-calendar"></i> 
-                  Owner since: ${owner.date_added}
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      } 
-      // If multiple owners (2-4)
-      else if (assignedOwners.length <= 4) {
-        container.innerHTML = `
-          <div class="multiple-owners-layout">
-            <div class="owners-group">
-              <h3 class="owners-group-title">
-                <i class="fas fa-users"></i>
-                ${assignedOwners.length} People Carry This Story
-              </h3>
-              <div class="owners-horizontal-scroll">
-                ${assignedOwners.map(owner => {
-                  const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-                  return `
-                    <div class="owner-card-horizontal">
-                      <div class="owner-image-horizontal">
-                        ${owner.image_url ? `
-                          <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                          <div class="owner-image-placeholder" style="display:none;">
-                            <i class="fas fa-user"></i>
-                            <p>Portrait of ${owner.owner_name}</p>
-                          </div>
-                        ` : `
-                          <div class="owner-image-placeholder">
-                            <i class="fas fa-user"></i>
-                            <p>Portrait of ${owner.owner_name}</p>
-                          </div>
-                        `}
-                        <div class="owner-badge">Owner</div>
-                      </div>
-                      <div class="owner-content-horizontal">
-                        <h4 class="owner-name">${owner.owner_name}</h4>
-                        ${socialMediaLinks ? `
-                          <div class="owner-social-media">
-                            <div class="social-links-owner">
-                              ${socialMediaLinks}
-                            </div>
-                          </div>
-                        ` : ''}
-                        <div class="owner-date">
-                          <i class="far fa-calendar"></i> 
-                          ${owner.date_added}
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      }
-      // If many owners (5+)
-      else {
-        container.innerHTML = `
-          <div class="multiple-owners-layout">
-            <div class="owners-group">
-              <h3 class="owners-group-title">
-                <i class="fas fa-users"></i>
-                ${assignedOwners.length} People Carry This Story
-              </h3>
-              <div class="owners-grid-scrollable">
-                ${assignedOwners.map(owner => {
-                  const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
-                  return `
-                    <div class="owner-card">
-                      <div class="owner-image">
-                        ${owner.image_url ? `
-                          <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                          <div class="owner-image-placeholder" style="display:none;">
-                            <i class="fas fa-user"></i>
-                            <p>Portrait of ${owner.owner_name}</p>
-                          </div>
-                        ` : `
-                          <div class="owner-image-placeholder">
-                            <i class="fas fa-user"></i>
-                            <p>Portrait of ${owner.owner_name}</p>
-                          </div>
-                        `}
-                        <div class="owner-badge">Owner</div>
-                      </div>
-                      <div class="owner-content">
-                        <h4 class="owner-name">${owner.owner_name}</h4>
-                        ${socialMediaLinks ? `
-                          <div class="owner-social-media">
-                            <div class="social-links-owner">
-                              ${socialMediaLinks}
-                            </div>
-                          </div>
-                        ` : ''}
-                        <div class="owner-date">
-                          <i class="far fa-calendar"></i> 
-                          ${owner.date_added}
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    // Function to generate social media links for story pages
+    // ==================== FUNCTION TO GENERATE SOCIAL MEDIA LINKS ====================
     function generateStorySocialMediaLinks(socialMedia) {
       const links = [];
       
@@ -1508,9 +1540,9 @@
       return links.length > 0 ? links.join('') : '';
     }
 
-    // Load story owners when the page loads
+    // ==================== PAGE INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', async function() {
-      // Image error handling
+      // Image loading fallback
       const storyImage = document.querySelector('.story-image');
       const placeholder = document.querySelector('.image-placeholder');
       
@@ -1531,10 +1563,17 @@
         document.body.classList.add("loaded");
       });
 
-      // LOAD STORY OWNERS WITH REAL-TIME UPDATES
+      // Load story owners immediately
       await loadStoryOwners();
+
+      // Set up real-time listener for Firebase changes
+      db.collection('storyOwners').onSnapshot(() => {
+        console.log('Story owners updated - refreshing display');
+        loadStoryOwners();
+      });
     });
 
+    // ==================== SMOOTH SCROLLING AND ANIMATIONS ====================
     // Smooth scrolling for back to top button
     document.querySelectorAll('.back-to-top').forEach(btn => {
       btn.addEventListener('click', (e) => {

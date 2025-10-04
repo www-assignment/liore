@@ -926,9 +926,8 @@
         }
     </style>
     <!-- Firebase SDK -->
-   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="firebase-storage.js"></script>
 </head>
 <body>
     <!-- Login Screen -->
@@ -1252,13 +1251,93 @@
     </div>
 
     <script>
-        // Enhanced Admin credentials
+        // ==================== FIREBASE CONFIGURATION ====================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCxS1M__BSyRwXn2LaOJF_DH5zy2OuaZjs",
+            authDomain: "liore-verse.firebaseapp.com",
+            projectId: "liore-verse",
+            storageBucket: "liore-verse.firebasestorage.app",
+            messagingSenderId: "24831740169",
+            appId: "1:24831740169:web:7ca285905b1c10cdddebd8",
+            measurementId: "G-PWE2Y233K1"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        // ==================== SIMPLIFIED FIREBASE MANAGER ====================
+        const firebaseManager = {
+            // Load all story owners
+            async loadStoryOwners() {
+                try {
+                    const snapshot = await db.collection('storyOwners').get();
+                    return snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                } catch (error) {
+                    console.error('Error loading story owners:', error);
+                    // Fallback to localStorage
+                    const localData = localStorage.getItem('lioreStoryOwners');
+                    return localData ? JSON.parse(localData) : [];
+                }
+            },
+
+            // Save a story owner (add or update)
+            async saveStoryOwner(ownerData) {
+                try {
+                    if (ownerData.id) {
+                        // Update existing owner
+                        const { id, ...data } = ownerData;
+                        await db.collection('storyOwners').doc(id).update(data);
+                    } else {
+                        // Add new owner
+                        ownerData.id = this.generateId();
+                        ownerData.date_added = new Date().toISOString().split('T')[0];
+                        await db.collection('storyOwners').doc(ownerData.id).set(ownerData);
+                    }
+                    
+                    // Update localStorage as backup
+                    const currentOwners = await this.loadStoryOwners();
+                    localStorage.setItem('lioreStoryOwners', JSON.stringify(currentOwners));
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error saving story owner:', error);
+                    return false;
+                }
+            },
+
+            // Delete a story owner
+            async deleteStoryOwner(ownerId) {
+                try {
+                    await db.collection('storyOwners').doc(ownerId).delete();
+                    
+                    // Update localStorage as backup
+                    const currentOwners = await this.loadStoryOwners();
+                    localStorage.setItem('lioreStoryOwners', JSON.stringify(currentOwners));
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error deleting story owner:', error);
+                    return false;
+                }
+            },
+
+            generateId() {
+                return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+            }
+        };
+
+        // ==================== APPLICATION DATA ====================
         const ADMIN_CREDENTIALS = {
             username: "admin",
             password: "lioreverse2025"
         };
 
-        // Available stories with enhanced data
         const AVAILABLE_STORIES = [
             { 
                 id: 'ken-saro-wiwa', 
@@ -1287,10 +1366,9 @@
             }
         ];
 
-        // Enhanced story owners data structure with social media
         let storyOwners = [];
 
-        // DOM Elements
+        // ==================== DOM ELEMENTS ====================
         const loginScreen = document.getElementById('loginScreen');
         const adminPanel = document.getElementById('adminPanel');
         const loginForm = document.getElementById('loginForm');
@@ -1302,13 +1380,9 @@
         const sidebarOverlay = document.getElementById('sidebarOverlay');
         const adminMenuLinks = document.querySelectorAll('.admin-menu a');
         const pageContents = document.querySelectorAll('.page-content');
-        
-        // Dashboard elements
         const totalOwners = document.getElementById('totalOwners');
         const storiesWithOwners = document.getElementById('storiesWithOwners');
         const recentOwnersTable = document.getElementById('recentOwnersTable');
-        
-        // Story owners elements
         const storyOwnersTable = document.getElementById('storyOwnersTable');
         const addOwnerBtn = document.getElementById('addOwnerBtn');
         const ownerModal = document.getElementById('ownerModal');
@@ -1321,36 +1395,35 @@
         const imageUrl = document.getElementById('imageUrl');
         const storyCheckboxes = document.getElementById('storyCheckboxes');
         const assignedStories = document.getElementById('assignedStories');
-        
-        // Social media elements
         const instagramHandle = document.getElementById('instagramHandle');
         const facebookHandle = document.getElementById('facebookHandle');
         const twitterHandle = document.getElementById('twitterHandle');
         const tiktokHandle = document.getElementById('tiktokHandle');
         const socialLinksPreview = document.getElementById('socialLinksPreview');
 
-        // Enhanced initialization
+        // ==================== ENHANCED INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', async function() {
             if (localStorage.getItem('lioreAdminLoggedIn') === 'true') {
-                // Load data from cloud storage
-                storyOwners = await cloudStorage.loadData();
-                showAdminPanel();
+                await loadDataAndShowAdminPanel();
             }
             
-            // Add loading animation
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease';
-                document.body.style.opacity = '1';
-            }, 100);
-
-            // Add event listeners for social media preview
+            // Add social media preview listeners
             [instagramHandle, facebookHandle, twitterHandle, tiktokHandle].forEach(input => {
                 input.addEventListener('input', updateSocialMediaPreview);
             });
         });
 
-        // Enhanced login form submission
+        async function loadDataAndShowAdminPanel() {
+            try {
+                storyOwners = await firebaseManager.loadStoryOwners();
+                showAdminPanel();
+                showNotification('Data loaded successfully from cloud!', 'success');
+            } catch (error) {
+                showNotification('Error loading data: ' + error.message, 'error');
+            }
+        }
+
+        // ==================== ENHANCED LOGIN ====================
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1359,10 +1432,9 @@
             
             if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
                 localStorage.setItem('lioreAdminLoggedIn', 'true');
-                showAdminPanel();
+                loadDataAndShowAdminPanel();
             } else {
                 errorMessage.style.display = 'block';
-                // Add shake animation
                 loginForm.style.animation = 'shake 0.5s ease-in-out';
                 setTimeout(() => {
                     loginForm.style.animation = '';
@@ -1370,98 +1442,7 @@
             }
         });
 
-        // Enhanced logout functionality
-        logoutBtn.addEventListener('click', function() {
-            // Add fade out animation
-            adminPanel.style.opacity = '0';
-            adminPanel.style.transition = 'opacity 0.3s ease';
-            
-            setTimeout(() => {
-                localStorage.removeItem('lioreAdminLoggedIn');
-                showLoginScreen();
-                adminPanel.style.opacity = '1';
-            }, 300);
-        });
-
-        // Enhanced mobile menu toggle
-        menuToggle.addEventListener('click', function() {
-            adminSidebar.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
-            adminMain.classList.toggle('sidebar-open');
-        });
-
-        // Enhanced sidebar overlay
-        sidebarOverlay.addEventListener('click', function() {
-            adminSidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            adminMain.classList.remove('sidebar-open');
-        });
-
-        // Enhanced navigation menu
-        adminMenuLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all links
-                adminMenuLinks.forEach(l => l.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Get the page to show
-                const page = this.getAttribute('data-page');
-                
-                // Hide all pages with fade out
-                pageContents.forEach(content => {
-                    content.style.opacity = '0';
-                    setTimeout(() => {
-                        content.style.display = 'none';
-                    }, 200);
-                });
-                
-                // Show the selected page with fade in
-                setTimeout(() => {
-                    const targetPage = document.getElementById(`${page}Page`);
-                    targetPage.style.display = 'block';
-                    setTimeout(() => {
-                        targetPage.style.opacity = '1';
-                        targetPage.style.transition = 'opacity 0.3s ease';
-                    }, 50);
-                }, 200);
-                
-                // Update content based on page
-                if (page === 'dashboard') {
-                    updateDashboard();
-                } else if (page === 'storyOwners') {
-                    updateStoryOwnersTable();
-                }
-                
-                // Close sidebar on mobile after navigation
-                if (window.innerWidth <= 768) {
-                    adminSidebar.classList.remove('active');
-                    sidebarOverlay.classList.remove('active');
-                    adminMain.classList.remove('sidebar-open');
-                }
-            });
-        });
-
-        // Enhanced add owner button
-        addOwnerBtn.addEventListener('click', function() {
-            openOwnerModal();
-        });
-
-        // Enhanced modal controls
-        closeModal.addEventListener('click', closeOwnerModal);
-        cancelBtn.addEventListener('click', closeOwnerModal);
-
-        // Enhanced modal backdrop click
-        ownerModal.addEventListener('click', function(e) {
-            if (e.target === ownerModal) {
-                closeOwnerModal();
-            }
-        });
-
-        // ============= UPDATED OWNER FORM SUBMISSION =============
+        // ==================== ENHANCED OWNER FORM SUBMISSION ====================
         ownerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1484,91 +1465,65 @@
                 selectedStories.push(checkbox.value);
             });
             
-            // Enhanced validation
+            // Validation
             if (!ownerNameValue) {
                 showNotification('Please enter an owner name', 'error');
                 ownerName.focus();
                 return;
             }
             
-            // Show saving indicator
-            const submitBtn = ownerForm.querySelector('.btn-save');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-            submitBtn.disabled = true;
+            const ownerData = {
+                owner_name: ownerNameValue,
+                image_url: imageUrlValue,
+                social_media: socialMedia,
+                assigned_stories: selectedStories,
+                last_updated: new Date().toISOString().split('T')[0]
+            };
+
+            // Add ID if editing
+            if (id) {
+                ownerData.id = id;
+            }
+
+            const success = await firebaseManager.saveStoryOwner(ownerData);
             
-            try {
-                if (id) {
-                    // Edit existing owner
-                    const index = storyOwners.findIndex(owner => owner.id === id);
-                    if (index !== -1) {
-                        storyOwners[index] = {
-                            id: id,
-                            owner_name: ownerNameValue,
-                            image_url: imageUrlValue,
-                            social_media: socialMedia,
-                            assigned_stories: selectedStories,
-                            date_added: storyOwners[index].date_added,
-                            last_updated: new Date().toISOString().split('T')[0]
-                        };
-                    }
-                } else {
-                    // Add new owner
-                    const newOwner = {
-                        id: generateId(),
-                        owner_name: ownerNameValue,
-                        image_url: imageUrlValue,
-                        social_media: socialMedia,
-                        assigned_stories: selectedStories,
-                        date_added: new Date().toISOString().split('T')[0],
-                        last_updated: new Date().toISOString().split('T')[0]
-                    };
-                    
-                    storyOwners.unshift(newOwner);
-                }
+            if (success) {
+                showNotification(id ? 'Owner updated successfully!' : 'Owner added successfully!', 'success');
                 
-                // Save to Firebase
-                const success = await cloudStorage.saveData(storyOwners);
+                // Reload data from Firebase to ensure we have the latest
+                storyOwners = await firebaseManager.loadStoryOwners();
                 
-                if (success) {
-                    // Update tables
-                    updateStoryOwnersTable();
-                    updateDashboard();
-                    closeOwnerModal();
-                    showNotification(id ? 'Owner updated successfully!' : 'Owner added successfully!', 'success');
-                } else {
-                    throw new Error('Save failed');
-                }
+                // Update UI
+                updateStoryOwnersTable();
+                updateDashboard();
                 
-            } catch (error) {
-                console.error('Save error:', error);
-                showNotification('Error: ' + error.message, 'error');
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+                // Close modal
+                closeOwnerModal();
+            } else {
+                showNotification('Error saving owner. Please try again.', 'error');
             }
         });
 
-        // Enhanced Functions
-        function showLoginScreen() {
-            loginScreen.style.display = 'flex';
-            adminPanel.style.display = 'none';
-            loginForm.reset();
-            errorMessage.style.display = 'none';
+        // ==================== ENHANCED DELETE FUNCTION ====================
+        async function deleteOwner(id) {
+            if (confirm('Are you sure you want to delete this story owner? This action cannot be undone.')) {
+                const success = await firebaseManager.deleteStoryOwner(id);
+                
+                if (success) {
+                    storyOwners = storyOwners.filter(owner => owner.id !== id);
+                    updateStoryOwnersTable();
+                    updateDashboard();
+                    showNotification('Owner deleted successfully!', 'success');
+                } else {
+                    showNotification('Error deleting owner. Please try again.', 'error');
+                }
+            }
         }
 
-        function showAdminPanel() {
-            loginScreen.style.display = 'none';
-            adminPanel.style.display = 'block';
-            updateDashboard();
-            updateStoryOwnersTable();
-        }
-
+        // ==================== UI UPDATE FUNCTIONS ====================
         function updateDashboard() {
-            // Update total owners count
             totalOwners.textContent = storyOwners.length;
             
-            // Update stories with owners count
             const storiesWithOwnersSet = new Set();
             storyOwners.forEach(owner => {
                 owner.assigned_stories.forEach(storyId => {
@@ -1577,9 +1532,11 @@
             });
             storiesWithOwners.textContent = storiesWithOwnersSet.size;
             
-            // Update recent owners table
+            updateRecentOwnersTable();
+        }
+
+        function updateRecentOwnersTable() {
             recentOwnersTable.innerHTML = '';
-            
             const recentOwners = storyOwners.slice(0, 5);
             
             if (recentOwners.length === 0) {
@@ -1593,30 +1550,8 @@
                 `;
             } else {
                 recentOwners.forEach(owner => {
-                    const assignedStoriesText = owner.assigned_stories.length > 0 
-                        ? owner.assigned_stories.map(storyId => {
-                            const story = AVAILABLE_STORIES.find(s => s.id === storyId);
-                            return story ? story.title : storyId;
-                        }).join(', ')
-                        : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
-                    
-                    const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
-                    
                     const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td style="font-weight: 600;">${owner.owner_name}</td>
-                        <td>${assignedStoriesText}</td>
-                        <td>${socialMediaLinks}</td>
-                        <td style="color: var(--gray);">${owner.date_added}</td>
-                        <td>
-                            <button class="btn-edit" onclick="editOwner('${owner.id}')">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn-delete" onclick="deleteOwner('${owner.id}')">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
-                        </td>
-                    `;
+                    row.innerHTML = createOwnerRowHTML(owner);
                     recentOwnersTable.appendChild(row);
                 });
             }
@@ -1640,56 +1575,65 @@
                 `;
             } else {
                 storyOwners.forEach(owner => {
-                    const assignedStoriesText = owner.assigned_stories.length > 0 
-                        ? owner.assigned_stories.map(storyId => {
-                            const story = AVAILABLE_STORIES.find(s => s.id === storyId);
-                            return story ? `<span class="story-badge">${story.title}</span>` : storyId;
-                        }).join('')
-                        : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
-                    
-                    const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
-                    
                     const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td style="font-weight: 600;">${owner.owner_name}</td>
-                        <td>${assignedStoriesText}</td>
-                        <td>${socialMediaLinks}</td>
-                        <td>${owner.image_url ? '<i class="fas fa-image" style="color: var(--success);"></i>' : '<i class="fas fa-times" style="color: var(--gray-light);"></i>'}</td>
-                        <td style="color: var(--gray); font-size: 13px;">${owner.date_added}</td>
-                        <td class="action-buttons">
-                            <button class="btn-edit" onclick="editOwner('${owner.id}')">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn-delete" onclick="deleteOwner('${owner.id}')">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
-                        </td>
-                    `;
+                    row.innerHTML = createOwnerRowHTML(owner, true); // true for full details
                     storyOwnersTable.appendChild(row);
                 });
             }
         }
 
+        function createOwnerRowHTML(owner, showImageColumn = false) {
+            const assignedStoriesText = owner.assigned_stories.length > 0 
+                ? owner.assigned_stories.map(storyId => {
+                    const story = AVAILABLE_STORIES.find(s => s.id === storyId);
+                    return story ? story.title : storyId;
+                }).join(', ')
+                : '<span style="color: var(--gray-light); font-style: italic;">No stories assigned</span>';
+
+            const socialMediaLinks = generateSocialMediaLinks(owner.social_media);
+            
+            const imageColumn = showImageColumn 
+                ? `<td>${owner.image_url ? '<i class="fas fa-image" style="color: var(--success);"></i>' : '<i class="fas fa-times" style="color: var(--gray-light);"></i>'}</td>`
+                : '';
+
+            return `
+                <td style="font-weight: 600;">${owner.owner_name}</td>
+                <td>${assignedStoriesText}</td>
+                <td>${socialMediaLinks}</td>
+                ${imageColumn}
+                <td style="color: var(--gray); font-size: 13px;">${owner.date_added}</td>
+                <td class="action-buttons">
+                    <button class="btn-edit" onclick="editOwner('${owner.id}')">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn-delete" onclick="deleteOwner('${owner.id}')">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </td>
+            `;
+        }
+
+        // ==================== HELPER FUNCTIONS ====================
         function generateSocialMediaLinks(socialMedia) {
             const links = [];
             
-            if (socialMedia.instagram) {
+            if (socialMedia?.instagram) {
                 const handle = socialMedia.instagram.startsWith('@') ? socialMedia.instagram : `@${socialMedia.instagram}`;
                 links.push(`<a href="https://instagram.com/${socialMedia.instagram.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-instagram"></i> ${handle}</a>`);
             }
             
-            if (socialMedia.facebook) {
+            if (socialMedia?.facebook) {
                 const handle = socialMedia.facebook.includes('facebook.com') ? 'Facebook' : socialMedia.facebook;
                 const url = socialMedia.facebook.includes('facebook.com') ? socialMedia.facebook : `https://facebook.com/${socialMedia.facebook}`;
                 links.push(`<a href="${url}" target="_blank" class="social-link-preview"><i class="fab fa-facebook"></i> ${handle}</a>`);
             }
             
-            if (socialMedia.twitter) {
+            if (socialMedia?.twitter) {
                 const handle = socialMedia.twitter.startsWith('@') ? socialMedia.twitter : `@${socialMedia.twitter}`;
                 links.push(`<a href="https://twitter.com/${socialMedia.twitter.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-twitter"></i> ${handle}</a>`);
             }
             
-            if (socialMedia.tiktok) {
+            if (socialMedia?.tiktok) {
                 const handle = socialMedia.tiktok.startsWith('@') ? socialMedia.tiktok : `@${socialMedia.tiktok}`;
                 links.push(`<a href="https://tiktok.com/@${socialMedia.tiktok.replace('@', '')}" target="_blank" class="social-link-preview"><i class="fab fa-tiktok"></i> ${handle}</a>`);
             }
@@ -1697,15 +1641,63 @@
             return links.length > 0 ? links.join('') : '<span style="color: var(--gray-light); font-style: italic;">No social media</span>';
         }
 
-        function updateSocialMediaPreview() {
-            const socialMedia = {
-                instagram: instagramHandle.value.trim(),
-                facebook: facebookHandle.value.trim(),
-                twitter: twitterHandle.value.trim(),
-                tiktok: tiktokHandle.value.trim()
-            };
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
             
-            socialLinksPreview.innerHTML = generateSocialMediaLinks(socialMedia) || '<span style="color: var(--gray); font-style: italic;">Social links will appear here</span>';
+            // Add styles for notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // ==================== EXISTING UI FUNCTIONS ====================
+        function showLoginScreen() {
+            loginScreen.style.display = 'flex';
+            adminPanel.style.display = 'none';
+            loginForm.reset();
+            errorMessage.style.display = 'none';
+        }
+
+        function showAdminPanel() {
+            loginScreen.style.display = 'none';
+            adminPanel.style.display = 'block';
+            updateDashboard();
+            updateStoryOwnersTable();
         }
 
         function openOwnerModal(owner = null) {
@@ -1809,85 +1801,98 @@
             }
         }
 
-        // ============= UPDATED DELETE OWNER FUNCTION =============
-        async function deleteOwner(id) {
-            if (confirm('Are you sure you want to delete this story owner? Everyone worldwide will see this change immediately.')) {
-                const deleteBtn = event.target.closest('.btn-delete');
-                const originalHTML = deleteBtn.innerHTML;
-                deleteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                deleteBtn.disabled = true;
+        function updateSocialMediaPreview() {
+            const socialMedia = {
+                instagram: instagramHandle.value.trim(),
+                facebook: facebookHandle.value.trim(),
+                twitter: twitterHandle.value.trim(),
+                tiktok: tiktokHandle.value.trim()
+            };
+            
+            socialLinksPreview.innerHTML = generateSocialMediaLinks(socialMedia) || '<span style="color: var(--gray); font-style: italic;">Social links will appear here</span>';
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('lioreAdminLoggedIn');
+            showLoginScreen();
+        });
+
+        menuToggle.addEventListener('click', function() {
+            adminSidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', function() {
+            adminSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        adminMenuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                try {
-                    storyOwners = storyOwners.filter(owner => owner.id !== id);
-                    
-                    const success = await cloudStorage.saveData(storyOwners);
-                    
-                    if (success) {
-                        updateStoryOwnersTable();
-                        updateDashboard();
-                        showNotification('Owner deleted successfully!', 'success');
-                    } else {
-                        throw new Error('Delete failed');
-                    }
-                    
-                } catch (error) {
-                    showNotification('Error: ' + error.message, 'error');
-                    deleteBtn.innerHTML = originalHTML;
-                    deleteBtn.disabled = false;
-                }
-            }
-        }
-
-        function generateId() {
-            return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-        }
-
-        // Enhanced notification system
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                ${message}
-            `;
-            
-            // Add styles for notification
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: var(--shadow-lg);
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-weight: 500;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                max-width: 300px;
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Animate out and remove
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
+                // Remove active class from all links
+                adminMenuLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the page to show
+                const page = this.getAttribute('data-page');
+                
+                // Hide all pages with fade out
+                pageContents.forEach(content => {
+                    content.style.opacity = '0';
+                    setTimeout(() => {
+                        content.style.display = 'none';
+                    }, 200);
+                });
+                
+                // Show the selected page with fade in
                 setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
+                    const targetPage = document.getElementById(`${page}Page`);
+                    targetPage.style.display = 'block';
+                    setTimeout(() => {
+                        targetPage.style.opacity = '1';
+                        targetPage.style.transition = 'opacity 0.3s ease';
+                    }, 50);
+                }, 200);
+                
+                // Update content based on page
+                if (page === 'dashboard') {
+                    updateDashboard();
+                } else if (page === 'storyOwners') {
+                    updateStoryOwnersTable();
+                }
+                
+                // Close sidebar on mobile after navigation
+                if (window.innerWidth <= 768) {
+                    adminSidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    adminMain.classList.remove('sidebar-open');
+                }
+            });
+        });
 
-        // Add shake animation for errors
+        addOwnerBtn.addEventListener('click', function() {
+            openOwnerModal();
+        });
+
+        closeModal.addEventListener('click', closeOwnerModal);
+        cancelBtn.addEventListener('click', closeOwnerModal);
+
+        ownerModal.addEventListener('click', function(e) {
+            if (e.target === ownerModal) {
+                closeOwnerModal();
+            }
+        });
+
+        // Make functions available globally
+        window.editOwner = editOwner;
+        window.deleteOwner = deleteOwner;
+
+        // Add shake animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
@@ -1897,10 +1902,6 @@
             }
         `;
         document.head.appendChild(style);
-
-        // Make functions available globally
-        window.editOwner = editOwner;
-        window.deleteOwner = deleteOwner;
     </script>
 </body>
 </html>
