@@ -1129,6 +1129,19 @@
                 gap: 30px;
             }
         }
+
+
+
+
+
+
+
+
+
+/* Hide admin tab from all users */
+.nav-item a[href="admin.html"] {
+    display: none !important;
+}
     </style>
 </head>
 <body>
@@ -1507,6 +1520,92 @@
         });
       });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Simple quadruple click to open admin
+document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.querySelector('.navbar-brand');
+    let clickCount = 0;
+    let timer;
+    
+    logo.addEventListener('click', function(e) {
+        e.preventDefault();
+        clickCount++;
+        
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            clickCount = 0;
+        }, 1000);
+        
+        if (clickCount === 4) {
+            clearTimeout(timer);
+            window.location.href = 'admin.html';
+            clickCount = 0;
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Simple logo click functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.querySelector('.navbar-brand');
+    let clickCount = 0;
+    let clickTimer;
+    
+    logo.addEventListener('click', function(e) {
+        e.preventDefault();
+        clickCount++;
+        
+        // Clear any existing timer
+        clearTimeout(clickTimer);
+        
+        // Set timer to detect single click after 300ms
+        clickTimer = setTimeout(function() {
+            if (clickCount === 1) {
+                // Single click - go to landing page
+                window.location.href = 'index.html';
+            }
+            clickCount = 0;
+        }, 300);
+        
+        // Check for quadruple click
+        if (clickCount === 4) {
+            clearTimeout(clickTimer);
+            // Quadruple click - go to admin page
+            window.location.href = 'admin.html';
+            clickCount = 0;
+        }
+    });
+});
+
+
   </script>
 
 
