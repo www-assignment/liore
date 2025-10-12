@@ -1,0 +1,62 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+      {
+        "source": "/Home",
+        "destination": "/Home.html"
+      },
+      {
+        "source": "/admin",
+        "destination": "/admin.html"
+      },
+      {
+        "source": "/story",
+        "destination": "/Story.html"
+      },
+      {
+        "source": "/about",
+        "destination": "/About-Us.html"
+      },
+      {
+        "source": "/policies",
+        "destination": "/Our-Policies.html"
+      },
+       {
+        "source": "/",
+        "destination": "/index.html"
+      },
+       {
+        "source": "/Ken Saro-Wiwa",
+        "destination": "/Full-story-1.html"
+      },
+       {
+        "source": "/MKO Abiola",
+        "destination": "/full-story-2-MKOAbiola.html"
+      },
+       {
+        "source": "/JAJA OF OPOBO",
+        "destination": "/full-story-3-jaja.html"
+      },
+       {
+        "source": "/FELA ANIKULAPO KUTI",
+        "destination": "/full-story-4-felaKuti.html"
+      },
+       {
+        "source": "/ANTHONY ENAHORO",
+        "destination": "/full-story-5-AnthonyEnahoro.html"
+      },
+      {
+        "source": "**",
+        "destination": "/Home.html"
+      }
+    ]
+  }
+}
