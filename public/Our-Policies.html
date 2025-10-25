@@ -3,10 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Page Specific Title -->
   <title>Our Policies - Liore Verse</title>
+  
+  <!-- ===== COMPLETE FAVICON SETUP ===== -->
+  <link rel="icon" type="image/x-icon" href="LIORE_VERSE_LOGO.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="LIORE_VERSE_LOGO.png">
+  <link rel="shortcut icon" href="LIORE_VERSE_LOGO.png" type="image/x-icon">
+
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileImage" content="LIORE_VERSE_LOGO.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  
+  <!-- ===== SEO META TAGS ===== -->
+  <meta name="description" content="Liore Verse Policies - Limited editions, authenticity guarantee, sales terms, delivery, and community guidelines. Learn about our commitment to quality and exclusivity.">
+  <meta name="keywords" content="liore verse policies, terms and conditions, limited edition, authenticity guarantee, returns policy, delivery, pre-orders, community guidelines">
+  <meta name="author" content="Liore Verse">
+  <meta name="robots" content="index, follow">
+  
+  <!-- ===== SOCIAL MEDIA META TAGS ===== -->
+  <meta property="og:title" content="Our Policies - Liore Verse | Terms & Conditions">
+  <meta property="og:description" content="Learn about Liore Verse policies including limited editions, authenticity guarantee, sales terms, and community guidelines.">
+  <meta property="og:image" content="LIORE_VERSE_LOGO.png">
+  <meta property="og:url" content="https://lioreverse.com/policies">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Liore Verse">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our Policies - Liore Verse | Terms & Conditions">
+  <meta name="twitter:description" content="Liore Verse Policies - Limited editions, authenticity guarantee, and community guidelines.">
+  <meta name="twitter:image" content="LIORE_VERSE_LOGO.png">
+  
+  <!-- ===== PWA & MOBILE OPTIMIZATION ===== -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#4F0C0C">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Liore Verse">
+  
+  <!-- ===== EXTERNAL RESOURCES ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+
+  <!-- ===== PERFORMANCE OPTIMIZATION ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- ===== SCHEMA MARKUP FOR SEO ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Liore Verse Policies",
+    "description": "Terms and conditions for Liore Verse including limited editions, authenticity guarantee, and community guidelines",
+    "url": "https://lioreverse.com/policies",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Liore Verse",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lioreverse.com/LIORE_VERSE_LOGO.png"
+      }
+    }
+  }
+  </script>
+
   <style>
     * {
       margin: 0;
@@ -22,7 +88,7 @@
       line-height: 1.6;
     }
 
-    /* Navigation styling - FIXED FOR RESPONSIVENESS */
+    /* Navigation styling */
     .navbar-custom {
       background: #4f0c0cec;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -120,182 +186,133 @@
     }
 
     /* Policies Hero Section */
-        .policies-hero {
-            min-height: 40vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(rgba(79, 12, 12, 0.03), rgba(79, 12, 12, 0.03)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFF2E2"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%234F0C0C" stroke-opacity="0.1" stroke-width="1"/></svg>');
-            text-align: center;
-        }
+    .policies-hero {
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(rgba(79, 12, 12, 0.03), rgba(79, 12, 12, 0.03));
+      text-align: center;
+    }
 
-        .policies-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .policies-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .policies-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    .policies-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-        .policies-tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #4F0C0C;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .policies-tagline {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #4F0C0C;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        /* Policies Section Styling */
-        .policies-section {
-            padding: 5rem 2rem;
-        }
+    /* Policies Section Styling */
+    .policies-section {
+      padding: 5rem 2rem;
+    }
 
-        .policy-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .policy-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .policy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
 
-        .policy-card {
-            background: #FFF2E2;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(79, 12, 12, 0.1);
-            transition: all 0.3s ease;
-            border-left: 5px solid #4F0C0C;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+    .policy-card {
+      background: #FFF2E2;
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(79, 12, 12, 0.1);
+      transition: all 0.3s ease;
+      border-left: 5px solid #4F0C0C;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .policy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(79, 12, 12, 0.15);
-        }
+    .policy-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(79, 12, 12, 0.15);
+    }
 
-        .policy-icon {
-            font-size: 2.5rem;
-            color: #4F0C0C;
-            margin-bottom: 1.5rem;
-        }
+    .policy-icon {
+      font-size: 2.5rem;
+      color: #4F0C0C;
+      margin-bottom: 1.5rem;
+    }
 
-        .policy-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            color: #4F0C0C;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
+    .policy-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #4F0C0C;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
 
-        .policy-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #4F0C0C;
-        }
+    .policy-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #4F0C0C;
+    }
 
-        .policy-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #4F0C0C;
-            flex-grow: 1;
-        }
+    .policy-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4F0C0C;
+      flex-grow: 1;
+    }
 
-        .policy-list {
-            list-style-type: none;
-            margin-top: 1rem;
-        }
+    .policy-list {
+      list-style-type: none;
+      margin-top: 1rem;
+    }
 
-        .policy-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
+    .policy-list li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
 
-        .policy-list li:before {
-            content: '•';
-            color: #4F0C0C;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
+    .policy-list li:before {
+      content: '•';
+      color: #4F0C0C;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
 
-        .policy-sublist {
-            list-style-type: none;
-            margin-top: 0.5rem;
-            margin-left: 1rem;
-        }
+    .policy-sublist {
+      list-style-type: none;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+    }
 
-        .policy-sublist li:before {
-            content: '–';
-        }
-        
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Commitment to Quality specific styling */
-        .commitment-card .policy-description p {
-            margin-bottom: 1rem;
-        }
-        
-        .commitment-list {
-            list-style-type: none;
-            margin-top: 1rem;
-        }
-        
-        .commitment-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .commitment-list li:before {
-            content: '•';
-            color: #4F0C0C;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
+    .policy-sublist li:before {
+      content: '–';
+    }
+    
     /* Commitment Section */
     .commitment-section {
       padding: 5rem 2rem;
@@ -353,36 +370,30 @@
       text-decoration: underline;
     }
 
-    /* Animation */
+    /* Entrance animation - SIMPLIFIED LIKE INDEX.HTML */
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(40px) scale(0.95);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
     .fade-in {
       opacity: 0;
-      animation: fadeUp 1s ease-out forwards;
+      animation: fadeUp 1.5s ease-out forwards;
     }
 
-    .delay-1 {
-      animation-delay: 0.2s;
-    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
 
-    .delay-2 {
-      animation-delay: 0.4s;
-    }
-
-    .delay-3 {
-      animation-delay: 0.6s;
-    }
-
-    /* Responsive Design - IMPROVED NAVBAR */
+    /* Responsive Design */
     @media (max-width: 992px) {
       .policy-grid {
         grid-template-columns: 1fr;
@@ -421,6 +432,10 @@
       .footer-links {
         flex-direction: column;
         gap: 1rem;
+      }
+      
+      .commitment-title {
+        font-size: 2rem;
       }
     }
 
@@ -477,6 +492,10 @@
       .logo-text {
         font-size: 1.2rem;
       }
+      
+      .commitment-title {
+        font-size: 1.8rem;
+      }
     }
 
     @media (max-width: 400px) {
@@ -492,10 +511,10 @@
   </style>
 </head>
 <body>
-  <!-- Navigation - FIXED -->
+  <!-- Navigation -->
   <nav class="navbar-custom">
     <a class="navbar-brand" href="/">
-      <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="60" height="60" style="border-radius:50%; margin-right:10px;">
+      <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo" width="60" height="60" style="border-radius:50%; margin-right:10px;">
       <span class="logo-text">LIORE VERSE</span>
     </a>
     
@@ -509,139 +528,144 @@
     </div>
   </nav>
 
-    <!-- Policies Hero Section -->
-    <section class="policies-hero">
-        <div class="policies-container">
-            <div class="policies-content fade-in">
-                <h1>OUR POLICIES</h1>
-                <p class="policies-tagline">At Liore Verse, we believe every piece tells a story. To maintain the quality, exclusivity, and trust of our movement, we operate under the following policies:</p>
-            </div>
+  <!-- Policies Hero Section -->
+  <section class="policies-hero">
+    <div class="policies-container">
+      <div class="policies-content fade-in">
+        <h1>OUR POLICIES</h1>
+        <p class="policies-tagline">At Liore Verse, we believe every piece tells a story. To maintain the quality, exclusivity, and trust of our movement, we operate under the following policies:</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Policies Section -->
+  <section class="policies-section">
+    <div class="policy-container">
+      <div class="policy-grid">
+        <!-- Limited Editions -->
+        <div class="policy-card fade-in">
+          <div class="policy-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3 class="policy-title">Limited Editions</h3>
+          <div class="policy-description">
+            <p>We maintain exclusivity through strictly controlled production:</p>
+            <ul class="policy-list">
+              <li>Every drop is produced in strictly limited quantities</li>
+              <li>No restocks. No repeats. Once sold out, it's gone forever</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- Policies Section -->
-    <section class="policies-section">
-        <div class="policy-container">
-            <div class="policy-grid">
-                <!-- Limited Editions -->
-                <div class="policy-card fade-in">
-                    <div class="policy-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3 class="policy-title">Limited Editions</h3>
-                    <div class="policy-description">
-                        <p>We maintain exclusivity through strictly controlled production:</p>
-                        <ul class="policy-list">
-                            <li>Every drop is produced in strictly limited quantities</li>
-                            <li>No restocks. No repeats. Once sold out, it's gone forever</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Authenticity Guarantee -->
-                <div class="policy-card fade-in delay-1">
-                    <div class="policy-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="policy-title">Authenticity Guarantee</h3>
-                    <div class="policy-description">
-                        <p>We protect the integrity of our products:</p>
-                        <ul class="policy-list">
-                            <li>Each product comes with a unique authenticity code</li>
-                            <li>We do not support or condone counterfeit versions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Sales & Returns -->
-                <div class="policy-card fade-in delay-2">
-                    <div class="policy-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3 class="policy-title">Sales & Returns</h3>
-                    <div class="policy-description">
-                        <p>Due to the exclusive nature of our products:</p>
-                        <ul class="policy-list">
-                            <li>All sales are final</li>
-                            <li>Exchanges are only accepted for:
-                                <ul class="policy-sublist">
-                                    <li>Wrong item delivered</li>
-                                    <li>Manufacturing defects</li>
-                                    <li>Sizing issues (if available)</li>
-                                </ul>
-                            </li>
-                            <li>Requests must be made within 48 hours of delivery with proof of purchase</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Pre-Orders & Reservations -->
-                <div class="policy-card fade-in delay-3">
-                    <div class="policy-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3 class="policy-title">Pre-Orders & Reservations</h3>
-                    <div class="policy-description">
-                        <p>Our reservation system ensures fairness:</p>
-                        <ul class="policy-list">
-                            <li>Pre-order payments secure your spot for upcoming drops</li>
-                            <li>Cancellations are not accepted after payment</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Delivery -->
-                <div class="policy-card fade-in">
-                    <div class="policy-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3 class="policy-title">Delivery</h3>
-                    <div class="policy-description">
-                        <p>We ensure your items arrive safely and promptly:</p>
-                        <ul class="policy-list">
-                            <li>We partner with trusted couriers for safe delivery</li>
-                            <li>Delivery timelines vary by location</li>
-                            <li>Estimates are provided at checkout</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Community First -->
-                <div class="policy-card fade-in delay-1">
-                    <div class="policy-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="policy-title">Community First</h3>
-                    <div class="policy-description">
-                        <p>We value our early supporters:</p>
-                        <ul class="policy-list">
-                            <li>Early supporters receive priority access to exclusive drops</li>
-                            <li>Special access to events and collaborations</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Commitment to Quality - FIXED -->
-                <div class="policy-card commitment-card fade-in delay-2">
-                    <div class="policy-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="policy-title">Commitment to Quality</h3>
-                    <div class="policy-description">
-                        <p>We source and produce ethically, with fair practices and premium craftsmanship:</p>
-                                           </div>
-                </div>
-            </div>
+        <!-- Authenticity Guarantee -->
+        <div class="policy-card fade-in delay-1">
+          <div class="policy-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="policy-title">Authenticity Guarantee</h3>
+          <div class="policy-description">
+            <p>We protect the integrity of our products:</p>
+            <ul class="policy-list">
+              <li>Each product comes with a unique authenticity code</li>
+              <li>We do not support or condone counterfeit versions</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
+        <!-- Sales & Returns -->
+        <div class="policy-card fade-in delay-2">
+          <div class="policy-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <h3 class="policy-title">Sales & Returns</h3>
+          <div class="policy-description">
+            <p>Due to the exclusive nature of our products:</p>
+            <ul class="policy-list">
+              <li>All sales are final</li>
+              <li>Exchanges are only accepted for:
+                <ul class="policy-sublist">
+                  <li>Wrong item delivered</li>
+                  <li>Manufacturing defects</li>
+                  <li>Sizing issues (if available)</li>
+                </ul>
+              </li>
+              <li>Requests must be made within 48 hours of delivery with proof of purchase</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pre-Orders & Reservations -->
+        <div class="policy-card fade-in delay-3">
+          <div class="policy-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3 class="policy-title">Pre-Orders & Reservations</h3>
+          <div class="policy-description">
+            <p>Our reservation system ensures fairness:</p>
+            <ul class="policy-list">
+              <li>Pre-order payments secure your spot for upcoming drops</li>
+              <li>Cancellations are not accepted after payment</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="policy-card fade-in delay-4">
+          <div class="policy-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3 class="policy-title">Delivery</h3>
+          <div class="policy-description">
+            <p>We ensure your items arrive safely and promptly:</p>
+            <ul class="policy-list">
+              <li>We partner with trusted couriers for safe delivery</li>
+              <li>Delivery timelines vary by location</li>
+              <li>Estimates are provided at checkout</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Community First -->
+        <div class="policy-card fade-in delay-5">
+          <div class="policy-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="policy-title">Community First</h3>
+          <div class="policy-description">
+            <p>We value our early supporters:</p>
+            <ul class="policy-list">
+              <li>Early supporters receive priority access to exclusive drops</li>
+              <li>Special access to events and collaborations</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Commitment to Quality - FIXED -->
+        <div class="policy-card fade-in delay-3">
+          <div class="policy-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3 class="policy-title">Commitment to Quality</h3>
+          <div class="policy-description">
+            <p>We source and produce ethically, with fair practices and premium craftsmanship:</p>
+            <ul class="policy-list">
+              <li>Premium materials and construction techniques</li>
+              <li>Ethical sourcing and fair labor practices</li>
+              <li>Rigorous quality control at every stage</li>
+              <li>Sustainable packaging where possible</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Commitment Section -->
   <section class="commitment-section">
     <div class="commitment-container">
-      
-      
-      <p class="commitment-text fade-in delay-2">At Liore Verse, we believe in moves over talk. Our policies reflect our dedication to excellence, authenticity, and our community.</p>
+      <h2 class="commitment-title fade-in">Our Commitment</h2>
+      <p class="commitment-text fade-in delay-1">At Liore Verse, we believe in moves over talk. Our policies reflect our dedication to excellence, authenticity, and our community.</p>
+      <p class="commitment-text fade-in delay-2">We're committed to creating not just products, but a movement that stands for quality, exclusivity, and integrity.</p>
     </div>
   </section>
 
@@ -653,13 +677,8 @@
         <a href="/about" class="footer-link">About Us</a>
         <a href="/policies" class="footer-link">Our Policies</a>
         <a href="https://wa.me/2349022365117" class="footer-link" target="_blank">Contact Us</a>
-       <a href="mailto:thelioreverse@gmail.com" style="color:#FFF2E2; text-decoration:none;">
-  Email Us
-</a>
-
-
+        <a href="mailto:thelioreverse@gmail.com" class="footer-link">Email Us</a>
       </div>
-     
       <p>© 2025 LIORE VERSE. All rights reserved.</p>
     </div>
   </footer>
@@ -704,6 +723,19 @@
           }
         });
       }
+
+      // Performance monitoring like index.html
+      window.addEventListener('load', function() {
+        console.log('Liore Verse Policies Page - Loaded successfully');
+        
+        // Check if logo image loaded
+        const logoImg = document.querySelector('.navbar-brand img');
+        if (logoImg) {
+          if (!logoImg.complete || logoImg.naturalWidth === 0) {
+            console.warn('Logo image failed to load');
+          }
+        }
+      });
     });
   </script>
 </body>

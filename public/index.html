@@ -3,13 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Liore Verse</title>
+  
+  <!-- Enhanced Title -->
+  <title>Liore Verse - No Talk, Moves | Premium Streetwear Brand</title>
+  
+  <!-- ===== COMPLETE FAVICON SETUP ===== -->
+  <link rel="icon" type="image/x-icon" href="LIORE_VERSE_LOGO.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="LIORE_VERSE_LOGO.png">
+  <link rel="shortcut icon" href="LIORE_VERSE_LOGO.png" type="image/x-icon">
+  
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileImage" content="LIORE_VERSE_LOGO.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  
+  <!-- ===== SEO META TAGS ===== -->
+  <meta name="description" content="Liore Verse - No Talk, Moves. Discover our exclusive collections for those who take action. Premium streetwear and lifestyle brand.">
+  <meta name="keywords" content="liore verse, urban fashion, no talk moves, premium apparel, lifestyle brand, streetwear, limited edition">
+  <meta name="author" content="Liore Verse">
+  <meta name="robots" content="index, follow">
+  
+  <!-- ===== SOCIAL MEDIA META TAGS ===== -->
+  <meta property="og:title" content="Liore Verse - No Talk, Moves">
+  <meta property="og:description" content="Premium brand for those who take action. Discover exclusive collections and limited edition streetwear.">
+  <meta property="og:image" content="LIORE_VERSE_LOGO.png">
+  <meta property="og:url" content="https://lioreverse.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Liore Verse">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Liore Verse - No Talk, Moves">
+  <meta name="twitter:description" content="Premium brand for those who take action. Limited edition streetwear collections.">
+  <meta name="twitter:image" content="LIORE_VERSE_LOGO.png">
+  
+  <!-- ===== PWA & MOBILE OPTIMIZATION ===== -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#4F0C0C">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Liore Verse">
+  
+  <!-- ===== EXTERNAL RESOURCES ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
 
-
+  <!-- ===== PERFORMANCE OPTIMIZATION ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   
+  <!-- ===== CUSTOM STYLES ===== -->
   <style>
     * {
       margin: 0;
@@ -25,7 +70,7 @@
       justify-content: center;
       align-items: center;
       font-family: 'Montserrat', sans-serif;
-      overflow: hidden; /* prevent scrolling */
+      overflow: hidden;
       color: #4F0C0C;
     }
 
@@ -130,6 +175,16 @@
       .logo-text { font-size: 2.5rem; }
       .welcome-text { font-size: 1.8rem; }
       .tagline { font-size: 1.2rem; }
+      
+      .cta-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-button {
+        width: 200px;
+        text-align: center;
+      }
     }
 
     /* Entrance animation */
@@ -148,8 +203,8 @@
       text-align: center;
       max-width: 800px;
       padding: 2rem;
-      opacity: 0; /* start hidden */
-      animation: fadeUp 1.5s ease-out forwards; /* entrance effect */
+      opacity: 0;
+      animation: fadeUp 1.5s ease-out forwards;
     }
 
     /* Make logo appear with a delay */
@@ -172,28 +227,89 @@
     .welcome-text { animation-delay: 0.8s; }
     .cta-section { animation-delay: 1s; }
     .footer { animation-delay: 1.2s; }
+
+    /* Fix for Learn More button since there's no target */
+    .cta-button.secondary {
+      cursor: pointer;
+    }
+    
+    .cta-button.secondary:hover {
+      background: #4F0C0C;
+      color: #FFF2E2;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo-wrapper">
-      <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo" class="logo-img">
+      <img src="LIORE_VERSE_LOGO.png" alt="Liore Verse Logo - Premium Streetwear Brand" class="logo-img">
     </div>
     
     <div class="text-container">
       <h1 class="logo-text">LIORE VERSE</h1>
       <p class="tagline">no talk, moves.</p>
-      
     </div>
 
     <div class="cta-section">
-      <a href="/Home" class="cta-button">GET STARTED <i class="fas fa-arrow-right"></i></a>
-      <a href="#learn-more" class="cta-button secondary">LEARN MORE <i class="fas fa-book-open"></i></a>
+      <a href="Home.html" class="cta-button">GET STARTED <i class="fas fa-arrow-right"></i></a>
+      <button class="cta-button secondary" onclick="scrollToFooter()">LEARN MORE <i class="fas fa-book-open"></i></button>
     </div>
 
     <div class="footer">
-      <p>© 2025 LIORE VERSE. All rights reserved.</p>
+      <p>© 2025 LIORE VERSE. All rights reserved. No Talk, Moves.</p>
     </div>
   </div>
+
+  <!-- Schema Markup for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Liore Verse",
+    "description": "Premium streetwear and lifestyle brand creating limited edition collections for those who take action",
+    "url": "https://lioreverse.com/",
+    "logo": "https://lioreverse.com/LIORE_VERSE_LOGO.png",
+    "sameAs": [
+      "https://www.instagram.com/liore_verse?igsh=MXJhbjNqb2RoYWFvYQ==",
+      "https://x.com/liore_verse",
+      "https://www.facebook.com/share/1BKGUnZQtx/?mibextid=wwXIfr",
+      "https://www.tiktok.com/@liore_verse?_t=ZM-8xI0x9RgOFs&_r=1",
+      "https://pin.it/6EUbs3Msv"
+    ]
+  }
+  </script>
+
+  <script>
+    // Fixed: Function for Learn More button
+    function scrollToFooter() {
+      const footer = document.querySelector('.footer');
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Fixed: Handle secondary button click
+    document.addEventListener('DOMContentLoaded', function() {
+      const learnMoreBtn = document.querySelector('.cta-button.secondary');
+      
+      if (learnMoreBtn) {
+        learnMoreBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToFooter();
+        });
+      }
+
+      // Performance monitoring
+      window.addEventListener('load', function() {
+        console.log('Liore Verse Landing Page - Loaded successfully');
+        
+        // Check if logo image loaded
+        const logoImg = document.querySelector('.logo-img');
+        if (logoImg) {
+          if (!logoImg.complete || logoImg.naturalWidth === 0) {
+            console.warn('Logo image failed to load');
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>

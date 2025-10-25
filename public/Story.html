@@ -3,10 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Story - Liore Verse</title>
+  
+  <!-- Page Specific Title -->
+  <title>Legends of Courage - Liore Verse Stories</title>
+  
+  <!-- ===== COMPLETE FAVICON SETUP ===== -->
+  <link rel="icon" type="image/x-icon" href="LIORE_VERSE_LOGO.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="LIORE_VERSE_LOGO.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="LIORE_VERSE_LOGO.png">
+  <link rel="shortcut icon" href="LIORE_VERSE_LOGO.png" type="image/x-icon">
+  
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileImage" content="LIORE_VERSE_LOGO.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  
+  <!-- ===== SEO META TAGS ===== -->
+  <meta name="description" content="Discover the extraordinary stories of courage that inspire Liore Verse. Legends of Ken Saro-Wiwa, MKO Abiola, Jaja of Opobo, Fela Kuti, and Anthony Enahoro.">
+  <meta name="keywords" content="liore verse stories, legends of courage, ken saro-wiwa, mko abiola, jaja of opobo, fela kuti, anthony enahoro, nigerian heroes, inspirational stories">
+  <meta name="author" content="Liore Verse">
+  <meta name="robots" content="index, follow">
+  
+  <!-- ===== SOCIAL MEDIA META TAGS ===== -->
+  <meta property="og:title" content="Legends of Courage - Liore Verse Story">
+  <meta property="og:description" content="Discover the extraordinary stories of those who defied the odds and changed history forever. Inspired by true legends.">
+  <meta property="og:image" content="LIORE_VERSE_LOGO.png">
+  <meta property="og:url" content="https://lioreverse.com/story">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Liore Verse">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Legends of Courage - Liore Verse Story">
+  <meta name="twitter:description" content="Discover extraordinary stories of courage that inspire Liore Verse.">
+  <meta name="twitter:image" content="LIORE_VERSE_LOGO.png">
+  
+  <!-- ===== PWA & MOBILE OPTIMIZATION ===== -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#4F0C0C">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Liore Verse">
+  
+  <!-- ===== EXTERNAL RESOURCES ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="LIORE_VERSE_LOGO.png">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- ===== PERFORMANCE OPTIMIZATION ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
   <style>
     /* Reset and base styles */
     * {
@@ -344,6 +397,35 @@
       }
     }
 
+    /* Mobile Menu Styles */
+    @media screen and (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .nav-links-container {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #4F0C0C;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+      
+      .nav-links-container.active {
+        display: flex;
+      }
+      
+      .nav-link {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0;
+      }
+    }
+
     /* Responsive Design */
     @media screen and (max-width: 1024px) {
       #entrance-screen {
@@ -496,18 +578,20 @@
   <div class="main-content">
     <!-- Navigation -->
     <nav class="navbar-custom">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="index.html">
         <img src="LIORE_VERSE_LOGO.png" alt="Logo" width="40" height="40" style="border-radius:50%; margin-right:10px;">
         <span class="logo-text">LIORE VERSE</span>
       </a>
       
-      <button class="mobile-menu-btn">
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
         <i class="fas fa-bars"></i>
       </button>
       
-      <div class="nav-links-container">
-        <a href="/Home" class="nav-link"><i class="fas fa-home me-1"></i> Home</a>
-        <a href="/story" class="nav-link active"><i class="fas fa-file-contract me-1"></i> Story</a>
+      <div class="nav-links-container" id="nav-links-container">
+        <a href="Home.html" class="nav-link"><i class="fas fa-home me-1"></i> Home</a>
+        <a href="story.html" class="nav-link active"><i class="fas fa-book-open me-1"></i> Story</a>
+        <a href="about.html" class="nav-link"><i class="fas fa-users me-1"></i> About</a>
+        <a href="policies.html" class="nav-link"><i class="fas fa-file-contract me-1"></i> Policies</a>
       </div>
     </nav>
 
@@ -519,19 +603,19 @@
         
         <!-- Story Number Navigation -->
         <div class="story-numbers">
-          <a href="/Ken Saro-Wiwa" target="_blank" style="text-decoration:none;">
+          <a href="ken-saro-wiwa.html" style="text-decoration:none;">
             <div class="story-number">1</div>
           </a>
-          <a href="/MKO Abiola" target="_blank" style="text-decoration:none;">  
+          <a href="mko-abiola.html" style="text-decoration:none;">  
             <div class="story-number">2</div>
           </a>
-          <a href="/JAJA OF OPOBO" target="_blank" style="text-decoration:none;">
+          <a href="jaja-of-opobo.html" style="text-decoration:none;">
             <div class="story-number">3</div>
           </a>
-          <a href="/FELA ANIKULAPO KUTI" target="_blank" style="text-decoration:none;">
+          <a href="fela-kuti.html" style="text-decoration:none;">
             <div class="story-number">4</div>
           </a>
-          <a href="/ANTHONY ENAHORO" target="_blank" style="text-decoration:none;">
+          <a href="anthony-enahoro.html" style="text-decoration:none;">
             <div class="story-number">5</div>
           </a>
         </div>
@@ -539,12 +623,18 @@
     </section>
   </div>
 
+  <!-- Bootstrap & Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
   <script>
     // Entrance animation script
     document.addEventListener('DOMContentLoaded', function() {
       const entranceScreen = document.getElementById('entrance-screen');
       const skipBtn = document.getElementById('skip-btn');
       const mainContent = document.querySelector('.main-content');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const navLinksContainer = document.getElementById('nav-links-container');
       
       // Function to hide entrance and show main content
       function showMainContent() {
@@ -552,9 +642,9 @@
         setTimeout(() => {
           entranceScreen.style.display = 'none';
           mainContent.style.opacity = '1';
-          // Prevent any scrolling
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
+          // Re-enable scrolling after entrance
+          document.body.style.overflow = 'auto';
+          document.documentElement.style.overflow = 'auto';
         }, 800);
       }
       
@@ -567,10 +657,39 @@
         showMainContent();
       });
 
-      // Prevent scrolling on touch devices
-      document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-      }, { passive: false });
+      // Mobile menu functionality
+      if (mobileMenuBtn && navLinksContainer) {
+        mobileMenuBtn.addEventListener('click', function() {
+          navLinksContainer.classList.toggle('active');
+          
+          // Change icon based on menu state
+          const icon = mobileMenuBtn.querySelector('i');
+          if (navLinksContainer.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (navLinksContainer && navLinksContainer.classList.contains('active')) {
+          if (!event.target.closest('.nav-links-container') && !event.target.closest('.mobile-menu-btn')) {
+            navLinksContainer.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      });
+
+      // Performance monitoring
+      window.addEventListener('load', function() {
+        console.log('Liore Verse Stories - Page loaded successfully');
+      });
     });
   </script>
 </body>
