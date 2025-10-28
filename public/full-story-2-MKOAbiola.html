@@ -54,6 +54,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
+  <!-- ===== FIREBASE SDK ===== -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
   <!-- ===== SCHEMA MARKUP FOR SEO ===== -->
   <script type="application/ld+json">
   {
@@ -1274,24 +1278,33 @@
   </footer>
 
   <script>
+    // ==================== FIREBASE CONFIGURATION ====================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxS1M__BSyRwXn2LaOJF_DH5zy2OuaZjs",
+      authDomain: "liore-verse.firebaseapp.com",
+      projectId: "liore-verse",
+      storageBucket: "liore-verse.firebasestorage.app",
+      messagingSenderId: "24831740169",
+      appId: "1:24831740169:web:7ca285905b1c10cdddebd8",
+      measurementId: "G-PWE2Y233K1"
+    };
+
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
     // ==================== SIMPLIFIED FIREBASE MANAGER ====================
     const firebaseManager = {
       // Load all story owners
       async loadStoryOwners() {
         try {
-          // Simulate loading data (replace with actual Firebase call)
-          console.log('Loading story owners data...');
-          
-          // Return sample data for now
-          return [
-            {
-              id: '1',
-              owner_name: 'First Owner',
-              assigned_stories: ['MKO-Abiola'],
-              bio: 'A passionate collector of stories about democracy and freedom.',
-              date_added: '2025-01-15'
-            }
-          ];
+          const snapshot = await db.collection('storyOwners').get();
+          return snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
         } catch (error) {
           console.error('Error loading story owners:', error);
           // Fallback to localStorage
@@ -1342,17 +1355,35 @@
         
         // Generate owner cards
         container.innerHTML = assignedOwners.map(owner => {
+          const socialMediaLinks = generateStorySocialMediaLinks(owner.social_media);
           return `
             <div class="owner-card">
               <div class="owner-image">
-                <div class="owner-image-placeholder">
-                  <i class="fas fa-user"></i>
-                  <p>Portrait of ${owner.owner_name}</p>
-                </div>
+                ${owner.image_url ? `
+                  <img src="${owner.image_url}" alt="${owner.owner_name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                  <div class="owner-image-placeholder" style="display:none;">
+                    <i class="fas fa-user"></i>
+                    <p>Portrait of ${owner.owner_name}</p>
+                  </div>
+                ` : `
+                  <div class="owner-image-placeholder">
+                    <i class="fas fa-user"></i>
+                    <p>Portrait of ${owner.owner_name}</p>
+                  </div>
+                `}
+                
               </div>
               <div class="owner-content">
                 <h3 class="owner-name">${owner.owner_name}</h3>
                 ${owner.bio ? `<p class="owner-story">${owner.bio}</p>` : ''}
+                ${socialMediaLinks ? `
+                  <div class="owner-social-media">
+                    <h4>Connect with ${owner.owner_name.split(' ')[0]}:</h4>
+                    <div class="social-links-owner">
+                      ${socialMediaLinks}
+                    </div>
+                  </div>
+                ` : ''}
                 <div class="owner-date">
                   <i class="far fa-calendar"></i> 
                   Owner since: ${owner.date_added || 'Recently'}
@@ -1374,6 +1405,54 @@
           </div>
         `;
       }
+    }
+
+    // ==================== FUNCTION TO GENERATE SOCIAL MEDIA LINKS ====================
+    function generateStorySocialMediaLinks(socialMedia) {
+      const links = [];
+      
+      if (socialMedia?.instagram) {
+        const handle = socialMedia.instagram.startsWith('@') ? socialMedia.instagram : `@${socialMedia.instagram}`;
+        links.push(`
+          <a href="https://instagram.com/${socialMedia.instagram.replace('@', '')}" target="_blank" class="social-link-owner">
+            <i class="fab fa-instagram"></i>
+            <span>${handle}</span>
+          </a>
+        `);
+      }
+      
+      if (socialMedia?.facebook) {
+        const handle = socialMedia.facebook.includes('facebook.com') ? 'Facebook Profile' : socialMedia.facebook;
+        const url = socialMedia.facebook.includes('facebook.com') ? socialMedia.facebook : `https://facebook.com/${socialMedia.facebook}`;
+        links.push(`
+          <a href="${url}" target="_blank" class="social-link-owner">
+            <i class="fab fa-facebook"></i>
+            <span>${handle}</span>
+          </a>
+        `);
+      }
+      
+      if (socialMedia?.twitter) {
+        const handle = socialMedia.twitter.startsWith('@') ? socialMedia.twitter : `@${socialMedia.twitter}`;
+        links.push(`
+          <a href="https://twitter.com/${socialMedia.twitter.replace('@', '')}" target="_blank" class="social-link-owner">
+            <i class="fab fa-twitter"></i>
+            <span>${handle}</span>
+          </a>
+        `);
+      }
+      
+      if (socialMedia?.tiktok) {
+        const handle = socialMedia.tiktok.startsWith('@') ? socialMedia.tiktok : `@${socialMedia.tiktok}`;
+        links.push(`
+          <a href="https://tiktok.com/@${socialMedia.tiktok.replace('@', '')}" target="_blank" class="social-link-owner">
+            <i class="fab fa-tiktok"></i>
+            <span>${handle}</span>
+          </a>
+        `);
+      }
+      
+      return links.length > 0 ? links.join('') : '';
     }
 
     // ==================== SCROLL FUNCTIONALITY ====================
@@ -1461,6 +1540,12 @@
 
       // Load story owners immediately
       await loadStoryOwners();
+
+      // Set up real-time listener for Firebase changes
+      db.collection('storyOwners').onSnapshot(() => {
+        console.log('Story owners updated - refreshing display');
+        loadStoryOwners();
+      });
     });
 
     // ==================== SMOOTH SCROLLING AND ANIMATIONS ====================
