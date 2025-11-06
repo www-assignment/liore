@@ -19,7 +19,7 @@
   <meta name="msapplication-TileColor" content="#000000">
   
   <!-- ===== SEO META TAGS ===== -->
-  <meta name="description" content="Discover the extraordinary stories of courage that inspire Liore Verse. Legends of Ken Saro-Wiwa, MKO Abiola, Jaja of Opobo, Fela Kuti, and Anthony Enahoro.">
+  <meta name="description" content="Discover the extraordinary stories of courage that inspire Liore Verse. Legends of Ken Saro-Wiwa, MKO Abiola, Jaja of Opobo, Fela Kuti, Anthony Enahoro, and more.">
   <meta name="keywords" content="liore verse stories, legends of courage, ken saro-wiwa, mko abiola, jaja of opobo, fela kuti, anthony enahoro, nigerian heroes, inspirational stories">
   <meta name="author" content="Liore Verse">
   <meta name="robots" content="index, follow">
@@ -332,6 +332,51 @@
       bottom: -8px;
     }
 
+    /* Story Preview Cards */
+    .story-previews {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .story-card {
+      background: rgba(255, 242, 226, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 242, 226, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 242, 226, 0.08);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .story-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #FFF2E2;
+    }
+
+    .story-card p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .story-card .story-number {
+      width: 35px;
+      height: 35px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
     /* Animations */
     @keyframes pulse {
       0%, 100% {
@@ -407,6 +452,11 @@
         height: 45px;
         font-size: 1.1rem;
       }
+
+      .story-previews {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
     }
 
     @media screen and (max-width: 480px) {
@@ -441,6 +491,14 @@
         height: 40px;
         font-size: 1rem;
       }
+
+      .story-card {
+        padding: 1rem;
+      }
+
+      .story-card h3 {
+        font-size: 1.1rem;
+      }
     }
 
     @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -456,6 +514,47 @@
 
       .entrance-title {
         font-size: 1.8rem;
+      }
+
+      .story-hero {
+        padding: 1rem;
+      }
+
+      .story-numbers {
+        margin: 1rem 0;
+      }
+    }
+
+    /* Tablet Landscape */
+    @media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+      .story-hero {
+        padding: 1.5rem;
+      }
+
+      .story-numbers {
+        gap: 0.8rem;
+      }
+
+      .story-number {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    /* Large Desktop */
+    @media screen and (min-width: 1440px) {
+      .story-hero h1 {
+        font-size: 3rem;
+      }
+
+      .story-hero p {
+        font-size: 1.2rem;
+      }
+
+      .story-number {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -499,11 +598,70 @@
         
         <!-- Story Number Navigation -->
         <div class="story-numbers">
-          <a href="/Ken Saro-Wiwa" class="story-number">1</a>
-          <a href="/MKO Abiola" class="story-number">2</a>
-          <a href="/JAJA OF OPOBO" class="story-number">3</a>
-          <a href="/FELA ANIKULAPO KUTI" class="story-number">4</a>
-          <a href="/ANTHONY ENAHORO" class="story-number">5</a>
+          <a href="/Ken Saro-Wiwa" target="_blank" class="story-number">1</a>
+          <a href="/MKO Abiola" target="_blank" class="story-number">2</a>
+          <a href="/JAJA OF OPOBO" target="_blank" class="story-number">3</a>
+          <a href="/FELA ANIKULAPO KUTI" target="_blank" class="story-number">4</a>
+          <a href="/ANTHONY ENAHORO" target="_blank" class="story-number">5</a>
+          <a href="/Davido" target="_blank" class="story-number">6</a>
+          <a href="/Wizkid" target="_blank" class="story-number">7</a>
+          <a href="/Rema" target="_blank" class="story-number">8</a>
+          <a href="/Omah Lay" target="_blank" class="story-number">9</a>
+          <a href="/Burna Boy" target="_blank" class="story-number">10</a>
+        </div>
+
+        <!-- Story Previews (Optional - can be shown on hover or click) -->
+        <div class="story-previews" id="story-previews">
+          <div class="story-card">
+            <div class="story-number">1</div>
+            <h3>Ken Saro-Wiwa</h3>
+            <p>A story of courage, sacrifice, and the power of one voice against injustice</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">2</div>
+            <h3>MKO Abiola</h3>
+            <p>The man who won an election but lost his life fighting for democracy</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">3</div>
+            <h3>Jaja of Opobo</h3>
+            <p>The merchant king who defied British colonial powers</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">4</div>
+            <h3>Fela Anikulapo Kuti</h3>
+            <p>The musical revolutionary who fought oppression with Afrobeat</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">5</div>
+            <h3>Anthony Enahoro</h3>
+            <p>The statesman who moved the motion for Nigeria's independence</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">6</div>
+            <h3>Davido</h3>
+            <p>A story of identity, perseverance, and building an empire from scratch</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">7</div>
+            <h3>Wizkid</h3>
+            <p>From the streets of Surulere to global stardom - a of focus, and crossing oceans</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">8</div>
+            <h3>Rema</h3>
+            <p>A story of resilience, innovation, and turning pain into power</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">9</div>
+            <h3>Omah Lay</h3>
+            <p>A story of vulnerability, healing, and the power of raw emotion in music</p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">10</div>
+            <h3>Burna Boy</h3>
+            <p>A story of resilience, redemption, and becoming the African Giant</p>
+          </div>
         </div>
       </div>
     </section>
@@ -520,6 +678,8 @@
       const mainContent = document.querySelector('.main-content');
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const navLinksContainer = document.getElementById('nav-links-container');
+      const storyNumbers = document.querySelectorAll('.story-number');
+      const storyPreviews = document.getElementById('story-previews');
 
       // Show main content
       function showMainContent() {
@@ -567,6 +727,25 @@
         }
       });
 
+      // Story number hover effects
+      storyNumbers.forEach(number => {
+        number.addEventListener('mouseenter', function() {
+          // Optional: Show story previews on hover
+          // storyPreviews.style.display = 'grid';
+        });
+        
+        number.addEventListener('mouseleave', function() {
+          // Optional: Hide story previews
+          // storyPreviews.style.display = 'none';
+        });
+        
+        number.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Add navigation logic here
+          console.log('Navigating to story:', this.textContent);
+        });
+      });
+
       // Prevent scrolling on touch devices
       document.addEventListener('touchmove', function(e) {
         e.preventDefault();
@@ -575,6 +754,17 @@
       // Performance monitoring
       window.addEventListener('load', function() {
         console.log('Liore Verse Stories - Page loaded successfully');
+      });
+
+      // Handle window resize for responsive adjustments
+      window.addEventListener('resize', function() {
+        // Close mobile menu on resize to larger screens
+        if (window.innerWidth > 768 && navLinksContainer.classList.contains('active')) {
+          navLinksContainer.classList.remove('active');
+          const icon = mobileMenuBtn.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
       });
     });
   </script>

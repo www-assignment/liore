@@ -56,6 +56,34 @@
       {
         "source": "**",
         "destination": "/Home.html"
+      },
+       {
+        "source": "/Davido",
+        "destination": "/full-story-6-Davido.html"
+      },
+       {
+        "source": "/Wizkid",
+        "destination": "/full-story-7-Wizkid.html"
+      },
+       {
+        "source": "/Rema",
+        "destination": "/full-story-8-Rema.html"
+      },
+       {
+        "source": "/Omah Lay",
+        "destination": "/full-story-9-Omah Lay.html"
+      },
+       {
+        "source": "/Burna Boy",
+        "destination": "/full-story-10-Burna Boy.html"
+      },
+      {
+        "source": "/Washed Baseball Cap",
+        "destination": "/Washed Baseball Cap.jpg"
+      },
+      {
+        "source": "/Denim Baseball Cap",
+        "destination": "/Denim Baseball Cap.jpg"
       }
     ]
   }
