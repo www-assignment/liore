@@ -571,7 +571,7 @@
   <div class="main-content">
     <!-- Navigation -->
     <nav class="navbar-custom">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/">
         <img src="LIORE_VERSE_LOGO.png" alt="Logo">
         <span>LIORE VERSE</span>
       </a>
@@ -596,18 +596,18 @@
         <h1>Legends of Courage</h1>
         <p>Discover the extraordinary stories of those who defied the odds and changed history forever</p>
         
-        <!-- Story Number Navigation -->
+        <!-- Story Number Navigation - UPDATED TO MATCH FIREBASE REWRITE RULES -->
         <div class="story-numbers">
-          <a href="/Ken Saro-Wiwa" target="_blank" class="story-number">1</a>
-          <a href="/MKO Abiola" target="_blank" class="story-number">2</a>
-          <a href="/JAJA OF OPOBO" target="_blank" class="story-number">3</a>
-          <a href="/FELA ANIKULAPO KUTI" target="_blank" class="story-number">4</a>
-          <a href="/ANTHONY ENAHORO" target="_blank" class="story-number">5</a>
-          <a href="/Davido" target="_blank" class="story-number">6</a>
-          <a href="/Wizkid" target="_blank" class="story-number">7</a>
-          <a href="/Rema" target="_blank" class="story-number">8</a>
-          <a href="/Omah Lay" target="_blank" class="story-number">9</a>
-          <a href="/Burna Boy" target="_blank" class="story-number">10</a>
+          <a href="/Ken Saro-Wiwa" class="story-number">1</a>
+          <a href="/MKO Abiola" class="story-number">2</a>
+          <a href="/JAJA OF OPOBO" class="story-number">3</a>
+          <a href="/FELA ANIKULAPO KUTI" class="story-number">4</a>
+          <a href="/ANTHONY ENAHORO" class="story-number">5</a>
+          <a href="/Davido" class="story-number">6</a>
+          <a href="/Wizkid" class="story-number">7</a>
+          <a href="/Rema" class="story-number">8</a>
+          <a href="/Omah Lay" class="story-number">9</a>
+          <a href="/Burna Boy" class="story-number">10</a>
         </div>
 
         <!-- Story Previews (Optional - can be shown on hover or click) -->
@@ -645,7 +645,7 @@
           <div class="story-card">
             <div class="story-number">7</div>
             <h3>Wizkid</h3>
-            <p>From the streets of Surulere to global stardom - a of focus, and crossing oceans</p>
+            <p>From the streets of Surulere to global stardom - a story of focus and crossing oceans</p>
           </div>
           <div class="story-card">
             <div class="story-number">8</div>
@@ -727,7 +727,7 @@
         }
       });
 
-      // Story number hover effects
+      // Story number hover effects - REMOVED THE PREVENT DEFAULT
       storyNumbers.forEach(number => {
         number.addEventListener('mouseenter', function() {
           // Optional: Show story previews on hover
@@ -739,11 +739,8 @@
           // storyPreviews.style.display = 'none';
         });
         
-        number.addEventListener('click', function(e) {
-          e.preventDefault();
-          // Add navigation logic here
-          console.log('Navigating to story:', this.textContent);
-        });
+        // REMOVED the click event listener that was preventing navigation
+        // The links will now work normally with Firebase rewrites
       });
 
       // Prevent scrolling on touch devices
